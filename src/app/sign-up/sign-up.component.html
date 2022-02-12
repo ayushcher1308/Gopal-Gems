@@ -1,0 +1,83 @@
+<div class="body">
+    <div class="container" id="container">
+        <div class="form-container sign-in-container sc1">
+            <h1>Registration</h1>
+            <form [formGroup]="loginForm">
+                <h2>Personal Information</h2>
+                <input type="text" placeholder="First Name*" formControlName="user"/>
+                <span class="validationText" *ngIf="user.invalid && (user.dirty || user.touched)">
+                    Email is required*
+                </span>
+                
+                <input type="text" placeholder="Last Name" formControlName="password"/>
+                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Password is required*
+                </span>
+
+                <input type="email" placeholder="Email*" formControlName="password"/>
+                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Password is required*
+                </span>
+
+                <input type="password" placeholder="Password*" formControlName="password"/>
+                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Password is required*
+                </span>
+
+                <input type="password" placeholder="Confirm Password*" formControlName="password"/>
+                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Password is required*
+                </span>
+
+                <input type="text" placeholder="Date of Birth*" formControlName="password" onfocus="(this.type='date')" onblur="(this.type='text')"/>
+                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Password is required*
+                </span>
+
+                <input type="text" placeholder="Mobile Number*" formControlName="password" onfocus="(this.type='date')" onblur="(this.type='text')"/>
+                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Password is required*
+                </span>
+
+                <h2>Business Information</h2>
+                <input type="text" placeholder="Company Name*" formControlName="password" onfocus="(this.type='date')" onblur="(this.type='text')"/>
+                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    Password is required*
+                </span>
+                
+                <select name="businessType" id="businessType">
+                    <option value="" disabled selected>Select Business Type*</option>
+                    <option *ngFor="let type of businessType" value="type">{{type}}</option>
+                </select>
+
+                <select name="country" id="country" (change)="selectStatesByCountry($any($event.target).value)">
+                    <option value="" disabled selected>Select Country*</option>
+                    <option *ngFor="let country of countries" value={{country.isoCode}}>{{country.name}}</option>
+                </select>
+
+                <select name="state" id="state" (change)="selectCitiesByState($any($event.target).value)">
+                    <option value="" disabled selected>Select State*</option>
+                    <option *ngFor="let state of states" value={{state.isoCode}}>{{state.name}}</option>
+                </select>
+
+                <select name="city" id="city" >
+                    <option value="" disabled selected>Select City</option>
+                    <option *ngFor="let city of cities" value="city.isoCode">{{city.name}}</option>
+                </select>
+
+                <textarea id="address" placeholder="Address" name="address" rows="4" cols="10"></textarea>
+
+                <button [disabled]="!loginForm.valid" (click)="onSubmit()">Register</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1 class="logo">G</h1>
+                    <p>Login To Explore wide range of diamonds with us.</p>
+                    <button class="ghost" id="signUp" (click)="redirectToSignin()">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
