@@ -54,7 +54,6 @@ export class SignUpComponent implements OnInit {
 
   selectCitiesByState(event:any){
     this.cities = City.getCitiesOfState(this.countrySelected,event);
-    console.log(this.cities)
   }
 
 }

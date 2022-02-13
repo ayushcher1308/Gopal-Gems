@@ -1,7 +1,7 @@
 <div class="body">
-<div class="container" id="container">
-	<div class="form-container sign-in-container">
-		<form [formGroup]="loginForm">
+  <div class="container" id="container">
+    <div class="form-container sign-in-container">
+      <!-- <form [formGroup]="loginForm">
 			<h1>Sign in</h1>
 			<input type="email" placeholder="User Name" formControlName="user"/>
             <span class="validationText" *ngIf="user.invalid && (user.dirty || user.touched)">
@@ -16,16 +16,55 @@
 
 			<a href="#">Forgot your password?</a>
 			<button [disabled]="!loginForm.valid" (click)="onSubmit()">Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-right">
-				<h1 class="logo">G</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp" (click)="redirectToSignup()">Sign Up</button>
-			</div>
-		</div>
-	</div>
-</div>
+		</form> -->
+      <form [formGroup]="loginForm">
+        <h1>Sign in</h1>
+        <div class="mb-1">
+          <!-- <label for="formGroupExampleInput" class="form-label">User Name</label> -->
+          <input
+            type="text"
+            class="form-control"
+            id="formGroupExampleInput"
+            formControlName="user"
+            placeholder="Enter User Name"
+          />
+        </div>
+        <div class="col-auto">
+          <span id="passwordHelpInline" class="form-text" *ngIf="user.invalid && (user.dirty || user.touched)">
+            Please Enter User Name
+          </span>
+        </div>
+        <div class="mb-1">
+          <!-- <label for="formGroupExampleInput2" class="form-label">Password</label> -->
+          <input
+            type="password"
+            class="form-control"
+            id="formGroupExampleInput2"
+            formControlName="password"
+            placeholder="Enter password"
+          />
+        </div>
+        <div class="col-auto">
+          <span id="passwordHelpInline" class="form-text" *ngIf="password.invalid && (password.dirty || password.touched)">
+            Must be 8-20 characters long.
+          </span>
+        </div>
+        <button class="mb-1" [disabled]="!loginForm.valid" (click)="onSubmit()">
+          Sign In
+        </button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1 class="logo">G</h1>
+          <p class="gems">Gopal Gems</p>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp" (click)="redirectToSignup()">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

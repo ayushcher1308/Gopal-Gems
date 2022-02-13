@@ -1,34 +1,47 @@
 <div class="row row-cols-1 row-cols-md-4 g-4">
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h4>4000</h4>
-          <h2 class="card-title">New Goods</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h4>4000</h4>
-          <h2 class="card-title">Recommended</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h4>4000</h4>  
-          <h2 class="card-title">Favourite</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h4>4000</h4>
-          <h2 class="card-title">Enquiry</h2>
-        </div>
+  <div class="col">
+    <div class="card shadow p-2">
+      <div class="card-body">
+        <i class="fs-4 fa fa-diamond"></i>
+        <h4>New Goods</h4>
+        <h2 class="card-title">4000</h2>
       </div>
     </div>
   </div>
+  <div class="col">
+    <div class="card shadow p-2">
+      <div class="card-body">
+        <i class="fs-4 fa fa-thumbs-up"></i>
+        <h4>Recommended</h4>
+        <h2 class="card-title">0</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow p-2">
+      <div class="card-body">
+        <i class="fs-4 fa fa-heart-o"></i>
+        <h4>Favourite</h4>
+        <h2 class="card-title">0</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow p-2">
+      <div class="card-body">
+        <i class="fs-4 fa fa-question-circle"></i>
+        <h4>Enquiry</h4>
+        <h2 class="card-title">0</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ag-grid-angular
+    style="width: 100%; height: 550px;padding-top: 35px;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+>
+</ag-grid-angular>

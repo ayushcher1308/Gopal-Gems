@@ -1,1 +1,80 @@
-<p>enquiry works!</p>
+<h1 class="center">Enquire Here</h1>
+<form class="row g-3 m-4">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">First Name</label>
+    <input type="email" class="form-control" id="inputEmail4" />
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Last Name</label>
+    <input type="password" class="form-control" id="inputPassword4" />
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Company</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="ABC Ltd"
+    />
+  </div>
+  <div class="col-md-3">
+    <label for="inputState" class="form-label">Country</label>
+    <select
+      id="inputState"
+      class="form-select"
+      (change)="selectStatesByCountry($any($event.target).value)"
+    >
+      <option selected disabled>Choose...</option>
+      <option *ngFor="let country of countries" value="{{ country.isoCode }}">
+        {{ country.name }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label for="inputState" class="form-label">State</label>
+    <select
+      id="inputState"
+      class="form-select"
+      (change)="selectCitiesByState($any($event.target).value)"
+    >
+      <option selected disabled>Choose...</option>
+      <option *ngFor="let state of states" value="{{ state.isoCode }}">
+        {{ state.name }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label for="inputState" class="form-label">City</label>
+    <select id="inputState" class="form-select">
+      <option selected disabled>Choose...</option>
+      <option *ngFor="let city of cities" value="city.isoCode">
+        {{ city.name }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label for="ppincode" class="form-label">Pin Code</label>
+    <input
+      type="text"
+      class="form-control"
+      id="pincode"
+      placeholder="Pin Code"
+    />
+  </div>
+
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Address</label>
+    <textarea class="form-control" id="inputAddress2" rows="3" placeholder="Please specify complete address"></textarea>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck" />
+      <label class="form-check-label" for="gridCheck"> High Priority </label>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary centre m-2">Enquire</button>
+    <button type="clear" class="btn btn-outline-primary centre m-2">Clear</button>
+  </div>
+</form>

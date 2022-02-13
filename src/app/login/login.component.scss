@@ -61,6 +61,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+    margin-top: 5px;
 }
 
 button:active {
@@ -76,13 +77,17 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
+.form-text{
+    color: #FF4B2B;
+}
+
 form {
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 0 50px;
+	padding: 0 30px;
 	height: 100%;
 	text-align: center;
 }
@@ -95,6 +100,10 @@ input {
 	width: 100%;
 }
 
+.gems{
+    font-size: 20px;
+}
+
 .container {
 	background-color: #fff;
 	border-radius: 10px;
@@ -102,8 +111,8 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
-	max-width: 100%;
+	// width: 768px;
+	max-width: 90%;
 	min-height: 480px;
 }
 
