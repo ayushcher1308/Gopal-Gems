@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { AgGridModule } from 'ag-grid-angular';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AgGridModule.withComponents([])
   ],
   providers: [],

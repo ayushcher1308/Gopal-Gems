@@ -26,13 +26,9 @@
             class="form-control"
             id="formGroupExampleInput"
             formControlName="user"
-            placeholder="Enter User Name"
+            placeholder="User ID*"
+            [ngClass]="{'invalid-input': (user.invalid && (user.dirty || user.touched))}"
           />
-        </div>
-        <div class="col-auto">
-          <span id="passwordHelpInline" class="form-text" *ngIf="user.invalid && (user.dirty || user.touched)">
-            Please Enter User Name
-          </span>
         </div>
         <div class="mb-1">
           <!-- <label for="formGroupExampleInput2" class="form-label">Password</label> -->
@@ -41,15 +37,13 @@
             class="form-control"
             id="formGroupExampleInput2"
             formControlName="password"
-            placeholder="Enter password"
+            placeholder="Password*"
+            [ngClass]="{'invalid-input': (password.invalid && (password.dirty || password.touched))}"
           />
         </div>
-        <div class="col-auto">
-          <span id="passwordHelpInline" class="form-text" *ngIf="password.invalid && (password.dirty || password.touched)">
-            Must be 8-20 characters long.
-          </span>
-        </div>
-        <button class="mb-1" [disabled]="!loginForm.valid" (click)="onSubmit()">
+      
+        <button class="mb-1 btn" type="button" [disabled]="!loginForm.valid" (click)="onSubmit()">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           Sign In
         </button>
       </form>
@@ -60,11 +54,15 @@
           <h1 class="logo">G</h1>
           <p class="gems">Gopal Gems</p>
           <p>Enter your personal details and start journey with us</p>
-          <button class="ghost" id="signUp" (click)="redirectToSignup()">
+          <button class="ghost" type="submit" id="signUp" (click)="redirectToSignup()">
             Sign Up
           </button>
         </div>
       </div>
     </div>
+
   </div>
 </div>
+
+
+<div class="snackbar" id="snackbar">{{message}}</div>

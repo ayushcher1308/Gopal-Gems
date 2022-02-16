@@ -1,83 +1,401 @@
-<div class="body">
-    <div class="container" id="container">
-        <div class="form-container sign-in-container sc1">
-            <h1>Registration</h1>
-            <form [formGroup]="loginForm">
-                <h2>Personal Information</h2>
-                <input type="text" placeholder="First Name*" formControlName="user"/>
-                <span class="validationText" *ngIf="user.invalid && (user.dirty || user.touched)">
-                    Email is required*
-                </span>
-                
-                <input type="text" placeholder="Last Name" formControlName="password"/>
-                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    Password is required*
-                </span>
+<!-- <div class="body">
+  <div class="container" id="container">
+    <div class="form-container sign-in-container sc1">
+      <h1>Registration</h1>
+      <form [formGroup]="loginForm">
+        <h2>Personal Information</h2>
+        <input
+          type="text"
+          placeholder="First Name*"
+          formControlName="firstName"
+        />
+        <span
+          class="validationText"
+          *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+        >
+          Name is required*
+        </span>
 
-                <input type="email" placeholder="Email*" formControlName="password"/>
-                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    Password is required*
-                </span>
+        <input type="text" placeholder="Last Name" formControlName="lastName" />
 
-                <input type="password" placeholder="Password*" formControlName="password"/>
-                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    Password is required*
-                </span>
+        <input type="email" placeholder="Email*" formControlName="email" />
+        <span *ngIf=" (email.touched ||
+		email.dirty) && email.invalid">
+			<span *ngIf="email.errors.required" style="color:red;font-size:13px">*Email is required</span>
+			<span *ngIf="email.errors.email" style="color:red;font-size:13px">*Email address is not valid</span>
+        </span>
 
-                <input type="password" placeholder="Confirm Password*" formControlName="password"/>
-                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    Password is required*
-                </span>
+        <input
+          type="password"
+          placeholder="Password*"
+          formControlName="password"
+        />
+        <span *ngIf=" (password.touched ||
+		password.dirty) && password.invalid">
+			<span *ngIf="password.errors.required" style="color:red;font-size:13px">*Password is required.</span>
+			<span *ngIf="password.errors.passwordStrength" style="color:red;font-size:13px">*Password must be strong.</span>
+        </span>
 
-                <input type="text" placeholder="Date of Birth*" formControlName="password" onfocus="(this.type='date')" onblur="(this.type='text')"/>
-                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    Password is required*
-                </span>
+        <input
+          type="password"
+          placeholder="Confirm Password*"
+          formControlName="confirmPassword"
+        />
+        <span *ngIf=" (confirmPassword.touched ||
+		confirmPassword.dirty) && confirmPassword.invalid">
+			<span *ngIf="confirmPassword.errors?.mustMatch" style="color:red;font-size:13px">*Password must match.</span>
+          Password is required*
+        </span>
 
-                <input type="text" placeholder="Mobile Number*" formControlName="password" onfocus="(this.type='date')" onblur="(this.type='text')"/>
-                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    Password is required*
-                </span>
+        <input
+          type="text"
+          placeholder="Date of Birth*"
+          formControlName="dateOfBirth"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')"
+        />
+        <span
+          class="validationText"
+          *ngIf="
+            dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)
+          "
+        >
+          Date of Birth is required*
+        </span>
 
-                <h2>Business Information</h2>
-                <input type="text" placeholder="Company Name*" formControlName="password" onfocus="(this.type='date')" onblur="(this.type='text')"/>
-                <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    Password is required*
-                </span>
-                
-                <select name="businessType" id="businessType">
-                    <option value="" disabled selected>Select Business Type*</option>
-                    <option *ngFor="let type of businessType" value="type">{{type}}</option>
-                </select>
+        <input
+          type="text"
+          placeholder="Mobile Number*"
+          formControlName="contactNo"
+          (keypress)="numberOnly($event)"
+          maxlength="10"
+        />
+        <span *ngIf=" (contactNo.touched ||
+		contactNo.dirty) && contactNo.invalid">
+			<span *ngIf="contactNo.errors.required" style="color:red;font-size:13px">*Contact Number is required</span>
+			<span *ngIf="contactNo.errors.pattern" style="color:red;font-size:13px">*Contact Number is not valid</span>
+        </span>
 
-                <select name="country" id="country" (change)="selectStatesByCountry($any($event.target).value)">
-                    <option value="" disabled selected>Select Country*</option>
-                    <option *ngFor="let country of countries" value={{country.isoCode}}>{{country.name}}</option>
-                </select>
+        <div formGroupName="businessInfo">
+          <h2>Business Information</h2>
+          <input
+            type="text"
+            placeholder="Company Name*"
+            formControlName="companyName"
+          />
 
-                <select name="state" id="state" (change)="selectCitiesByState($any($event.target).value)">
-                    <option value="" disabled selected>Select State*</option>
-                    <option *ngFor="let state of states" value={{state.isoCode}}>{{state.name}}</option>
-                </select>
+          <select name="businessType" id="businessType" formControlName="businessType">
+            <option value="" disabled selected>Select Business Type*</option>
+            <option *ngFor="let type of businessType" value="{{type}}">
+              {{ type }}
+            </option>
+          </select>
 
-                <select name="city" id="city" >
-                    <option value="" disabled selected>Select City</option>
-                    <option *ngFor="let city of cities" value="city.isoCode">{{city.name}}</option>
-                </select>
+          <select
+            name="country"
+            id="country"
+            formControlName="country"
+            (change)="selectStatesByCountry($any($event.target).value)"
+          >
+            <option value="" disabled selected>Select Country*</option>
+            <option
+              *ngFor="let country of countries"
+              value="{{ country.isoCode }}"
+            >
+              {{ country.name }}
+            </option>
+          </select>
 
-                <textarea id="address" placeholder="Address" name="address" rows="4" cols="10"></textarea>
+          <select
+            name="state"
+            id="state"
+            formControlName="state"
+            (change)="selectCitiesByState($any($event.target).value)"
+          >
+            <option value="" disabled selected>Select State*</option>
+            <option *ngFor="let state of states" value="{{ state.isoCode }}">
+              {{ state.name }}
+            </option>
+          </select>
 
-                <button [disabled]="!loginForm.valid" (click)="onSubmit()">Register</button>
-            </form>
+          <select name="city" id="city" formControlName="city">
+            <option value="" disabled selected>Select City</option>
+            <option *ngFor="let city of cities" value="{{city.isoCode}}">
+              {{ city.name }}
+            </option>
+          </select>
+
+          <textarea
+            id="address"
+            placeholder="Address*"
+            formControlName="address"
+            name="address"
+            rows="4"
+            cols="10"
+          ></textarea>
         </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-right">
-                    <h1 class="logo">G</h1>
-                    <p>Login To Explore wide range of diamonds with us.</p>
-                    <button class="ghost" id="signUp" (click)="redirectToSignin()">Sign In</button>
-                </div>
-            </div>
+        <button  (click)="onSubmit()">
+          Register
+        </button>
+        <a (click)="redirectToSignin()">Back to Login</a>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1 class="logo">G</h1>
+          <p>Login To Explore wide range of diamonds with us.</p>
+          <button class="ghost" id="signUp" (click)="redirectToSignin()">
+            Sign In
+          </button>
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="snackbar" id="snackbar">{{message}}</div> -->
+
+<div class="row">
+  <div class="col-md-8">
+    <form class="row g-3 m-4" [formGroup]="loginForm">
+      <h4>Personal Information</h4>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">First Name*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputEmail4"
+          formControlName="firstName"
+        />
+        <div
+          id="firstName"
+          *ngIf="
+            (firstName.touched || firstName.dirty) &&
+            firstName.invalid
+          "
+          class="form-text"
+        >
+          <span *ngIf="firstName.errors.required">Required*</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          formControlName="lastName"
+        />
+      </div>
+
+      <div class="col-12">
+        <label for="email" class="form-label">Email*</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="abc@abc.com"
+          formControlName="email"
+        />
+        <div
+          id="email"
+          *ngIf="(emailText.touched || emailText.dirty) && emailText.invalid"
+          class="form-text"
+        >
+          <span *ngIf="emailText.errors.required">Required*</span>
+          <span *ngIf="emailText.errors.email">Not a valid email*</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password*</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          aria-describedby="password"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="confirmPassword" class="form-label"
+          >Confirm Password*</label
+        >
+        <input
+          type="password"
+          class="form-control"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+        />
+        <div
+          id="password"
+          *ngIf="
+            (confirmPassword.touched || confirmPassword.dirty) &&
+            confirmPassword.invalid
+          "
+          class="form-text"
+        >
+          <span *ngIf="confirmPassword.errors.required">Required*</span>
+          <span *ngIf="confirmPassword.errors.mustMatch"
+            >Password and Confirm Password must match*</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label for="countryCode" class="form-label">Code*</label>
+        <select
+          id="countryCode"
+          class="form-select"
+          formControlName="countryCode"
+        >
+          <option selected disabled>Choose...</option>
+          <option *ngFor="let info of contactCode" value="{{info.dial_code}}">
+            {{ info.name }} ({{ info.dial_code }})
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-10">
+        <label for="contactNo" class="form-label">Contact*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="contactNo"
+          placeholder="00000 00000"
+          (keypress)="numberOnly($event)"
+          formControlName="contactNo"
+        />
+      </div>
+
+      <h4>Business Information</h4>
+
+      <div class="col-6">
+        <label for="companyName" class="form-label">Company Name*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="companyName"
+          placeholder="ABC Ltd"
+          formControlName="companyName"
+        />
+      </div>
+
+      <div class="col-6">
+        <label for="businessType" class="form-label">Business Type*</label>
+        <select
+          id="businessType"
+          class="form-select"
+          formControlName="businessType"
+        >
+          <option selected disabled>Choose...</option>
+          <option
+            *ngFor="let type of businessType"
+            value="{{ type }}"
+          >
+            {{ type }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="country" class="form-label">Country*</label>
+        <select
+          id="country"
+          class="form-select"
+          formControlName="country"
+          (change)="selectStatesByCountry($any($event.target).value)"
+        >
+          <option selected disabled>Choose...</option>
+          <option
+            *ngFor="let country of countries"
+            value="{{ country.isoCode }}"
+          >
+            {{ country.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="state" class="form-label">State*</label>
+        <select
+          id="state"
+          class="form-select"
+          (change)="selectCitiesByState($any($event.target).value)"
+          formControlName="state"
+        >
+          <option selected disabled>Choose...</option>
+          <option *ngFor="let state of states" value="{{ state.isoCode }}">
+            {{ state.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="city" class="form-label">City</label>
+        <select
+          id="city"
+          class="form-select"
+          formControlName="city"
+        >
+          <option selected disabled>Choose...</option>
+          <option *ngFor="let city of cities" value="{{city.name}}">
+            {{ city.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="pincode" class="form-label">Pin Code*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="pincode"
+          placeholder="Pin Code"
+          formControlName="pincode"
+        />
+      </div>
+
+      <div class="col-12">
+        <label for="pincode" class="form-label">Address*</label>
+        <textarea
+          class="form-control"
+          id="address"
+          formControlName="address"
+          rows="2"
+          placeholder="Please specify complete address"
+        ></textarea>
+      </div>
+
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck" />
+          <label class="form-check-label" for="gridCheck">
+            Please accept Terms & Conditions
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 text-center">
+        <button (click)="onSubmit()" class="btn btn-primary centre m-2">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Register
+        </button>
+        <button type="clear" class="btn btn-outline-primary centre m-2">
+          Clear
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-4" style="margin-bottom: -50px">
+    <div class="overlay-panel overlay-right col-md-12">
+      <h1 class="logo">G</h1>
+      <p>Login To Explore wide range of diamonds with us.</p>
+      <button class="ghost" id="signUp" (click)="redirectToSignin()">
+        Sign In
+      </button>
     </div>
+  </div>
+</div>
+
+<div class="snackbar" id="snackbar">{{ message }}</div>

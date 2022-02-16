@@ -1,15 +1,15 @@
 <h1 class="center">Enquire Here</h1>
 <form class="row g-3 m-4">
   <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">First Name</label>
-    <input type="email" class="form-control" id="inputEmail4" />
+    <label for="inputEmail4" class="form-label">First Name*</label>
+    <input type="text" class="form-control" id="inputEmail4" />
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">Last Name</label>
-    <input type="password" class="form-control" id="inputPassword4" />
+    <input type="text" class="form-control" id="inputPassword4" />
   </div>
   <div class="col-12">
-    <label for="inputAddress" class="form-label">Company</label>
+    <label for="inputAddress" class="form-label">Company*</label>
     <input
       type="text"
       class="form-control"
@@ -17,8 +17,30 @@
       placeholder="ABC Ltd"
     />
   </div>
+
+  <div class="col-md-2">
+    <label for="countryCode" class="form-label">Country Code*</label>
+    <select
+      id="countryCode"
+      class="form-select"
+    >
+      <option selected disabled>Choose...</option>
+      <option *ngFor="let info of contactCode" value="info.dial_code">{{info.name}} ({{info.dial_code}})</option>
+    </select>
+  </div>
+
+  <div class="col-md-10">
+    <label for="contactNo" class="form-label">Contact*</label>
+    <input
+      type="text"
+      class="form-control"
+      id="contactNo"
+      placeholder="00000 00000"
+    />
+  </div>
+
   <div class="col-md-3">
-    <label for="inputState" class="form-label">Country</label>
+    <label for="inputState" class="form-label">Country*</label>
     <select
       id="inputState"
       class="form-select"
@@ -31,7 +53,7 @@
     </select>
   </div>
   <div class="col-md-3">
-    <label for="inputState" class="form-label">State</label>
+    <label for="inputState" class="form-label">State*</label>
     <select
       id="inputState"
       class="form-select"
@@ -53,7 +75,7 @@
     </select>
   </div>
   <div class="col-md-3">
-    <label for="ppincode" class="form-label">Pin Code</label>
+    <label for="ppincode" class="form-label">Pin Code*</label>
     <input
       type="text"
       class="form-control"
@@ -63,9 +85,15 @@
   </div>
 
   <div class="col-12">
-    <label for="inputAddress2" class="form-label">Address</label>
-    <textarea class="form-control" id="inputAddress2" rows="3" placeholder="Please specify complete address"></textarea>
+    <label for="inputAddress2" class="form-label">Address*</label>
+    <textarea class="form-control" id="inputAddress2" rows="2" placeholder="Please specify complete address"></textarea>
   </div>
+
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Enquiry*</label>
+    <textarea class="form-control" id="inputAddress2" rows="2" placeholder="Please mention enquiry"></textarea>
+  </div>
+
   <div class="col-12">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck" />

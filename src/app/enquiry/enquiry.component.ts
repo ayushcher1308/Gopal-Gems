@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Country, State, City }  from 'country-state-city';
+import { countryCode } from '../../json/country-code'
 
 @Component({
   selector: 'app-enquiry',
@@ -14,6 +15,7 @@ export class EnquiryComponent implements OnInit {
   states:any = [];
   cities:any = [];
   countrySelected:any;
+  contactCode:any = countryCode.info;
 
   ngOnInit(): void {
     var rm  = document.getElementsByClassName("path");
