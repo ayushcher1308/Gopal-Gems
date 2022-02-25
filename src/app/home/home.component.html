@@ -53,21 +53,17 @@
 >
 </ag-grid-angular> -->
 
-<div *ngIf="!loader" class="w-3 m-1 mt-3 mb-0">
-  <span class="pt-4 mt-4 text-center fw-bold heading">New Goods</span>
-  <button type="button" class="btn btn-sm btn-secondary right m-1"><i class="fs-6 fa fa-phone mx-1"></i>Enquire Now</button>
-  <button type="button" class="btn btn-sm btn-primary right m-1"><i class="fs-6 fa fa-shopping-cart mx-1"></i>Add To Cart</button>
-  <button type="button" class="btn btn-sm btn-danger right m-1"><i class="fs-6 fa fa-heart-o mx-1"></i>Add To Wishlist</button>
-  <button type="button" class="btn btn-sm btn-success right m-1"><i class="fs-6 far fa-gem mx-1"></i>Place Order</button>
+<div *ngIf="!loader" class="w-3 border-bottom border-1 m-1">
+  <h2 class="m-2 fw-bold text-center">New Goods</h2>
 </div>
 
 <div class="container">
   <div class="row cards">
-    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let data of diamondData;let i = index" >
-      <div class="card card-margin" [ngClass]="data.selected ? 'select' : ''"  (click)="selectCard(i)">
+    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let data of diamondData;let i = index" (click)="selectCard(i)">
+      <div class="card card-margin" [ngClass]="data.selected ? 'select' : ''">
         <div class="card-body pt-0">
           <div class="widget-49">
-            <div class="widget-49-title-wrapper m-1" [ngClass]="data.selected ? 'selected' : 'notselected'">
+            <div class="widget-49-title-wrapper m-1">
               <div class="widget-49-date-primary">
                 <span class="widget-49-date-day">{{ data.Carat }}</span>
                 <span class="widget-49-date-month fw-bold">carat</span>
