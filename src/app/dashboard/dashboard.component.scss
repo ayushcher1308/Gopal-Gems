@@ -1,40 +1,60 @@
-.logo{
-    font-family: 'Vivaldi', sans-serif;
-    font-size: 35px;  
-    text-align: center;
-    margin-top: 40px;
-}
-
-#menu{
-    margin-top: 25px;
-    width: 100%;
-}
-
-.G{
-    font-size: 8px;
-}
-
-@media screen and (max-width: 600px) {
-    .G{
-        display: none;
-    }
-}
-
-i{
-    margin:5px
-}
-
 a{
-    color: white;
     font-family: 'Montserrat', sans-serif;
 }
 
+.navbar{
+    background: linear-gradient(to right, gray, black);
+}
+
+// a{
+//     color: white;
+// }
+
+.navbar-brand{
+    font-family: 'Vivaldi', sans-serif;
+    font-size: 25px;
+}
+
+.below-section{
+    height: 100%;
+    margin: 10px;
+}
+
+.Profile{
+    position: absolute;
+    right: 30px;
+}
+
 li{
-    width: 100%;
+    cursor: pointer;
 }
 
+#loader{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 10px solid #dcefff;
+    border-top: 10px solid blue;
+    animation: rotate 2s infinite ease;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    z-index: 1000;
+  }
+  @keyframes rotate{
+    0%{
+      transform: none;
+    }
+   100%{
+     transform: rotate(1turn);
+     
+  }}
 
-.selected{
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
-    color: white;
+
+@media only screen and (max-width: 600px) {
+    .Profile{
+        position: relative;
+        right: 0px;
+    }
 }
+

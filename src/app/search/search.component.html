@@ -1,1 +1,136 @@
-<p>search works!</p>
+<h2>Search Diamonds</h2>
+
+<h4>Shapes</h4>
+<div class="shape-box">
+  <div *ngFor="let data of diamondShapes; let i = index">
+    <button
+      type="button"
+      (click)="selectShape(i)"
+      [ngClass]="data.selected ? 'border-secondary border-4 shadow' : 'border-secondary'"
+      class="btn shape item m-2 p-3"
+      title={{data.shape}}
+      data-bs-toggle="tooltip"
+      data-bs-placement="bottom"
+    >
+    <img *ngIf="data.selected" [src]="data.hover"  alt="no img">
+    <img *ngIf="!data.selected" [src]="data.path"  alt="no img">
+    </button>
+  </div>
+</div>
+
+<h4>Cut</h4>
+<div class="shape-box">
+  <div *ngFor="let data of cutValue; let i = index">
+    <button
+      type="button"
+      (click)="selectCut(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1 btn-lg"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<h4>Symmetry</h4>
+<div class="shape-box">
+  <div *ngFor="let data of symmetry; let i = index">
+    <button
+      type="button"
+      (click)="selectSymmetry(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<h4>Color</h4>
+<div class="shape-box">
+  <div *ngFor="let data of Color; let i = index">
+    <button
+      type="button"
+      (click)="selectColor(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<h4>Clarity</h4>
+<div class="shape-box">
+  <div *ngFor="let data of Clarity; let i = index">
+    <button
+      type="button"
+      (click)="selectClarity(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<h4>Fluorescence</h4>
+<div class="shape-box">
+  <div *ngFor="let data of Fluorescence; let i = index">
+    <button
+      type="button"
+      (click)="selectFluorescence(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<h4>Milky</h4>
+<div class="shape-box">
+  <div *ngFor="let data of Milky; let i = index">
+    <button
+      type="button"
+      (click)="selectMilky(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<h4>Polish</h4>
+<div class="shape-box">
+  <div *ngFor="let data of Polish; let i = index">
+    <button
+      type="button"
+      (click)="selectPolish(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<h4>Lab</h4>
+<div class="shape-box">
+  <div *ngFor="let data of Lab; let i = index">
+    <button
+      type="button"
+      (click)="selectLab(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-2 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div>
+
+<div href="#" class="float">
+  <div class="my-float">Search</div>
+</div>
+

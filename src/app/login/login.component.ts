@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { config } from '../../config/config'
+import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ import { config } from '../../config/config'
 export class LoginComponent implements OnInit {
   constructor(private router: Router,
      private route: ActivatedRoute,
-     private dataService: DataService) {}
+     private dataService: DataService,
+     private userInfo: UserDataService) {}
 
   ngOnInit(): void {}
 
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
         }
         else{
           localStorage.setItem("token",res.token);
-          localStorage.setItem("userId",res.data.userId)
+          this.userInfo.setUserInfo(res.data);
           this.router.navigate(['/dashboard'], { relativeTo: this.route });
         }
       }

@@ -42,7 +42,7 @@
           />
         </div>
       
-        <button class="mb-1 btn" type="button" [disabled]="!loginForm.valid" (click)="onSubmit()">
+        <button class="mb-1 btn" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()">
           <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           Sign In
         </button>

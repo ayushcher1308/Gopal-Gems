@@ -1,10 +1,10 @@
-<div class="row row-cols-1 row-cols-md-4 g-4 row-cols-sm-12">
+<div *ngIf="!loader" class="row row-cols-1 row-cols-md-4 g-4 row-cols-sm-12">
   <div class="col">
     <div class="card shadow p-2">
       <div class="card-body">
         <i class="fs-4 fa fa-diamond"></i>
         <h4>New Goods</h4>
-        <h2 class="card-title">4000</h2>
+        <h2 class="card-title">{{diamondData.length}}</h2>
       </div>
     </div>
   </div>
@@ -37,11 +37,99 @@
   </div>
 </div>
 
+<!-- <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart m-1"></i>Add To Cart</button>
+<button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-edit m-1"></i>Enquiry</button>
+<button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-heart m-1"></i>Add To Wishlist</button> -->
 
-<ag-grid-angular
-    style="width: 100%; height: 550px;padding-top: 35px;"
-    class="ag-theme-alpine"
+<!-- <ag-grid-angular
+    style="width: 100%; height: 70%;"
+    class="ag-theme-balham"
     [rowData]="rowData"
     [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [suppressRowClickSelection]="false"
+    [rowMultiSelectWithClick]="true"
+    [rowSelection]="rowSelection"
 >
-</ag-grid-angular>
+</ag-grid-angular> -->
+
+<div *ngIf="!loader" class="w-3 m-1 mt-3 mb-0">
+  <span class="pt-4 mt-4 text-center fw-bold heading">New Goods</span>
+  <button type="button" class="btn btn-sm btn-secondary right m-1"><i class="fs-6 fa fa-phone mx-1"></i>Enquire Now</button>
+  <button type="button" class="btn btn-sm btn-primary right m-1"><i class="fs-6 fa fa-shopping-cart mx-1"></i>Add To Cart</button>
+  <button type="button" class="btn btn-sm btn-danger right m-1"><i class="fs-6 fa fa-heart-o mx-1"></i>Add To Wishlist</button>
+  <button type="button" class="btn btn-sm btn-success right m-1"><i class="fs-6 far fa-gem mx-1"></i>Place Order</button>
+</div>
+
+<div class="container">
+  <div class="row cards">
+    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let data of diamondData;let i = index" >
+      <div class="card card-margin" [ngClass]="data.selected ? 'select' : ''"  (click)="selectCard(i)">
+        <div class="card-body pt-0">
+          <div class="widget-49">
+            <div class="widget-49-title-wrapper m-1" [ngClass]="data.selected ? 'selected' : 'notselected'">
+              <div class="widget-49-date-primary">
+                <span class="widget-49-date-day">{{ data.Carat }}</span>
+                <span class="widget-49-date-month fw-bold">carat</span>
+                  
+              </div>
+              <div class="widget-49-meeting-info">
+                <span class="widget-49-pro-title text-start">
+                  <span>{{data.stockNo}}</span>
+                  <span style="font-weight: 500;margin-left: 0.5rem;"> {{data.Shape}} </span>
+                  <span style="margin-left: 0.6rem;" class="fw-bold"> {{data.Rap}} </span>
+                  <span style="margin-left: 0.6rem;" class="fw-bold end-item"> {{data.pr_ct | currency}}/CT </span>
+                </span><hr>
+                <span class="widget-49-meeting-time text-start"><span class="fw-bold">
+                  {{ data.Color }}
+                  {{ data.Clarity }}&nbsp;
+                 {{ data.Cut }}
+                 {{ data.Polish }}
+                 {{ data.Symmetry }}&nbsp;
+                 {{ data.Fluorescent }}&nbsp;
+                </span>
+                 {{ data.LAB }}&nbsp;
+                 <span class="end-item">{{ data.Measurement }}</span>
+                 </span>
+                 <hr>
+                <span class="widget-49-meeting-time text-start">
+                  Lustor &nbsp;
+                  Tab: {{data.Tab}}% &nbsp;
+                  TD: {{data.TD}}% &nbsp;
+                  <span class="end-item">Ratio: {{data.Ratio}}</span>
+                 </span>
+              </div>
+            </div>
+            <!-- <ul class="widget-49-meeting-points">
+              <li class="widget-49-meeting-item">
+                <span
+                  > {{ data.Color }}&nbsp;
+                   {{ data.Clarity }}&nbsp;
+                  </span
+                >
+              </li>
+              <li class="widget-49-meeting-item">
+                Lustor
+              </li>
+              <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
+            </ul> -->
+            <!-- <div class="widget-49-meeting-action">
+              <button type="button" class="btn btn-light btn-sm" (click)="addWishList(i)">
+                <i [ngStyle]="data.wishlist ? {'color':'red'}:{color:'#B1BAC5'}" class="fa fa-heart m-1 icon" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="btn btn-light btn-sm">
+                <i class="fa fa-shopping-cart m-1 icon"></i>
+              </button>
+              <a href="#" class="btn btn-sm btn-flash-border-primary">View</a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="ctn" *ngIf="loader">
+  <div id="loader"></div>
+</div>

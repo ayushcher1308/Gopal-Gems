@@ -1,0 +1,70 @@
+h2,h4, * {
+  font-family: "Montserrat", sans-serif;
+}
+
+h4{
+  margin: 0;
+}
+
+.shape-box {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.shape{
+  max-height: 90px;
+  width: 90px;
+}
+
+.btn:active,
+ .btn:focus,
+ .btn.active {
+   background-image: none;
+   outline: 0;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+ }
+
+
+.item{
+    font-size: 11px;
+    cursor: pointer;
+}
+
+label{
+    font-size: 15px;
+}
+
+.float{
+	position:fixed;
+	width:80px;
+	height:80px;
+	bottom:40px;
+	right:40px;
+	background: -webkit-linear-gradient(to right, gray, black);
+	background: linear-gradient(to right, gray, black);
+  background-color: linear-gradient(to right, gray, black);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+  cursor: pointer;
+}
+
+.my-float{
+	margin-top:35%;
+}
+
+
+@media (max-width: 700px){
+
+    .shape{
+      width: 60px;
+    }
+
+}
+

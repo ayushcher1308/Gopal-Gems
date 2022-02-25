@@ -56,8 +56,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid black;
+	background-color: black;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -85,6 +85,10 @@ button:disabled{
 	pointer-events: auto! important;
      cursor: not-allowed! important;
 	 color: #eee;
+}
+
+button:hover{
+	color: #eee;
 }
 
 .form-text{
@@ -187,8 +191,8 @@ input {
 
 .overlay {
 	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: -webkit-linear-gradient(to right, gray, black);
+	background: linear-gradient(to right, gray, black);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -286,7 +290,7 @@ footer a {
 	visibility: hidden; /* Hidden by default. Visible on click */
 	min-width: 250px; /* Set a default minimum width */
 	margin-left: -125px; /* Divide value of min-width by 2 */
-	background-color: #FF4B2B; /* Black background color */
+	background-color: black; /* Black background color */
 	color: #fff; /* White text color */
 	text-align: center; /* Centered text */
 	border-radius: 2px; /* Rounded borders */

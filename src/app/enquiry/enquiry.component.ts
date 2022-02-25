@@ -19,9 +19,9 @@ export class EnquiryComponent implements OnInit {
 
   ngOnInit(): void {
     var rm  = document.getElementsByClassName("path");
-    for(var i=0;i<rm.length;i++)rm[i].classList.remove("selected");
+    for(var i=0;i<rm.length;i++)rm[i].classList.remove("active");
     var element = document.getElementsByClassName("enquiry")[0];
-    element.classList.add("selected");
+    element.classList.add("active");
     this.countries = Country.getAllCountries();
   }
 
