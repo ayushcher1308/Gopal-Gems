@@ -1,9 +1,15 @@
-h2,h4, * {
+h2,h4,.form-text, * {
   font-family: "Montserrat", sans-serif;
 }
 
 h4{
   margin: 0;
+}
+
+hr{
+  margin: 0.1rem;
+  height: 1px;
+  opacity: 0.15;
 }
 
 .shape-box {
@@ -20,6 +26,24 @@ h4{
   width: 90px;
 }
 
+.form-control{
+  width: 6rem;
+  height: 2rem;
+}
+
+.diamondId{
+  width: 14rem;
+}
+
+.carat-button{
+  height: 2rem;
+  line-height: 0;
+}
+
+.form-text{
+  font-size: 10px;
+}
+
 .btn:active,
  .btn:focus,
  .btn.active {
@@ -28,6 +52,15 @@ h4{
    -webkit-box-shadow: none;
    box-shadow: none;
  }
+
+ input:active,
+ input:focus,
+ input.active {
+   background-image: none;
+   outline: 0;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+ } 
 
 
 .item{
@@ -67,4 +100,7 @@ label{
     }
 
 }
+
+
+
 

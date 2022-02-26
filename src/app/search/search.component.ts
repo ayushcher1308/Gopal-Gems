@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DiamondConfig } from '../../json/diamond-shapes';
 
 @Component({
@@ -7,7 +8,7 @@ import { DiamondConfig } from '../../json/diamond-shapes';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  constructor() {}
+  constructor(private router:Router) {}
 
   diamondShapes = DiamondConfig.shape;
   cutValue = DiamondConfig.cut;
@@ -18,6 +19,19 @@ export class SearchComponent implements OnInit {
   Milky = DiamondConfig.Milky;
   Polish = DiamondConfig.Polish;
   Lab = DiamondConfig.Lab;
+  ColorShade = DiamondConfig.ColorShade;
+  HeartNArrow = DiamondConfig.HeartNArrow;
+  Provenance = DiamondConfig.Provenance;
+  Location = DiamondConfig.Location;
+  fromCarat: any;
+  toCarat: any;
+  fromAmount: any;
+  toAmount: any;
+  fromRap: any;
+  toRap: any;
+  diamondId: any;
+  fromPriceCts: any;
+  toPriceCts: any;
 
   ngOnInit(): void {
     var rm = document.getElementsByClassName('path');
@@ -26,8 +40,17 @@ export class SearchComponent implements OnInit {
     element.classList.add('active');
   }
 
+  search(){
+    this.router.navigate(['/dashboard/search-result'])
+  }
+
   selectShape(index: any) {
     this.diamondShapes[index].selected = !this.diamondShapes[index].selected;
+  }
+
+  resetCarat() {
+    this.fromCarat = '';
+    this.toCarat = '';
   }
 
   selectCut(index: any) {
@@ -42,6 +65,36 @@ export class SearchComponent implements OnInit {
     }
     this.cutValue[index].selected = !this.cutValue[index].selected;
     this.cutValue[0].selected = this.checkAnyButtonSelected(this.cutValue);
+  }
+
+  selectColorShade(index: any) {
+    if (index == 0 && !this.ColorShade[0].selected) {
+      this.ColorShade[0].selected = true;
+      for (var i = 1; i < this.ColorShade.length; i++)
+        this.ColorShade[i].selected = false;
+      return;
+    }
+    if (index != 0) {
+      this.ColorShade[0].selected = false;
+    }
+    this.ColorShade[index].selected = !this.ColorShade[index].selected;
+    this.ColorShade[0].selected = this.checkAnyButtonSelected(this.ColorShade);
+  }
+
+  selectHeartNArrow(index: any) {
+    if (index == 0 && !this.HeartNArrow[0].selected) {
+      this.HeartNArrow[0].selected = true;
+      for (var i = 1; i < this.HeartNArrow.length; i++)
+        this.HeartNArrow[i].selected = false;
+      return;
+    }
+    if (index != 0) {
+      this.HeartNArrow[0].selected = false;
+    }
+    this.HeartNArrow[index].selected = !this.HeartNArrow[index].selected;
+    this.HeartNArrow[0].selected = this.checkAnyButtonSelected(
+      this.HeartNArrow
+    );
   }
 
   selectClarity(index: any) {
@@ -86,6 +139,34 @@ export class SearchComponent implements OnInit {
     this.Fluorescence[0].selected = this.checkAnyButtonSelected(
       this.Fluorescence
     );
+  }
+
+  selectLocation(index: any) {
+    if (index == 0 && !this.Location[0].selected) {
+      this.Location[0].selected = true;
+      for (var i = 1; i < this.Location.length; i++)
+        this.Location[i].selected = false;
+      return;
+    }
+    if (index != 0) {
+      this.Location[0].selected = false;
+    }
+    this.Location[index].selected = !this.Location[index].selected;
+    this.Location[0].selected = this.checkAnyButtonSelected(this.Location);
+  }
+
+  selectProvenance(index: any) {
+    if (index == 0 && !this.Provenance[0].selected) {
+      this.Provenance[0].selected = true;
+      for (var i = 1; i < this.Provenance.length; i++)
+        this.Provenance[i].selected = false;
+      return;
+    }
+    if (index != 0) {
+      this.Provenance[0].selected = false;
+    }
+    this.Provenance[index].selected = !this.Provenance[index].selected;
+    this.Provenance[0].selected = this.checkAnyButtonSelected(this.Provenance);
   }
 
   selectColor(index: any) {
@@ -133,9 +214,8 @@ export class SearchComponent implements OnInit {
   selectLab(index: any) {
     if (index == 0 && !this.Lab[0].selected) {
       this.Lab[0].selected = true;
-      for (var i = 1; i < this.Lab.length; i++)
-        this.Lab[i].selected = false;
-      return;  
+      for (var i = 1; i < this.Lab.length; i++) this.Lab[i].selected = false;
+      return;
     }
     if (index != 0) {
       this.Lab[0].selected = false;

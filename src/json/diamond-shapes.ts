@@ -79,11 +79,7 @@ export const DiamondConfig = {
       selected: true,
     },
     {
-      value: 'Fair',
-      selected: false,
-    },
-    {
-      value: 'Good',
+      value: 'Excellent',
       selected: false,
     },
     {
@@ -91,11 +87,11 @@ export const DiamondConfig = {
       selected: false,
     },
     {
-      value: 'Excellent',
+      value: 'Good',
       selected: false,
     },
     {
-      value: 'Affinity',
+      value: 'Fair',
       selected: false,
     },
   ],
@@ -105,11 +101,7 @@ export const DiamondConfig = {
       selected: true,
     },
     {
-      value: 'Fair',
-      selected: false,
-    },
-    {
-      value: 'Good',
+      value: 'Excellent',
       selected: false,
     },
     {
@@ -117,11 +109,11 @@ export const DiamondConfig = {
       selected: false,
     },
     {
-      value: 'Excellent',
+      value: 'Good',
       selected: false,
     },
     {
-      value: 'Affinity',
+      value: 'Fair',
       selected: false,
     },
   ],
@@ -131,11 +123,7 @@ export const DiamondConfig = {
       selected: true,
     },
     {
-      value: 'Fair',
-      selected: false,
-    },
-    {
-      value: 'Good',
+      value: 'Excellent',
       selected: false,
     },
     {
@@ -143,7 +131,11 @@ export const DiamondConfig = {
       selected: false,
     },
     {
-      value: 'Excellent',
+      value: 'Good',
+      selected: false,
+    },
+    {
+      value: 'Fair',
       selected: false,
     },
   ],
@@ -357,11 +349,104 @@ export const DiamondConfig = {
       selected: false,
     },
     {
-      value: 'FM',
+      value: 'NONCERT',
+      selected: false,
+    },
+  ],
+  ColorShade: [
+    {
+      value: 'All',
+      selected: true,
+    },
+    {
+      value: 'WH',
       selected: false,
     },
     {
-      value: 'NONCERT',
+      value: 'YL',
+      selected: false,
+    },
+    {
+      value: 'NV',
+      selected: false,
+    },
+    {
+      value: 'BRN1',
+      selected: false,
+    },
+
+    {
+      value: 'GREY',
+      selected: false,
+    },
+    {
+      value: 'GRN',
+      selected: false,
+    },
+  ],
+  HeartNArrow: [
+    {
+      value: 'All',
+      selected: true,
+    },
+    {
+      value: 'NV',
+      selected: false,
+    },
+    {
+      value: 'H&A EX',
+      selected: false,
+    },
+    {
+      value: 'H&A VG',
+      selected: false,
+    },
+  ],
+  Provenance: [
+    {
+      value: 'All',
+      selected: true,
+    },
+    {
+      value: 'Forevermark Eligible',
+      selected: false,
+    },
+    {
+      value: 'Canadamark Eligible',
+      selected: false,
+    },
+  ],
+  Location: [
+    {
+      value: 'All',
+      selected: true,
+    },
+    {
+      value: 'Delhi',
+      selected: false,
+    },
+    {
+      value: 'Mumbai',
+      selected: false,
+    },
+    {
+      value: 'Canada',
+      selected: false,
+    },
+    {
+      value: 'Hong Kong',
+      selected: false,
+    },
+    {
+      value: 'New York',
+      selected: false,
+    },
+    {
+      value: 'Upcoming',
+      selected: false,
+    },
+    {
+      value: 'Transit',
       selected: false,
     },
   ],

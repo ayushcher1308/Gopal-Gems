@@ -5,6 +5,7 @@ import { EnquiryComponent } from './enquiry/enquiry.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { OrdersComponent } from './orders/orders.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './services/auth.guard';
 import { LoginGuard } from './services/login.guard';
@@ -21,6 +22,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'search', component: SearchComponent },
+      { path: 'search-result', component: SearchResultComponent },
       { path: 'home', component: HomeComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'enquire', component: EnquiryComponent },

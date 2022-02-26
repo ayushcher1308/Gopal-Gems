@@ -1,4 +1,23 @@
-<h2>Search Diamonds</h2>
+<h2 class="fw-bold text-center">Search Diamonds</h2>
+
+<h4>Packet No./ Certi No./ Show ID</h4>
+<div class="shape-box">
+  <div class="col-auto mx-1">
+    <input
+      type="text"
+      class="form-control diamondId"
+      [(ngModel)]="diamondId"
+      id="diamondId"
+      placeholder="XXXXXX-XX"
+      aria-describedby="diamondId"
+    />
+  </div>
+  <div class="col-auto pl-1">
+    <span id="diamondId" class="form-text">
+      *Please enter exact ID.
+    </span>
+  </div>
+</div>
 
 <h4>Shapes</h4>
 <div class="shape-box">
@@ -6,44 +25,61 @@
     <button
       type="button"
       (click)="selectShape(i)"
-      [ngClass]="data.selected ? 'border-secondary border-4 shadow' : 'border-secondary'"
-      class="btn shape item m-2 p-3"
-      title={{data.shape}}
+      [ngClass]="
+        data.selected ? 'border-secondary border-4 shadow' : 'border-secondary'
+      "
+      class="btn shape item m-1 p-3"
+      title="{{ data.shape }}"
       data-bs-toggle="tooltip"
       data-bs-placement="bottom"
     >
-    <img *ngIf="data.selected" [src]="data.hover"  alt="no img">
-    <img *ngIf="!data.selected" [src]="data.path"  alt="no img">
+      <img *ngIf="data.selected" [src]="data.hover" alt="no img" />
+      <img *ngIf="!data.selected" [src]="data.path" alt="no img" />
     </button>
   </div>
 </div>
 
-<h4>Cut</h4>
+<h4>Carat</h4>
 <div class="shape-box">
-  <div *ngFor="let data of cutValue; let i = index">
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      class="form-control"
+      min = 0
+      step="0.01"
+      max="99.99"
+      [(ngModel)]="fromCarat"
+      id="carat1"
+      placeholder="From"
+    />
+  </div>
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      min = 0
+      step="0.01"
+      max="99.99"
+      class="form-control"
+      [(ngModel)]="toCarat"
+      id="carat2"
+      placeholder="To"
+      aria-describedby="toCarat"
+    />
+  </div>
+  <div class="col-auto mx-1">
     <button
       type="button"
-      (click)="selectCut(i)"
-      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1 btn-lg"
+      class="btn btn-outline-secondary carat-button"
+      (click)="resetCarat()"
     >
-      {{ data.value }}
+      Reset
     </button>
   </div>
-</div>
-
-<h4>Symmetry</h4>
-<div class="shape-box">
-  <div *ngFor="let data of symmetry; let i = index">
-    <button
-      type="button"
-      (click)="selectSymmetry(i)"
-      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1"
-    >
-      {{ data.value }}
-    </button>
-  </div>
+  <!-- <div class="col-auto">
+    <span id="toCarat" class="form-text">
+      Carat Range.
+    </span>
+  </div> -->
 </div>
 
 <h4>Color</h4>
@@ -53,12 +89,12 @@
       type="button"
       (click)="selectColor(i)"
       [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1"
+      class="btn item m-1 px-2 p-1"
     >
       {{ data.value }}
     </button>
   </div>
-</div>
+</div><hr>
 
 <h4>Clarity</h4>
 <div class="shape-box">
@@ -67,12 +103,12 @@
       type="button"
       (click)="selectClarity(i)"
       [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1"
+      class="btn item m-1 px-2 p-1"
     >
       {{ data.value }}
     </button>
   </div>
-</div>
+</div><hr>
 
 <h4>Fluorescence</h4>
 <div class="shape-box">
@@ -81,12 +117,12 @@
       type="button"
       (click)="selectFluorescence(i)"
       [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1"
+      class="btn item m-1 px-2 p-1"
     >
       {{ data.value }}
     </button>
   </div>
-</div>
+</div><hr>
 
 <h4>Milky</h4>
 <div class="shape-box">
@@ -95,12 +131,54 @@
       type="button"
       (click)="selectMilky(i)"
       [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1"
+      class="btn item m-1 px-2 p-1"
     >
       {{ data.value }}
     </button>
   </div>
-</div>
+</div><hr>
+
+<h4>Color Shade</h4>
+<div class="shape-box">
+  <div *ngFor="let data of ColorShade; let i = index">
+    <button
+      type="button"
+      (click)="selectColorShade(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-1 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div><hr>
+
+<h4>Cut</h4>
+<div class="shape-box">
+  <div *ngFor="let data of cutValue; let i = index">
+    <button
+      type="button"
+      (click)="selectCut(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-1 px-2 p-1 btn-lg"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div><hr>
+
+<h4>Symmetry</h4>
+<div class="shape-box">
+  <div *ngFor="let data of symmetry; let i = index">
+    <button
+      type="button"
+      (click)="selectSymmetry(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-1 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div><hr>
 
 <h4>Polish</h4>
 <div class="shape-box">
@@ -109,12 +187,12 @@
       type="button"
       (click)="selectPolish(i)"
       [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1"
+      class="btn item m-1 px-2 p-1"
     >
       {{ data.value }}
     </button>
   </div>
-</div>
+</div><hr>
 
 <h4>Lab</h4>
 <div class="shape-box">
@@ -123,14 +201,127 @@
       type="button"
       (click)="selectLab(i)"
       [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
-      class="btn item m-2 px-2 p-1"
+      class="btn item m-1 px-2 p-1"
     >
       {{ data.value }}
     </button>
   </div>
 </div>
+<hr />
 
-<div href="#" class="float">
-  <div class="my-float">Search</div>
+<h4>Heart And Arrow</h4>
+<div class="shape-box">
+  <div *ngFor="let data of HeartNArrow; let i = index">
+    <button
+      type="button"
+      (click)="selectHeartNArrow(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-1 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div><hr>
+
+<h4>Location</h4>
+<div class="shape-box">
+  <div *ngFor="let data of Location; let i = index">
+    <button
+      type="button"
+      (click)="selectLocation(i)"
+      [ngClass]="data.selected ? 'btn-secondary shadow' : 'border-secondary'"
+      class="btn item m-1 px-2 p-1"
+    >
+      {{ data.value }}
+    </button>
+  </div>
+</div><hr>
+
+<h4>Price/Cts</h4>
+<div class="shape-box mb-2">
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      class="form-control"
+      min = 1
+      step="1"
+      [(ngModel)]="fromPriceCts"
+      id="fromPriceCts"
+      placeholder="From"
+    />
+  </div>
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      min = 2
+      step="1"
+      class="form-control"
+      [(ngModel)]="toPriceCts"
+      id="carat2"
+      placeholder="To"
+      aria-describedby="toPriceCts"
+    />
+  </div>
+</div><hr>
+
+<h4>Amount</h4>
+<div class="shape-box mb-2">
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      class="form-control"
+      min = 1
+      step="1"
+      [(ngModel)]="fromAmount"
+      id="fromAmount"
+      placeholder="From"
+    />
+  </div>
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      min = 2
+      step="1"
+      class="form-control"
+      [(ngModel)]="toAmount"
+      id="carat2"
+      placeholder="To"
+      aria-describedby="toAmount"
+    />
+  </div>
+</div><hr>
+
+<h4>Rap Disc</h4>
+<div class="shape-box mb-2">
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      class="form-control"
+      step="1"
+      [(ngModel)]="fromRap"
+      id="fromRap"
+      placeholder="From"
+    />
+  </div>
+  <div class="col-auto mx-1">
+    <input
+      type="number"
+      step="1"
+      class="form-control"
+      [(ngModel)]="toRap"
+      id="carat2"
+      placeholder="To"
+      aria-describedby="toRap"
+    />
+  </div>
+  <div class="col-auto pl-1">
+    <span id="toRap" class="form-text">
+      ex. [(-75,-50),(-10,10),(10,15)]
+    </span>
+  </div>
+</div><hr>
+
+
+<div (click)="search()" class="float">
+  <div class="my-float fw-bold">Search</div>
 </div>
-
