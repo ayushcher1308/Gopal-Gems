@@ -6,6 +6,11 @@ h4{
   margin: 0;
 }
 
+img{
+  height: 80px;
+  width: 80px;
+}
+
 hr{
   margin: 0.1rem;
   height: 1px;
@@ -24,6 +29,7 @@ hr{
 .shape{
   max-height: 90px;
   width: 90px;
+  padding: 0;
 }
 
 .form-control{
@@ -97,6 +103,11 @@ label{
 
     .shape{
       width: 60px;
+    }
+
+    img{
+      height: 55px;
+      width: 53px;
     }
 
 }
