@@ -1,6 +1,11 @@
-.h2,h4,button{
+.h2,h4,button,.result{
     font-family: 'Montserrat', sans-serif;
     white-space: nowrap;
+}
+
+.result{
+  font-size: 1.3rem;
+  float: right;
 }
 
 .card-body{
@@ -712,5 +717,9 @@ td{
   #loader{
     left: 45%;
     top:45%;
+  }
+
+  .result{
+    font-size: 0.8rem;
   }
 }

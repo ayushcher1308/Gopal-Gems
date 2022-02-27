@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search-result',
@@ -7,28 +9,36 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit {
+  constructor(
+    private dataService: DataService,
+    private saveFiltersService: SearchService,
+    private router: Router
+  ) {}
 
-  constructor(private dataService: DataService) {}
-
-  diamondData:any;
-  loader:any = false;
+  diamondData: any;
+  loader: any = false;
+  filters:any;
 
   ngOnInit(): void {
-    this.fetchDiamondList();
+    this.filters = this.saveFiltersService.getData();
+    if(this.filters==null){
+      this.router.navigate(['/dashboard/search'])
+    }
+    this.fetchDiamondList(this.filters);
   }
 
-  fetchDiamondList(){
+  fetchDiamondList(filters:any) {
     this.loader = true;
-    this.dataService.fetchDiamond().subscribe(res=>{
+    this.dataService.searchDiamond(filters).subscribe((res) => {
       this.diamondData = res;
-      for(var i=0;i<this.diamondData.length;i++){
+      for (var i = 0; i < this.diamondData.length; i++) {
         this.diamondData[i].selected = false;
       }
       this.loader = false;
-    })
+    });
   }
 
-  selectCard(index:any){
+  selectCard(index: any) {
     this.diamondData[index].selected = !this.diamondData[index].selected;
   }
 }

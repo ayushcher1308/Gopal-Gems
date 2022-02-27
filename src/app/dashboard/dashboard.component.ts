@@ -20,16 +20,27 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userInfo.getUserInfo();
+    if(this.user==null){
+      const tokenObj = {
+        token: localStorage.getItem("token"),
+      };
+      this.dataService.authenticate(tokenObj).subscribe((data) => {
+        this.user = data.user;
+      });
+    }
   }
 
   logoutUser() {
-    var tokenObj = {
-      token: localStorage.getItem('token'),
-    };
-    this.dataService.logout(tokenObj).subscribe((res) => {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    });
+    if (confirm('Are you sure you want to logout?')){
+      var tokenObj = {
+        token: localStorage.getItem('token'),
+      };
+      this.dataService.logout(tokenObj).subscribe((res) => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      });
+    }
+    
   }
 
   logoutAll() {

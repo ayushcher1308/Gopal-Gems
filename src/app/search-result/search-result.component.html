@@ -1,9 +1,17 @@
 <div *ngIf="!loader" class="w-3 m-1">
-  <button type="button" [routerLink]="['/dashboard/search']" class="btn btn-outline-secondary">
+  <button
+    type="button"
+    [routerLink]="['/dashboard/search']"
+    class="btn btn-outline-secondary"
+  >
     Back To Search
   </button>
-  <!-- <span class="m-2 fw-bold h2 text-center">Search Result</span> -->
+  <span class="m-2 result text-center" *ngIf="diamondData?.length != 0">Total Search Result: {{ diamondData?.length }}</span>
 </div>
+
+<h2 class="text-center h2" *ngIf="diamondData?.length == 0">
+  No Search Result Found
+</h2>
 
 <div class="container">
   <div class="row cards">

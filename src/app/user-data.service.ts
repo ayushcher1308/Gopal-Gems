@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { DataService } from './services/data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserDataService {
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
-  private data: any;
+  private data: any = null;
 
   getUserInfo() {
     return this.data;

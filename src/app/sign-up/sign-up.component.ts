@@ -115,6 +115,7 @@ export class SignUpComponent implements OnInit {
   createNewAccount(data:any){
     this.dataService.register(data).subscribe(Response=>{
       this.loading = false;
+      this.loginForm.reset();
       this.message = config.ACCOUNT_SUCCESS;
       this.showAlert();
     },error=>{

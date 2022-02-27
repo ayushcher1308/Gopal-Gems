@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DiamondConfig } from '../../json/diamond-shapes';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -8,7 +9,10 @@ import { DiamondConfig } from '../../json/diamond-shapes';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  constructor(private router:Router) {}
+  constructor(
+    private router: Router,
+    private saveFiltersService: SearchService
+  ) {}
 
   diamondShapes = DiamondConfig.shape;
   cutValue = DiamondConfig.cut;
@@ -23,15 +27,16 @@ export class SearchComponent implements OnInit {
   HeartNArrow = DiamondConfig.HeartNArrow;
   Provenance = DiamondConfig.Provenance;
   Location = DiamondConfig.Location;
-  fromCarat: any;
-  toCarat: any;
+  fromCarat: any = '';
+  toCarat: any = '';
   fromAmount: any;
   toAmount: any;
   fromRap: any;
   toRap: any;
-  diamondId: any;
+  diamondId: any = '';
   fromPriceCts: any;
   toPriceCts: any;
+  message: any;
 
   ngOnInit(): void {
     var rm = document.getElementsByClassName('path');
@@ -40,12 +45,66 @@ export class SearchComponent implements OnInit {
     element.classList.add('active');
   }
 
-  search(){
-    this.router.navigate(['/dashboard/search-result'])
+  search() {
+    if (!this.searchByFilters()) {
+      return;
+    }
+    this.router.navigate(['/dashboard/search-result']);
+  }
+
+  searchByFilters() {
+    var filters: any = {};
+
+    //search by Carat Range
+    if (this.fromCarat != '' || this.toCarat != '') {
+      var carat: any = {};
+      if (this.fromCarat != '') {
+        carat.$gt = this.fromCarat;
+      }
+      if (this.toCarat != '') {
+        carat.$lt = this.toCarat;
+      }
+      filters.Carat = carat;
+    }
+
+    // search by ID
+    if (this.diamondId != '') {
+      filters.stockNo = this.diamondId;
+    }
+
+    // search By Shapes
+    var shapes: any = [];
+    for (var i = 0; i < this.diamondShapes.length; i++) {
+      if (this.diamondShapes[i].selected)
+        shapes.push(this.diamondShapes[i].shape.toUpperCase());
+    }
+    if (shapes.length != 0) {
+      filters.Shape = { $in: shapes };
+    }
+
+    //search by Color
+    if (!this.Color[0].selected) {
+      var colors: any = [];
+      for (var i = 1; i < this.Color.length; i++) {
+        if (this.Color[i].selected) colors.push(this.Color[i].value);
+      }
+      filters.Color = { $in: colors };
+    }
+
+    this.saveFiltersService.setData(filters);
+    return true;
   }
 
   selectShape(index: any) {
     this.diamondShapes[index].selected = !this.diamondShapes[index].selected;
+  }
+
+  showAlert() {
+    var x = document.getElementsByClassName('snackbar')[0];
+    x.classList.add('show');
+    setTimeout(function () {
+      x.classList.remove('show');
+    }, 3000);
   }
 
   resetCarat() {
