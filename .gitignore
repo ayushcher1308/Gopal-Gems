@@ -5,6 +5,9 @@
 /out-tsc
 /bazel-out
 
+#build file
+/gopal-india
+
 # Node
 /node_modules
 node_modules

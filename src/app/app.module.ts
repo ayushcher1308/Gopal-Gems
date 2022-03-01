@@ -17,6 +17,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
     FormsModule ,
     AgGridModule.withComponents([])
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

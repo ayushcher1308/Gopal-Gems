@@ -3,95 +3,91 @@ export const DiamondConfig = {
     {
       shape: 'Round',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/b.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/b-hover.svg',
+      path: '../../assets/b.svg',
+      hover: '../../assets/b-hover.svg',
       src: '',
     },
     {
       shape: 'Oval',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/o.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/o-hover.svg',
+      path: '../../assets/o.svg',
+      hover: '../../assets/o-hover.svg',
       src: '',
     },
     {
       shape: 'Pear',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/p.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/p-hover.svg',
+      path: '../../assets/p.svg',
+      hover: '../../assets/p-hover.svg',
       src: '',
     },
     {
       shape: 'Marquise',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/m.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/m-hover.svg',
+      path: '../../assets/m.svg',
+      hover: '../../assets/m-hover.svg',
       src: '',
     },
     {
       shape: 'Heart',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/h.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/h-hover.svg',
+      path: '../../assets/h.svg',
+      hover: '../../assets/h-hover.svg',
       src: '',
     },
     {
       shape: 'Cushion',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/c.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/c-hover.svg',
+      path: '../../assets/c.svg',
+      hover: '../../assets/c-hover.svg',
       src: '',
     },
     {
       shape: 'Emerald',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/e.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/e-hover.svg',
+      path: '../../assets/e.svg',
+      hover: '../../assets/e-hover.svg',
       src: '',
     },
     {
       shape: 'Princess',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/pr.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/pr-hover.svg',
+      path: '../../assets/pr.svg',
+      hover: '../../assets/pr-hover.svg',
       src: '',
     },
     {
       shape: 'Sq Radiant',
       selected: false,
-      path: 'https://www.lumeradiamonds.com/images/diamond_search_results/r.svg',
-      hover:
-        'https://www.lumeradiamonds.com/images/diamond_search_results/r-hover.svg',
+      path: '../../assets/r.svg',
+      hover: '../../assets/r-hover.svg',
       src: '',
     },
   ],
   cut: [
     {
       value: 'All',
+      match: '',
       selected: true,
     },
     {
       value: 'Excellent',
+      match: 'EX',
       selected: false,
     },
     {
       value: 'Very Good',
+      match: 'VG',
       selected: false,
     },
     {
       value: 'Good',
+      match: 'GD',
       selected: false,
     },
     {
       value: 'Fair',
+      match: 'F',
       selected: false,
     },
   ],
@@ -102,18 +98,22 @@ export const DiamondConfig = {
     },
     {
       value: 'Excellent',
+      match: 'EX',
       selected: false,
     },
     {
       value: 'Very Good',
+      match: 'VG',
       selected: false,
     },
     {
       value: 'Good',
+      match: 'GD',
       selected: false,
     },
     {
       value: 'Fair',
+      match: 'F',
       selected: false,
     },
   ],
@@ -124,18 +124,22 @@ export const DiamondConfig = {
     },
     {
       value: 'Excellent',
+      match: 'EX',
       selected: false,
     },
     {
       value: 'Very Good',
+      match: 'VG',
       selected: false,
     },
     {
       value: 'Good',
+      match: 'GD',
       selected: false,
     },
     {
       value: 'Fair',
+      match: 'F',
       selected: false,
     },
   ],

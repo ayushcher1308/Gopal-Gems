@@ -26,7 +26,7 @@
       type="button"
       (click)="selectShape(i)"
       [ngClass]="
-        data.selected ? 'border-secondary border-4 shadow' : 'border-secondary'
+        data.selected ? 'border-secondary border-3 shadow' : 'border-secondary'
       "
       class="btn shape item m-1"
       title="{{ data.shape }}"
@@ -244,7 +244,7 @@
       type="number"
       class="form-control"
       min = 1
-      step="1"
+      step="0.01"
       [(ngModel)]="fromPriceCts"
       id="fromPriceCts"
       placeholder="From"
@@ -254,7 +254,7 @@
     <input
       type="number"
       min = 2
-      step="1"
+      step="0.01"
       class="form-control"
       [(ngModel)]="toPriceCts"
       id="carat2"
@@ -297,7 +297,7 @@
     <input
       type="number"
       class="form-control"
-      step="1"
+      step="0.01"
       [(ngModel)]="fromRap"
       id="fromRap"
       placeholder="From"
@@ -306,7 +306,7 @@
   <div class="col-auto mx-1">
     <input
       type="number"
-      step="1"
+      step="0.01"
       class="form-control"
       [(ngModel)]="toRap"
       id="carat2"

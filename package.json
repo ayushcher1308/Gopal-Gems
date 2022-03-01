@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-hashing none",
+    "build": "ng build --prod --output-hashing none --base-href=/gopal-india/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

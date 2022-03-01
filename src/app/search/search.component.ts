@@ -31,11 +31,11 @@ export class SearchComponent implements OnInit {
   toCarat: any = '';
   fromAmount: any;
   toAmount: any;
-  fromRap: any;
-  toRap: any;
+  fromRap: any = '';
+  toRap: any = '';
   diamondId: any = '';
-  fromPriceCts: any;
-  toPriceCts: any;
+  fromPriceCts: any = '';
+  toPriceCts: any = '';
   message: any;
 
   ngOnInit(): void {
@@ -46,9 +46,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    if (!this.searchByFilters()) {
-      return;
-    }
+    this.searchByFilters();
     this.router.navigate(['/dashboard/search-result']);
   }
 
@@ -65,6 +63,30 @@ export class SearchComponent implements OnInit {
         carat.$lt = this.toCarat;
       }
       filters.Carat = carat;
+    }
+
+    //search by Price/Cts
+    if (this.fromPriceCts != '' || this.toPriceCts != '') {
+      var PriceCts: any = {};
+      if (this.fromPriceCts != '') {
+        PriceCts.$gt = this.fromPriceCts;
+      }
+      if (this.toPriceCts != '') {
+        PriceCts.$lt = this.toPriceCts;
+      }
+      filters.pr_ct = PriceCts;
+    }
+
+    // search by Rap
+    if (this.fromRap != '' || this.toRap != '') {
+      var Rap: any = {};
+      if (this.fromRap != '') {
+        Rap.$gt = this.fromRap;
+      }
+      if (this.toRap != '') {
+        Rap.$lt = this.toRap;
+      }
+      filters.Rap = Rap;
     }
 
     // search by ID
@@ -91,8 +113,91 @@ export class SearchComponent implements OnInit {
       filters.Color = { $in: colors };
     }
 
+    //search by Clarity
+    if (!this.Clarity[0].selected) {
+      var clarity: any = [];
+      for (var i = 1; i < this.Clarity.length; i++) {
+        if (this.Clarity[i].selected) clarity.push(this.Clarity[i].value);
+      }
+      filters.Clarity = { $in: clarity };
+    }
+
+    // search by Fluorescence
+    if (!this.Fluorescence[0].selected) {
+      var fluorescences: any = [];
+      for (var i = 1; i < this.Fluorescence.length; i++) {
+        if (this.Fluorescence[i].selected)
+          fluorescences.push(this.Fluorescence[i].value);
+      }
+      filters.Fluorescent = { $in: fluorescences };
+    }
+
+    // search by Milky
+    if (!this.Milky[0].selected) {
+      var Milkys: any = [];
+      for (var i = 1; i < this.Milky.length; i++) {
+        if (this.Milky[i].selected) Milkys.push(this.Milky[i].value);
+      }
+      filters.MILKY = { $in: Milkys };
+    }
+
+    // search by Lab
+    if (!this.Lab[0].selected) {
+      var Labs: any = [];
+      for (var i = 1; i < this.Lab.length; i++) {
+        if (this.Lab[i].selected) Labs.push(this.Lab[i].value);
+      }
+      filters.LAB = { $in: Labs };
+    }
+
+    // search by HeartNArrow
+    if (!this.HeartNArrow[0].selected) {
+      var HeartNArrows: any = [];
+      for (var i = 1; i < this.HeartNArrow.length; i++) {
+        if (this.HeartNArrow[i].selected)
+          HeartNArrows.push(this.HeartNArrow[i].value);
+      }
+      filters.HA = { $in: HeartNArrows };
+    }
+
+    // search by Location
+    if (!this.Location[0].selected) {
+      var Locations: any = [];
+      for (var i = 1; i < this.Location.length; i++) {
+        if (this.Location[i].selected)
+          Locations.push(this.Location[i].value.toUpperCase());
+      }
+      filters.Location = { $in: Locations };
+    }
+
+    // search by Cut
+    if (!this.cutValue[0].selected) {
+      var cutValues: any = [];
+      for (var i = 1; i < this.cutValue.length; i++) {
+        if (this.cutValue[i].selected) cutValues.push(this.cutValue[i].match);
+      }
+      filters.Cut = { $in: cutValues };
+    }
+
+    // search by Polish
+    if (!this.Polish[0].selected) {
+      var Polishs: any = [];
+      for (var i = 1; i < this.Polish.length; i++) {
+        if (this.Polish[i].selected) Polishs.push(this.Polish[i].match);
+      }
+      filters.Polish = { $in: Polishs };
+    }
+
+    // search by symmetry
+    if (!this.symmetry[0].selected) {
+      var symmetrys: any = [];
+      for (var i = 1; i < this.symmetry.length; i++) {
+        if (this.symmetry[i].selected) symmetrys.push(this.symmetry[i].match);
+      }
+      filters.Symmetry = { $in: symmetrys };
+    }
+
     this.saveFiltersService.setData(filters);
-    return true;
   }
 
   selectShape(index: any) {
