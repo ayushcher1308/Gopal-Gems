@@ -18,6 +18,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DiamondDetailsComponent } from './diamond-details/diamond-details.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HomeComponent,
     EnquiryComponent,
     OrdersComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    DiamondDetailsComponent
   ],
   imports: [
     BrowserModule,

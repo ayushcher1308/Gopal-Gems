@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { diamondMockData } from 'src/mock-data/diamond';
 import { DataService } from '../services/data.service';
 
@@ -8,7 +9,9 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,
+    private router:Router,
+    private route: ActivatedRoute,) {}
 
   diamondData:any;
   loader:any = false;
@@ -33,8 +36,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  selectCard(index:any){
+  selectCard(event:any,index:any){
+    event.stopPropagation();
     this.diamondData[index].selected = !this.diamondData[index].selected;
+  }
+
+  fetchCardDetails(event:any,_id:any){
+    event.stopPropagation();
+    this.router.navigate(['/dashboard/diamond-detail/',_id], { relativeTo: this.route });
   }
 
   

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DiamondDetailsComponent } from './diamond-details/diamond-details.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent },
       { path: 'search-result', component: SearchResultComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'diamond-detail/:id', component: DiamondDetailsComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'enquire', component: EnquiryComponent },
     ],

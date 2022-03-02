@@ -29,8 +29,8 @@ export class SearchComponent implements OnInit {
   Location = DiamondConfig.Location;
   fromCarat: any = '';
   toCarat: any = '';
-  fromAmount: any;
-  toAmount: any;
+  fromAmount: any = '';
+  toAmount: any = '';
   fromRap: any = '';
   toRap: any = '';
   diamondId: any = '';
@@ -87,6 +87,18 @@ export class SearchComponent implements OnInit {
         Rap.$lt = this.toRap;
       }
       filters.Rap = Rap;
+    }
+
+    // Search by Amount
+    if (this.fromAmount != '' || this.toAmount != '') {
+      var Amounts: any = {};
+      if (this.fromAmount != '') {
+        Amounts.$gt = this.fromAmount;
+      }
+      if (this.toAmount != '') {
+        Amounts.$lt = this.toAmount;
+      }
+      filters.Amount = Amounts;
     }
 
     // search by ID

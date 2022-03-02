@@ -1,0 +1,198 @@
+<div id="ctn" *ngIf="loader">
+  <div id="loader"></div>
+</div>
+
+<h2 class="m-2">{{ diamondDetail?.stockNo }}</h2>
+<div class="container-fluid">
+  <div class="detail-container rounded row">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-margin shadow">
+              <div class="card-body pt-0">
+                <div class="widget-49">
+                  <div class="widget-49-title-wrapper m-1">
+                    <div class="widget-49-date-primary">
+                      <span class="widget-49-date-day">{{
+                        diamondDetail?.Carat
+                      }}</span>
+                      <span class="widget-49-date-month fw-bold">carat</span>
+                    </div>
+                    <div class="widget-49-meeting-info">
+                      <span class="widget-49-pro-title text-start">
+                        <span>{{ diamondDetail?.stockNo }}</span>
+                        <span style="font-weight: 500; margin-left: 0.5rem">
+                          {{ diamondDetail?.Shape }}
+                        </span>
+                        <span style="margin-left: 0.6rem" class="fw-bold">
+                          {{ diamondDetail?.Rap }}
+                        </span>
+                        <span
+                          style="margin-left: 0.6rem"
+                          class="fw-bold end-item"
+                        >
+                          {{ diamondDetail?.pr_ct | currency }}/CT
+                        </span>
+                      </span>
+                      <hr />
+                      <span class="widget-49-meeting-time text-start"
+                        ><span class="fw-bold">
+                          {{ diamondDetail?.Color }}
+                          {{ diamondDetail?.Clarity }}
+                          {{ diamondDetail?.Cut }}
+                          {{ diamondDetail?.Polish }}
+                          {{ diamondDetail?.Symmetry }}
+                          {{ diamondDetail?.Fluorescent }}
+                        </span>
+                        {{ diamondDetail?.LAB }}&nbsp;
+                        <span class="end-item">{{
+                          diamondDetail?.Measurement
+                        }}</span>
+                      </span>
+                      <hr />
+                      <span class="widget-49-meeting-time text-start">
+                        Lustor &nbsp; Tab: {{ diamondDetail?.Tab }}% &nbsp; TD:
+                        {{ diamondDetail?.TD }}% &nbsp;
+                        <span class="end-item"
+                          >Ratio: {{ diamondDetail?.Ratio }}</span
+                        >
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12 mt-3 rounded border shadow">
+            <h4 class="fw-bold text-center">Inclusion Details</h4>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>BT</td>
+                  <td>WT</td>
+                  <td>BC</td>
+                  <td>WC</td>
+                </tr>
+                <tr class="fw-bold">
+                  <td>{{ diamondDetail?.BIT }}</td>
+                  <td>{{ diamondDetail?.WT }}</td>
+                  <td>{{ diamondDetail?.BC }}</td>
+                  <td>{{ diamondDetail?.WC }}</td>
+                </tr>
+                <tr>
+                  <td>OT</td>
+                  <td>OC</td>
+                  <td>OP</td>
+                  <td>Milky</td>
+                </tr>
+                <tr class="fw-bold">
+                  <td>{{ diamondDetail?.OPTA }}</td>
+                  <td>{{ diamondDetail?.OPCR }}</td>
+                  <td>{{ diamondDetail?.OPPV }}</td>
+                  <td>{{ diamondDetail?.MILKY }}</td>
+                </tr>
+                <tr>
+                  <td>Lus</td>
+                  <td>EC</td>
+                  <td>Col Shade</td>
+                  <td>H & O</td>
+                </tr>
+                <tr class="fw-bold">
+                  <td>{{ diamondDetail?.BIT }}</td>
+                  <td>{{ diamondDetail?.EC }}</td>
+                  <td>{{ diamondDetail?.ColorShade }}</td>
+                  <td>{{ diamondDetail?.HA ? diamondDetail?.HA:'-' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12 mt-3 rounded border shadow">
+            <h4 class="fw-bold text-center">Additional Info</h4>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>BT</td>
+                  <td>WT</td>
+                  <td>BC</td>
+                  <td>WC</td>
+                </tr>
+                <tr class="fw-bold">
+                  <td>{{ diamondDetail?.BIT }}</td>
+                  <td>{{ diamondDetail?.WT }}</td>
+                  <td>{{ diamondDetail?.BC }}</td>
+                  <td>{{ diamondDetail?.WC }}</td>
+                </tr>
+                <tr>
+                  <td>OT</td>
+                  <td>OC</td>
+                  <td>OP</td>
+                  <td>Milky</td>
+                </tr>
+                <tr class="fw-bold">
+                  <td>{{ diamondDetail?.OPTA }}</td>
+                  <td>{{ diamondDetail?.OPCR }}</td>
+                  <td>{{ diamondDetail?.OPPV }}</td>
+                  <td>{{ diamondDetail?.MILKY }}</td>
+                </tr>
+                <tr>
+                  <td>Lus</td>
+                  <td>EC</td>
+                  <td>Col Shade</td>
+                  <td>H & O</td>
+                </tr>
+                <tr class="fw-bold">
+                  <td>{{ diamondDetail?.BIT }}</td>
+                  <td>{{ diamondDetail?.EC }}</td>
+                  <td>{{ diamondDetail?.ColorShade }}</td>
+                  <td>{{ diamondDetail?.HA ? diamondDetail?.HA:'-'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-6 border rounded shadow ml-2">
+          <ul class="nav nav-tabs mt-1">
+            <li class="nav-item">
+              <a class="nav-link pill image" (click)="FlipImage('image')"
+                >Image</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pill video" (click)="FlipImage('video')"
+                >Video</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pill active gia" (click)="FlipImage('gia')"
+                >Gia</a
+              >
+            </li>
+          </ul>
+          <img
+            class="m-2"
+            *ngIf="selectedImage == 'image'"
+            src="../../assets/217004-17.jpg"
+            alt=""
+            style="width: 100%"
+          />
+          <iframe
+            class="m-2"
+            style="width: 100%; height: 100%"
+            *ngIf="selectedImage == 'video'"
+            src="https://d3at7kzws0mw3g.cloudfront.net/video/Vision360.html?d=214178-185"
+            frameborder="0"
+          ></iframe>
+          <img
+            *ngIf="selectedImage == 'gia'"
+            style="width: 100%"
+            src="https://d3at7kzws0mw3g.cloudfront.net/MaskLabreportno/3F6766AF-06E4-4AC7-B8A5-A184B32B579E.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
