@@ -7,13 +7,14 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserDataService } from '../user-data.service';
 import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private router: Router, private dataService: DataService,private userData:UserDataService) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -36,6 +37,7 @@ export class AuthGuard implements CanActivate {
       this.dataService.authenticate(tokenObj).subscribe(
         (data) => {
           if (data.auth) {
+            this.userData.setUserInfo(data.user);
             res(true);
           } else {
             this.router.navigate(['/login']);

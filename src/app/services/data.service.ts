@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { UserDataService } from '../user-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,5 +36,17 @@ export class DataService {
 
   searchDiamond(filters: any) {
     return this.http.post<any>(environment.url + 'diamond/search', filters);
+  }
+
+  fetchCartItems(_id: any) {
+    return this.http.get<any>(environment.url + 'cart/items/' + _id);
+  }
+
+  addItemsToCart(cartItems:any){
+    return this.http.post<any>(environment.url + 'cart/add', cartItems);
+  }
+
+  removeItemsFromCart(_ids:any){
+    return this.http.post<any>(environment.url + 'cart/remove', _ids);
   }
 }

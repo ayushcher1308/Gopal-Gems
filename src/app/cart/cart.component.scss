@@ -1,8 +1,18 @@
-h2,
+.h2,
 h4,
-button,.snackbar {
+button,
+.result {
   font-family: "Montserrat", sans-serif;
   white-space: nowrap;
+}
+
+.float-right {
+  float: right;
+}
+
+.result {
+  font-size: 1.3rem;
+  float: right;
 }
 
 .card-body {
@@ -20,10 +30,6 @@ table {
 
 .card-body > i {
   color: gray;
-}
-
-.select > i{
-  color: white !important;
 }
 
 .end-item {
@@ -346,7 +352,7 @@ hr {
   flex-direction: column;
   margin-left: 0.5rem;
   margin-right: auto;
-  flex-basis: 270px;
+  flex-basis: 300px;
 }
 
 .widget-49
@@ -554,162 +560,196 @@ td {
   transform: translateZ(10px);
 }
 
-// #floating-button{
-//   width: 55px;
-//   height: 55px;
-//   border-radius: 50%;
-//   background: linear-gradient(to right, gray, black);;
-//   position: fixed;
-//   bottom: 30px;
-//   right: 30px;
-//   cursor: pointer;
-//   box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
-// }
+#floating-button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(to right, gray, black);
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
 
-// .plus{
-//   color: white;
-//   position: absolute;
-//   top: 0;
-//   display: block;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   text-align: center;
-//   padding: 0;
-//   margin: 0;
-//   line-height: 55px;
-//   font-size: 38px;
-//   font-family: 'Roboto';
-//   font-weight: 300;
-//   animation: plus-out 0.3s;
-//   transition: all 0.3s;
-// }
+.plus {
+  color: white;
+  position: absolute;
+  top: 0;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  line-height: 55px;
+  font-size: 38px;
+  font-family: "Roboto";
+  font-weight: 300;
+  animation: plus-out 0.3s;
+  transition: all 0.3s;
+}
 
-// #container-floating{
-//   position: fixed;
-//   width: 70px;
-//   height: 70px;
-//   bottom: 30px;
-//   right: 30px;
-//   z-index: 50px;
-// }
+#container-floating {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  bottom: 30px;
+  right: 30px;
+  z-index: 50px;
+}
 
-// #container-floating:hover{
-//   height: 400px;
-//   width: 90px;
-//   padding: 30px;
-// }
+#container-floating:hover {
+  height: 400px;
+  width: 90px;
+  padding: 30px;
+}
 
-// #container-floating:hover .plus{
-//   animation: plus-in 0.15s linear;
-//   animation-fill-mode: forwards;
-// }
+#container-floating:hover .plus {
+  animation: plus-in 0.15s linear;
+  animation-fill-mode: forwards;
+}
 
-// .edit{
-//   position: absolute;
-//   top: 0;
-//   display: block;
-//   bottom: 0;
-//   left: 0;
-//   display: block;
-//   right: 0;
-//   padding: 0;
-//   opacity: 0;
-//   margin: auto;
-//   line-height: 65px;
-//   transform: rotateZ(-70deg);
-//   transition: all 0.3s;
-//   animation: edit-out 0.3s;
-// }
+.edit {
+  position: absolute;
+  top: 0;
+  display: block;
+  bottom: 0;
+  left: 0;
+  display: block;
+  right: 0;
+  padding: 0;
+  opacity: 0;
+  margin: auto;
+  line-height: 65px;
+  transform: rotateZ(-70deg);
+  transition: all 0.3s;
+  animation: edit-out 0.3s;
+}
 
-// #container-floating:hover .edit{
-//   animation: edit-in 0.2s;
-//    animation-delay: 0.1s;
-//   animation-fill-mode: forwards;
-// }
+#container-floating:hover .edit {
+  animation: edit-in 0.2s;
+  animation-delay: 0.1s;
+  animation-fill-mode: forwards;
+}
 
-// @keyframes edit-in{
-//     from {opacity: 0; transform: rotateZ(-70deg);}
-//     to {opacity: 1; transform: rotateZ(0deg);}
-// }
+@keyframes edit-in {
+  from {
+    opacity: 0;
+    transform: rotateZ(-70deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateZ(0deg);
+  }
+}
 
-// @keyframes edit-out{
-//     from {opacity: 1; transform: rotateZ(0deg);}
-//     to {opacity: 0; transform: rotateZ(-70deg);}
-// }
+@keyframes edit-out {
+  from {
+    opacity: 1;
+    transform: rotateZ(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: rotateZ(-70deg);
+  }
+}
 
-// @keyframes plus-in{
-//     from {opacity: 1; transform: rotateZ(0deg);}
-//     to {opacity: 0; transform: rotateZ(180deg);}
-// }
+@keyframes plus-in {
+  from {
+    opacity: 1;
+    transform: rotateZ(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: rotateZ(180deg);
+  }
+}
 
-// @keyframes plus-out{
-//     from {opacity: 0; transform: rotateZ(180deg);}
-//     to {opacity: 1; transform: rotateZ(0deg);}
-// }
+@keyframes plus-out {
+  from {
+    opacity: 0;
+    transform: rotateZ(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateZ(0deg);
+  }
+}
 
-// .nds{
-//   width: 40px;
-//   height: 40px;
-//   border-radius: 50%;
-//   position: fixed;
-//   z-index: 300;
-//   transform:  scale(0);
-//   cursor: pointer;
-// }
+.nds {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 300;
+  transform: scale(0);
+  cursor: pointer;
+}
 
-// .nd1{
-//   background: #d3a411;
-//   right: 40px;
-//   bottom: 120px;
-//   animation-delay: 0.2s;
-//     animation: bounce-out-nds 0.3s linear;
-//   animation-fill-mode:  forwards;
-// }
+.nd1 {
+  background: #d3a411;
+  right: 40px;
+  bottom: 120px;
+  animation-delay: 0.2s;
+  animation: bounce-out-nds 0.3s linear;
+  animation-fill-mode: forwards;
+}
 
-// .nd3{
-//   background: #3c80f6;
-//   right: 40px;
-//   bottom: 180px;
-//   animation-delay: 0.15s;
-//     animation: bounce-out-nds 0.15s linear;
-//   animation-fill-mode:  forwards;
-// }
+.nd3 {
+  background: #3c80f6;
+  right: 40px;
+  bottom: 180px;
+  animation-delay: 0.15s;
+  animation: bounce-out-nds 0.15s linear;
+  animation-fill-mode: forwards;
+}
 
-// .nd4{
-//   background: red;
-//   right: 40px;
-//   bottom: 240px;
-//   animation-delay: 0.1s;
-//     animation: bounce-out-nds 0.1s linear;
-//   animation-fill-mode:  forwards;
-// }
+.nd4 {
+  background: red;
+  right: 40px;
+  bottom: 240px;
+  animation-delay: 0.1s;
+  animation: bounce-out-nds 0.1s linear;
+  animation-fill-mode: forwards;
+}
 
-// @keyframes bounce-nds{
-//     from {opacity: 0;}
-//     to {opacity: 1; transform: scale(1);}
-// }
+@keyframes bounce-nds {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
-// @keyframes bounce-out-nds{
-//     from {opacity: 1; transform: scale(1);}
-//     to {opacity: 0; transform: scale(0);}
-// }
+@keyframes bounce-out-nds {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
 
-// #container-floating:hover .nds{
+#container-floating:hover .nds {
+  animation: bounce-nds 0.1s linear;
+  animation-fill-mode: forwards;
+}
 
-//   animation: bounce-nds 0.1s linear;
-//   animation-fill-mode:  forwards;
-// }
-
-// #container-floating:hover .nd3{
-//   animation-delay: 0.08s;
-// }
-// #container-floating:hover .nd4{
-//   animation-delay: 0.15s;
-// }
-// #container-floating:hover .nd5{
-//   animation-delay: 0.2s;
-// }
+#container-floating:hover .nd3 {
+  animation-delay: 0.08s;
+}
+#container-floating:hover .nd4 {
+  animation-delay: 0.15s;
+}
+#container-floating:hover .nd5 {
+  animation-delay: 0.2s;
+}
 
 .letter {
   font-size: 23px;
@@ -745,177 +785,86 @@ td {
   right: 20px;
 }
 
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {
+      bottom: 0;
+      opacity: 0;
+    }
+    to {
+      bottom: 30px;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadein {
+    from {
+      bottom: 0;
+      opacity: 0;
+    }
+    to {
+      bottom: 30px;
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {
+      bottom: 30px;
+      opacity: 1;
+    }
+    to {
+      bottom: 0;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeout {
+    from {
+      bottom: 30px;
+      opacity: 1;
+    }
+    to {
+      bottom: 0;
+      opacity: 0;
+    }
+  }
+
 @media only screen and (max-width: 768px) {
   #loader {
     left: 45%;
     top: 45%;
   }
-}
 
-.adminActions {
-  position: fixed;
-  bottom: 35px;
-  right: 35px;
-}
-
-.adminButton {
-  height: 60px;
-  width: 60px;
-  background-color: black;
-  border-radius: 50%;
-  display: block;
-  color: #fff;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-.adminButton i {
-  font-size: 22px;
-}
-
-.adminButtons {
-  position: absolute;
-  width: 100%;
-  bottom: 120%;
-  text-align: center;
-}
-
-.adminButtons a {
-  display: block;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  text-decoration: none;
-  margin: 10px auto 0;
-  line-height: 1.15;
-  color: #fff;
-  opacity: 0;
-  visibility: hidden;
-  position: relative;
-  box-shadow: 0 0 5px 1px rgba(51, 51, 51, 0.3);
-}
-
-.adminButtons a:hover {
-  transform: scale(1.05);
-}
-
-.adminButtons a:nth-child(1) {
-  background-color: #ff5722;
-  transition: opacity 0.2s ease-in-out 0.3s, transform 0.15s ease-in-out;
-}
-.adminButtons a:nth-child(2) {
-  background-color: #03a9f4;
-  transition: opacity 0.2s ease-in-out 0.25s, transform 0.15s ease-in-out;
-}
-.adminButtons a:nth-child(3) {
-  background-color: #f44336;
-  transition: opacity 0.2s ease-in-out 0.2s, transform 0.15s ease-in-out;
-}
-.adminButtons a:nth-child(4) {
-  background-color: #4caf50;
-  transition: opacity 0.2s ease-in-out 0.15s, transform 0.15s ease-in-out;
-}
-
-.adminActions a i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.adminToggle {
-  -webkit-appearance: none;
-  position: absolute;
-  border-radius: 50%;
-  top: 0;
-  left: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  z-index: 2;
-  transition: box-shadow 0.2s ease-in-out;
-  box-shadow: 0 3px 5px 1px rgba(51, 51, 51, 0.3);
-}
-
-.adminToggle:hover {
-  box-shadow: 0 3px 6px 2px rgba(51, 51, 51, 0.3);
-}
-
-.adminToggle:checked ~ .adminButtons a {
-  opacity: 1;
-  visibility: visible;
-}
-
-#snackbar {
-  visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 250px; /* Set a default minimum width */
-  margin-left: -125px; /* Divide value of min-width by 2 */
-  background-color: #333; /* Black background color */
-  color: #fff; /* White text color */
-  text-align: center; /* Centered text */
-  border-radius: 2px; /* Rounded borders */
-  padding: 16px; /* Padding */
-  position: fixed; /* Sit on top of the screen */
-  z-index: 1; /* Add a z-index if needed */
-  left: 50%; /* Center the snackbar */
-  bottom: 30px; /* 30px from the bottom */
-}
-
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbar.show {
-  visibility: visible; /* Show the snackbar */
-  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-      However, delay the fade out process for 2.5 seconds */
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-/* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
+  .result {
+    font-size: 0.8rem;
   }
-  to {
-    bottom: 30px;
-    opacity: 1;
-  }
-}
 
-@keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 30px;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeout {
-  from {
-    bottom: 30px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    bottom: 30px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
+  .float-right {
+    float: unset;
   }
 }

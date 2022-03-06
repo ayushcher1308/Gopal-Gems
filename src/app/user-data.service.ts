@@ -16,4 +16,8 @@ export class UserDataService {
   setUserInfo(user: any) {
     this.data = user;
   }
+
+  // async fetchUserInfo(){
+  //   await this.dataService.authenticate()
+  // }
 }

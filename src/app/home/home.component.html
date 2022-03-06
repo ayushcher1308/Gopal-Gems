@@ -1,60 +1,18 @@
 <div *ngIf="!loader" class="row row-cols-md-4 g-4 row-cols-sm-3">
-  <div class="col">
+  <div class="col" *ngFor="let card of cards;let i=index" (click)="flipcards(i)">
     <div class="card shadow p-2">
-      <div class="card-body">
-        <i class="fs-4 fa fa-diamond"></i>
-        <h4>New Goods</h4>
-        <h2 class="card-title">{{diamondData.length}}</h2>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card shadow p-2">
-      <div class="card-body">
-        <i class="fs-4 fa fa-thumbs-up"></i>
-        <h4>Recommended</h4>
-        <h2 class="card-title">0</h2>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card shadow p-2">
-      <div class="card-body">
-        <i class="fs-4 fa fa-heart-o"></i>
-        <h4>Favourite</h4>
-        <h2 class="card-title">0</h2>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card shadow p-2">
-      <div class="card-body">
-        <i class="fs-4 fa fa-question-circle"></i>
-        <h4>Enquiry</h4>
-        <h2 class="card-title">0</h2>
+      <div class="card-body" [ngClass]="card.selected ? 'select' : ''">
+        <i class={{card.icon}}></i>
+        <h4>{{card.name}}</h4>
+        <!-- <h2 class="card-title">{{diamondData.length}}</h2> -->
       </div>
     </div>
   </div>
 </div>
 
-<!-- <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart m-1"></i>Add To Cart</button>
-<button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-edit m-1"></i>Enquiry</button>
-<button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-heart m-1"></i>Add To Wishlist</button> -->
 
-<!-- <ag-grid-angular
-    style="width: 100%; height: 70%;"
-    class="ag-theme-balham"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [defaultColDef]="defaultColDef"
-    [suppressRowClickSelection]="false"
-    [rowMultiSelectWithClick]="true"
-    [rowSelection]="rowSelection"
->
-</ag-grid-angular> -->
-
-<div *ngIf="!loader" class="w-3 border-bottom border-1 m-1">
-  <h2 class="m-2 fw-bold text-center">New Goods</h2>
+<div *ngIf="!loader" class="w-3  m-1">
+  <h2 class="m-2 fw-bold text-center">{{selectedCard}}</h2>
 </div>
 
 <div class="container">
@@ -103,26 +61,18 @@
   </div>
 </div>
 
-<div id="container-floating">
-  <div class="nd4 nds"><img class="reminder">
-    <p class="letter"><i class="fa fa-heart m-1" aria-hidden="true"></i></p>
-  </div>
-  
-  <div class="nd3 nds">
-    <img class="reminder">
-    <p class="letter" ><i class="fa fa-shopping-cart m-1"></i></p>
-  </div>
-  
-  <div class="nd1 nds">
-    <p class="letter"><i class="fa fa-phone m-1"></i></p>
-  </div>
 
-  <div id="floating-button">
-    <p class="plus">+</p>
-    <img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png">
-  </div>
+<div class="adminActions">
+	<input type="checkbox" name="adminToggle" class="adminToggle" />
+	<a class="adminButton" href="#!"><i class="fa fa-cog"></i></a>
+	<div class="adminButtons">
+		<a (click)="addToCart()" title="Add Company"><i class="fa fa-shopping-cart"></i></a>
+		<a href="#" title="Edit Company"><i class="fa fa-phone"></i></a>
+		<a href="#" title="Add User"><i class="fa fa-heart"></i></a>
+	</div>
 </div>
 
+<div id="snackbar" class="snackbar">{{message}}</div>
 
 <div id="ctn" *ngIf="loader">
   <div id="loader"></div>

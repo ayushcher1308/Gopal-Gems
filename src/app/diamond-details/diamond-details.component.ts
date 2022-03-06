@@ -22,7 +22,7 @@ export class DiamondDetailsComponent implements OnInit {
       this.id = params['id'];
       this.fetchDiamondDetails(this.id);
     });
-    this.selectedImage='gia';
+    this.selectedImage='image';
   }
 
   fetchDiamondDetails(id: any) {
