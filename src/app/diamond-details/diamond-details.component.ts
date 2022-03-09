@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-diamond-details',
@@ -10,7 +11,8 @@ import { DataService } from '../services/data.service';
 export class DiamondDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private _location: Location
   ) {}
   id: any;
   diamondDetail: any;
@@ -23,6 +25,10 @@ export class DiamondDetailsComponent implements OnInit {
       this.fetchDiamondDetails(this.id);
     });
     this.selectedImage='image';
+  }
+
+  backPage(){
+    this._location.back();
   }
 
   fetchDiamondDetails(id: any) {

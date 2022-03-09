@@ -3,8 +3,8 @@
 </div>
 
 <div class="p-2 m-1 " style="width: 100%">
-  <button type="button" [routerLink]="['/dashboard/home']" class="btn btn-sm btn-outline-info m-1">
-    Back to Home
+  <button type="button" (click)="backPage()" class="btn btn-sm btn-outline-secondary m-1">
+    <i class="fa-solid fa-arrow-left"></i>
   </button>
   <button type="button" class="btn btn-sm btn-outline-secondary m-1 float-right">
     Add To Cart
@@ -20,7 +20,49 @@
   <div class="detail-container rounded row">
     <div class="col-md-12 col-lg-12 col-sm-12">
       <div class="row">
-        <div class="col-md-4">
+
+        <div class="col-md-7 col-sm-12 border rounded shadow m-2 text-center">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <ul class="nav nav-tabs mt-1">
+              <li class="nav-item">
+                <a class="nav-link pill active image" (click)="FlipImage('image')"
+                  >Image</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link pill video" (click)="FlipImage('video')"
+                  >Video</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link pill gia" (click)="FlipImage('gia')">Certificate</a>
+              </li>
+            </ul>
+            <img
+              class="m-2 rounded"
+              *ngIf="selectedImage == 'image'"
+              src="https://d3at7kzws0mw3g.cloudfront.net/images/diamond/214100-34.jpg"
+              alt=""
+           
+            />
+            <iframe
+              class="m-2"
+              style="width: 100%; height: 400px;"
+              scrolling="no"
+              *ngIf="selectedImage == 'video'"
+              src="https://d3at7kzws0mw3g.cloudfront.net/video/Vision360.html?d=214178-185"
+              frameborder="0"
+            ></iframe>
+            <img
+              *ngIf="selectedImage == 'gia'"
+            
+              src="https://d3at7kzws0mw3g.cloudfront.net/MaskLabreportno/3F6766AF-06E4-4AC7-B8A5-A184B32B579E.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="col-md-4 mt-1">
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card card-margin shadow">
               <div class="card-body pt-0">
@@ -123,7 +165,7 @@
           </div>
 
           <div
-            class="col-lg-12 col-md-12 col-sm-12 mt-3 rounded border shadow details-card"
+            class="col-lg-12 col-md-12 col-sm-12 mt-3 rounded border shadow details-card additional-info"
           >
             <h4 class="fw-bold text-center">Additional Info</h4>
             <table class="table table-striped">
@@ -156,7 +198,7 @@
             </table>
           </div>
         </div>
-        <div class="col-md-7 col-sm-12 border rounded shadow ml-2 mt-2 text-center">
+        <!-- <div class="col-md-7 col-sm-12 border rounded shadow ml-2 mt-2 text-center">
           <ul class="nav nav-tabs mt-1">
             <li class="nav-item">
               <a class="nav-link pill active image" (click)="FlipImage('image')"
@@ -193,7 +235,7 @@
             src="https://d3at7kzws0mw3g.cloudfront.net/MaskLabreportno/3F6766AF-06E4-4AC7-B8A5-A184B32B579E.jpg"
             alt=""
           />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

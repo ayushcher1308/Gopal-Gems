@@ -388,4 +388,12 @@ img{
     .float-right{
       float: unset;
     }
+    
+    .row>* {
+      flex-shrink: unset;
+    }
+
+    .additional-info{
+      margin-bottom: 15px;
+    }
 }

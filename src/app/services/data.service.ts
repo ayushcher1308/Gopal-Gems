@@ -42,11 +42,26 @@ export class DataService {
     return this.http.get<any>(environment.url + 'cart/items/' + _id);
   }
 
-  addItemsToCart(cartItems:any){
+  addItemsToCart(cartItems: any) {
     return this.http.post<any>(environment.url + 'cart/add', cartItems);
   }
 
-  removeItemsFromCart(_ids:any){
+  removeItemsFromCart(_ids: any) {
     return this.http.post<any>(environment.url + 'cart/remove', _ids);
+  }
+
+  fetchFavouriteItems(_id: any) {
+    return this.http.get<any>(environment.url + 'favourite/items/' + _id);
+  }
+
+  addItemsToFavourite(FavouriteItems: any) {
+    return this.http.post<any>(
+      environment.url + 'favourite/add',
+      FavouriteItems
+    );
+  }
+
+  removeItemsFromFavourite(_ids: any) {
+    return this.http.post<any>(environment.url + 'favourite/remove', _ids);
   }
 }

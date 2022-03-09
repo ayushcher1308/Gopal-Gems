@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ValueCache } from 'ag-grid-community';
 import { diamondMockData } from 'src/mock-data/diamond';
 import { DataService } from '../services/data.service';
 import { UserDataService } from '../user-data.service';
@@ -14,13 +15,15 @@ export class HomeComponent implements OnInit {
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute,
-    private user: UserDataService
+    private user: UserDataService,
+    private userData: UserDataService
   ) {}
 
   diamondData: any;
   loader: any = false;
   message: any;
   selectedCard: any = 'New Goods';
+  options: any = false;
   cards = [
     {
       name: 'New Goods',
@@ -76,11 +79,12 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart() {
-    // this.loader = true;
+    this.loader = true;
     let user = this.user.getUserInfo()._id;
     let cartItems: any = [];
     for (var i = 0; i < this.diamondData.length; i++) {
       if (this.diamondData[i].selected) {
+        this.diamondData[i].selected = false;
         cartItems.push({ user: user, diamond: this.diamondData[i]._id });
       }
     }
@@ -88,12 +92,78 @@ export class HomeComponent implements OnInit {
       this.message = 'Please select atleast one diamond for adding to cart';
       this.showSnackbar();
       this.loader = false;
+      this.options = false;
     } else {
       this.dataService.addItemsToCart(cartItems).subscribe((res) => {
         this.loader = false;
-        this.message = `${cartItems.length} items has been successfully added to cart.`;
+        this.message = res.msg;
+        this.options = false;
         this.showSnackbar();
       });
+    }
+  }
+
+  removeItemFromFavourite() {
+    this.loader = true;
+    var items = [];
+    for (var i = 0; i < this.diamondData.length; i++) {
+      if (this.diamondData[i].selected) items.push(this.diamondData[i].FavouriteId);
+    }
+    if (items.length == 0) {
+      this.message = `Please select any item to remove from Favourite.`;
+      this.showSnackbar();
+      this.loader = false;
+    } else {
+      this.dataService.removeItemsFromFavourite({ $in: items }).subscribe((res) => {
+        this.fetchFavouriteItems();
+      });
+    }
+  }
+
+  fetchFavouriteItems(){
+    let _id = this.userData.getUserInfo()._id;
+    this.dataService.fetchFavouriteItems(_id).subscribe((res) => {
+      this.diamondData = [];
+      for (var i = 0; i < res.length; i++) {
+        this.diamondData.push(res[i].diamond);
+      }
+      for (var i = 0; i < this.diamondData.length; i++) {
+        this.diamondData[i].selected = false;
+        this.diamondData[i].FavouriteId = res[i]._id;
+      }
+      this.loader = false;
+      this.options = false;
+    });
+  }
+
+  addToFavourite() {
+    this.loader = true;
+    let user = this.user.getUserInfo()._id;
+    let FavouriteItems: any = [];
+    for (var i = 0; i < this.diamondData.length; i++) {
+      if (this.diamondData[i].selected) {
+        this.diamondData[i].selected = false;
+        FavouriteItems.push({ user: user, diamond: this.diamondData[i]._id });
+      }
+    }
+    if (FavouriteItems.length == 0) {
+      this.message =
+        'Please select atleast one diamond for adding to Favourite';
+      this.showSnackbar();
+      this.loader = false;
+      this.options = false;
+    } else {
+      this.dataService.addItemsToFavourite(FavouriteItems).subscribe(
+        (res) => {
+          this.loader = false;
+          this.message = res.msg;
+          this.options = false;
+          this.showSnackbar();
+        },
+        (err) => {
+          this.loader = false;
+        }
+      );
     }
   }
 
@@ -112,6 +182,28 @@ export class HomeComponent implements OnInit {
         this.cards[i].selected = true;
         this.selectedCard = this.cards[i].name;
       }
+    }
+    if (index == 0) {
+      this.fetchDiamondList();
+    }
+
+    if (index == 1) {
+      this.loader = true;
+      this.dataService.fetchDiamond().subscribe((res) => {
+        this.diamondData = res;
+        this.diamondData = this.diamondData.filter(function (val: any) {
+          return val.addToRecommendation;
+        });
+        for (var i = 0; i < this.diamondData.length; i++) {
+          this.diamondData[i].selected = false;
+        }
+        this.loader = false;
+      });
+    }
+
+    if (index == 2) {
+      this.loader = true;
+      this.fetchFavouriteItems();
     }
   }
 }

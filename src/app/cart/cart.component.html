@@ -2,11 +2,11 @@
   Cart is Empty
 </h2>
 
-<div *ngIf="!loader" class="p-2 m-1 " style="width: 100%">
+<div *ngIf="!loader && diamondData?.length != 0" class="p-2 m-1 " style="width: 100%">
     <button type="button" (click)="removeItemFromCart()" class="btn btn-sm btn-outline-danger m-1">
-      Remove Item
+        <i class="fa fa-remove me-2"></i><span>Delete</span>
     </button>
-    <button *ngIf="diamondData?.length != 0" type="button" class="btn btn-sm btn-outline-secondary m-1">
+    <button type="button" class="btn btn-sm btn-outline-secondary m-1">
       Place Order
     </button>
 </div>
@@ -16,6 +16,7 @@
     <div
       class="col-lg-4 col-md-6 col-sm-12"
       *ngFor="let data of diamondData; let i = index"
+      (click)="fetchCardDetails($event,data._id)"
     >
       <div class="card card-margin" [ngClass]="data.selected ? 'select' : ''">
         <div class="card-body pt-0">

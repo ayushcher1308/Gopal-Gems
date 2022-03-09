@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { UserDataService } from '../user-data.service';
 
@@ -10,7 +11,9 @@ import { UserDataService } from '../user-data.service';
 export class CartComponent implements OnInit {
   constructor(
     private dataService: DataService,
-    private userData: UserDataService
+    private userData: UserDataService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   diamondData: any = [];
@@ -56,11 +59,17 @@ export class CartComponent implements OnInit {
       this.showSnackbar();
       this.loader = false;
     } else {
-      console.log(items);
       this.dataService.removeItemsFromCart({ $in: items }).subscribe((res) => {
         this.fetchCartItems();
       });
     }
+  }
+
+  fetchCardDetails(event: any, _id: any) {
+    event.stopPropagation();
+    this.router.navigate(['/dashboard/diamond-detail/', _id], {
+      relativeTo: this.route,
+    });
   }
 
   showSnackbar() {

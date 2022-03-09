@@ -22,7 +22,7 @@ table {
   color: gray;
 }
 
-.select > i{
+.select > .card-body > i{
   color: white !important;
 }
 
@@ -809,13 +809,18 @@ td {
   transition: opacity 0.2s ease-in-out 0.25s, transform 0.15s ease-in-out;
 }
 .adminButtons a:nth-child(3) {
-  background-color: #f44336;
+  background-color: red;
   transition: opacity 0.2s ease-in-out 0.2s, transform 0.15s ease-in-out;
 }
 .adminButtons a:nth-child(4) {
   background-color: #4caf50;
   transition: opacity 0.2s ease-in-out 0.15s, transform 0.15s ease-in-out;
 }
+
+// .adminButtons a:nth-child(5) {
+//   background-color: red;
+//   transition: opacity 0.2s ease-in-out 0.2s, transform 0.15s ease-in-out;
+// }
 
 .adminActions a i {
   position: absolute;
