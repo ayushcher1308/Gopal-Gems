@@ -64,4 +64,16 @@ export class DataService {
   removeItemsFromFavourite(_ids: any) {
     return this.http.post<any>(environment.url + 'favourite/remove', _ids);
   }
+
+  fetchOrdersHistory(_id: any) {
+    return this.http.get<any>(environment.url + 'order/users/' + _id);
+  }
+
+  placeOrder(data:any){
+    return this.http.post<any>(environment.url + 'order/add/',data);
+  }
+
+  emptyCart(_id:any){
+    return this.http.get<any>(environment.url + 'cart/empty/' + _id);
+  }
 }

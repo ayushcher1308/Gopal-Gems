@@ -1,1 +1,118 @@
-<h2>order-works</h2>
+<h2 class="text-center h2" *ngIf="orderHistory?.length == 0">
+  No Orders found
+</h2>
+
+<button id="openModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+
+<div *ngFor="let order of orderHistory" class="mb-2" (click)="openModal(order)">
+  <div class="text-hr text-hr--center">
+    <span
+      class="text-hr__text"
+      >Order ID: {{ order.orderId }} &nbsp; Placed On:
+      {{ order.createdAt | date }}</span
+    >
+  </div>
+
+  <div class="container">
+    <div class="row cards">
+      <div
+        class="col-lg-4 col-md-6 col-sm-12"
+        *ngFor="let data of order.diamond; let i = index"
+      >
+        <div class="card card-margin" [ngClass]="data.selected ? 'select' : ''">
+          <div class="card-body pt-0">
+            <div class="widget-49">
+              <div class="widget-49-title-wrapper m-1">
+                <div class="widget-49-date-primary">
+                  <span class="widget-49-date-day">{{ data.Carat }}</span>
+                  <span class="widget-49-date-month fw-bold">carat</span>
+                </div>
+                <div class="widget-49-meeting-info">
+                  <span class="widget-49-pro-title text-start">
+                    <span>{{ data.stockNo }}</span>
+                    <span style="font-weight: 500; margin-left: 0.5rem">
+                      {{ data.Shape }}
+                    </span>
+                    <span style="margin-left: 0.6rem" class="fw-bold">
+                      {{ data.Rap }}
+                    </span>
+                    <span style="margin-left: 0.6rem" class="fw-bold end-item">
+                      {{ data.pr_ct | currency }}/CT
+                    </span>
+                  </span>
+                  <hr />
+                  <span class="widget-49-meeting-time text-start"
+                    ><span class="fw-bold">
+                      {{ data.Color }}
+                      {{ data.Clarity }}&nbsp;
+                      {{ data.Cut }}
+                      {{ data.Polish }}
+                      {{ data.Symmetry }}&nbsp; {{ data.Fluorescent }}&nbsp;
+                    </span>
+                    {{ data.LAB }}&nbsp;
+                    <span class="end-item">{{ data.Measurement }}</span>
+                  </span>
+                  <hr />
+                  <span class="widget-49-meeting-time text-start">
+                    Lustor &nbsp; Tab: {{ data.Tab }}% &nbsp; TD: {{ data.TD }}%
+                    &nbsp;
+                    <span class="end-item">Ratio: {{ data.Ratio }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="ctn" *ngIf="loader">
+  <div id="loader"></div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  #myModal
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Order Details &nbsp; #{{orderDetails?.orderId}}</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table-light">
+          <thead>
+            <tr>
+              <th>Pcs</th>
+              <th>Cts</th>
+              <th>Disc %</th>
+              <th>Price</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{orderDetails?.diamond.length}}</td>
+              <td>{{orderDetails?.totalCarat}}</td>
+              <td>{{orderDetails?.discount}}%</td>
+              <td>{{orderDetails?.perCaratAmount | currency}}</td>
+              <td>{{orderDetails?.totalAmount | currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

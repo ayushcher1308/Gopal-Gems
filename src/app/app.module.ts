@@ -20,6 +20,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DiamondDetailsComponent } from './diamond-details/diamond-details.component';
 import { CartComponent } from './cart/cart.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CartComponent } from './cart/cart.component';
     OrdersComponent,
     SearchResultComponent,
     DiamondDetailsComponent,
-    CartComponent
+    CartComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

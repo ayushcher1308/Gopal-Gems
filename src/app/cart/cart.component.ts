@@ -28,6 +28,37 @@ export class CartComponent implements OnInit {
     this.fetchCartItems();
   }
 
+  placeOrder() {
+    this.loader = true;
+    var items = [];
+    for (var i = 0; i < this.diamondData.length; i++) {
+      items.push(this.diamondData[i]._id);
+    }
+    const order = {
+      user:this.userData.getUserInfo()._id,
+      diamond:items
+    }
+    this.dataService.placeOrder(order).subscribe((res) => {
+      this.message = `Order Placed Successfully.`;
+      this.emptyCart();
+      this.showSnackbar();
+      this.loader = false;
+    },(err)=>{
+      this.message = `Please try again later.`;
+      this.showSnackbar();
+      this.loader = false;
+    });
+  }
+
+  emptyCart(){
+    this.loader = true;
+    let _id = this.userData.getUserInfo()._id;
+    this.dataService.emptyCart(_id).subscribe(res=>{
+      this.diamondData = [];
+      this.loader = false;
+    })
+  }
+
   fetchCartItems() {
     this.diamondData = [];
     let _id = this.userData.getUserInfo()._id;

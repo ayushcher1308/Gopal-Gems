@@ -1,9 +1,13 @@
-<div *ngIf="!loader" class="row row-cols-md-4 g-4 row-cols-sm-4">
-  <div class="col" *ngFor="let card of cards;let i=index" (click)="flipcards(i)">
+<div *ngIf="!loader" class="row row-cols-md-4 g-3 cols-sm-1">
+  <div
+    class="col"
+    *ngFor="let card of cards; let i = index"
+    (click)="flipcards(i)"
+  >
     <div class="card shadow p-2" [ngClass]="card.selected ? 'select' : ''">
       <div class="card-body">
-        <i class={{card.icon}}></i>
-        <h4>{{card.name}}</h4>
+        <i class="{{ card.icon }}"></i>
+        <h4>{{ card.name }}</h4>
         <!-- <h2 class="card-title">{{diamondData.length}}</h2> -->
       </div>
     </div>
@@ -11,47 +15,61 @@
 </div>
 
 
-<div *ngIf="!loader" class="w-3  m-1">
-  <h2 class="m-2 fw-bold text-center">{{selectedCard}}</h2>
+
+<div *ngIf="!loader" class="w-3 m-1">
+  <h2 class="m-2 fw-bold text-center">{{ selectedCard }}</h2>
 </div>
 
 <div class="container" *ngIf="!loader">
   <div class="row cards">
-    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let data of diamondData;let i = index" (click)="fetchCardDetails($event,data._id)">
+    <div
+      class="col-lg-4 col-md-6 col-sm-12"
+      *ngFor="let data of diamondData; let i = index"
+      (click)="fetchCardDetails($event, data._id)"
+    >
       <div class="card card-margin" [ngClass]="data.selected ? 'select' : ''">
         <div class="card-body pt-0">
           <div class="widget-49">
             <div class="widget-49-title-wrapper m-1">
-              <div class="widget-49-date-primary" (click)="selectCard($event,i)">
+              <div
+                class="widget-49-date-primary"
+                (click)="selectCard($event, i)"
+              >
                 <span class="widget-49-date-day">{{ data.Carat }}</span>
                 <span class="widget-49-date-month fw-bold">carat</span>
-                  
               </div>
               <div class="widget-49-meeting-info">
                 <span class="widget-49-pro-title text-start">
-                  <span>{{data.stockNo}}</span>
-                  <span style="font-weight: 500;margin-left: 0.5rem;"> {{data.Shape}} </span>
-                  <span style="margin-left: 0.6rem;" class="fw-bold"> {{data.Rap}} </span>
-                  <span style="margin-left: 0.6rem;" class="fw-bold end-item"> {{data.pr_ct | currency}}/CT </span>
-                </span><hr>
-                <span class="widget-49-meeting-time text-start"><span class="fw-bold">
-                  {{ data.Color }}
-                  {{ data.Clarity }}
-                 {{ data.Cut }}
-                 {{ data.Polish }}
-                 {{ data.Symmetry }}
-                 {{ data.Fluorescent }}
+                  <span>{{ data.stockNo }}</span>
+                  <span style="font-weight: 500; margin-left: 0.5rem">
+                    {{ data.Shape }}
+                  </span>
+                  <span style="margin-left: 0.6rem" class="fw-bold">
+                    {{ data.Rap }}
+                  </span>
+                  <span style="margin-left: 0.6rem" class="fw-bold end-item">
+                    {{ data.pr_ct | currency }}/CT
+                  </span>
                 </span>
-                 {{ data.LAB }}&nbsp;
-                 <span class="end-item">{{ data.Measurement }}</span>
-                 </span>
-                 <hr>
+                <hr />
+                <span class="widget-49-meeting-time text-start"
+                  ><span class="fw-bold">
+                    {{ data.Color }}
+                    {{ data.Clarity }}
+                    {{ data.Cut }}
+                    {{ data.Polish }}
+                    {{ data.Symmetry }}
+                    {{ data.Fluorescent }}
+                  </span>
+                  {{ data.LAB }}&nbsp;
+                  <span class="end-item">{{ data.Measurement }}</span>
+                </span>
+                <hr />
                 <span class="widget-49-meeting-time text-start">
-                  Lustor &nbsp;
-                  Tab: {{data.Tab}}% &nbsp;
-                  TD: {{data.TD}}% &nbsp;
-                  <span class="end-item">Ratio: {{data.Ratio}}</span>
-                 </span>
+                  Lustor &nbsp; Tab: {{ data.Tab }}% &nbsp; TD: {{ data.TD }}%
+                  &nbsp;
+                  <span class="end-item">Ratio: {{ data.Ratio }}</span>
+                </span>
               </div>
             </div>
           </div>
@@ -61,20 +79,37 @@
   </div>
 </div>
 
-
 <div class="adminActions">
-	<input type="checkbox" name="adminToggle" class="adminToggle" [(ngModel)]="options" />
-	<a class="adminButton" href="#!"><i class="fa fa-plus"></i></a>
-	<div class="adminButtons">
-		<a (click)="addToCart()" title="Add To Cart"><i class="fa fa-shopping-cart"></i></a>
-		<a href="#" title="Enquire"><i class="fa fa-phone"></i></a>
-    <a (click)="removeItemFromFavourite()" title="Delete" *ngIf="cards[2].selected"><i class="fa fa-trash"></i></a>
-		<a (click)="addToFavourite()" *ngIf="!cards[2].selected" href="#" title="Add To Favourite"><i class="fa fa-heart"></i></a>
+  <input
+    type="checkbox"
+    name="adminToggle"
+    class="adminToggle"
+    [(ngModel)]="options"
+  />
+  <a class="adminButton" href="#!"><i class="fa fa-plus"></i></a>
+  <div class="adminButtons">
+    <a (click)="addToCart()" title="Add To Cart"
+      ><i class="fa fa-shopping-cart"></i
+    ></a>
+    <a href="#" title="Enquire"><i class="fa fa-phone"></i></a>
+    <a
+      (click)="removeItemFromFavourite()"
+      title="Delete"
+      *ngIf="cards[2].selected"
+      ><i class="fa fa-trash"></i
+    ></a>
+    <a
+      (click)="addToFavourite()"
+      *ngIf="!cards[2].selected"
+      href="#"
+      title="Add To Favourite"
+      ><i class="fa fa-heart"></i
+    ></a>
     <a href="#" title="Share"><i class="fa fa-share-alt"></i></a>
-	</div>
+  </div>
 </div>
 
-<div id="snackbar" class="snackbar">{{message}}</div>
+<div id="snackbar" class="snackbar">{{ message }}</div>
 
 <div id="ctn" *ngIf="loader">
   <div id="loader"></div>

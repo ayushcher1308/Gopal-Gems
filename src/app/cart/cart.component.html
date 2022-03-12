@@ -6,8 +6,11 @@
     <button type="button" (click)="removeItemFromCart()" class="btn btn-sm btn-outline-danger m-1">
         <i class="fa fa-remove me-2"></i><span>Delete</span>
     </button>
-    <button type="button" class="btn btn-sm btn-outline-secondary m-1">
+    <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="placeOrder()">
       Place Order
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="emptyCart()">
+      Empty Cart
     </button>
 </div>
 
