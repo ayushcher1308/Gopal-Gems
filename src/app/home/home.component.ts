@@ -201,7 +201,6 @@ export class HomeComponent implements OnInit {
 
   enquireNow() {
     this.closeModal();
-    this.enquireRemark = '';
     this.loader = true;
     var items = [];
     for (var i = 0; i < this.diamondData.length; i++) {
@@ -215,6 +214,7 @@ export class HomeComponent implements OnInit {
       diamond: items,
       remark: this.enquireRemark,
     };
+    this.enquireRemark = '';
     this.dataService.enquireStones(enquiry).subscribe(
       (res) => {
         this.message = `Enquiry Placed Successfully.`;
