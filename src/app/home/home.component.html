@@ -1,14 +1,37 @@
-<div *ngIf="!loader" class="row row-cols-md-4 g-3 cols-sm-1">
+<div *ngIf="!loader" class="row row-cols-md-3 g-3 cols-sm-1">
   <div
-    class="col"
+    class="col top-card"
     *ngFor="let card of cards; let i = index"
     (click)="flipcards(i)"
   >
     <div class="card shadow p-2" [ngClass]="card.selected ? 'select' : ''">
       <div class="card-body">
         <i class="{{ card.icon }}"></i>
-        <h4>{{ card.name }}</h4>
+        <h4 class="h4-card">{{ card.name }}</h4>
         <!-- <h2 class="card-title">{{diamondData.length}}</h2> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" [hidden]="true" id="openModalButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Open Modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" #myModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Enquiry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" (ngModelChange)="enquiryComment($event)" id="exampleFormControlTextarea1" [(ngModel)]="enquireRemark" placeholder="Remarks" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="enquireNow()" [disabled]="enquireButton" class="btn btn-sm btn-primary">Enquire Now</button>
       </div>
     </div>
   </div>
@@ -91,7 +114,7 @@
     <a (click)="addToCart()" title="Add To Cart"
       ><i class="fa fa-shopping-cart"></i
     ></a>
-    <a href="#" title="Enquire"><i class="fa fa-phone"></i></a>
+    <a (click)="openModal()" title="Enquire"><i class="fa fa-phone"></i></a>
     <a
       (click)="removeItemFromFavourite()"
       title="Delete"

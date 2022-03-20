@@ -38,26 +38,6 @@ export class SignUpComponent implements OnInit {
   contactCode: any = countryCode.info;
   loading:any = false;
 
-  // loginForm = new FormGroup({
-  //   firstName: new FormControl('',[Validators.required]),
-  //   lastName: new FormControl(''),
-  //   email: new FormControl('',[Validators.required,Validators.email]),
-  //   dateOfBirth: new FormControl('',[Validators.required]),
-  //   userId: new FormControl('',[Validators.required]),
-  //   password: new FormControl('',[Validators.required,createPasswordStrengthValidator]),
-  //   confirmPassword: new FormControl('',[Validators.required]),
-  //   contactNo: new FormControl('',[Validators.required,Validators.pattern("[0-9 ]{10}")]),
-  //   businessInfo: new FormGroup({
-  //     companyName: new FormControl('',[Validators.required]),
-  //     businessType: new FormControl('',[Validators.required]),
-  //     country: new FormControl('',[Validators.required]),
-  //     state: new FormControl('',[Validators.required]),
-  //     city: new FormControl(''),
-  //     address: new FormControl('',[Validators.required])
-  //   })
-  // },
-  // );
-
   loginForm = this.fb.group(
     {
       firstName: ['', [Validators.required]],
@@ -108,7 +88,6 @@ export class SignUpComponent implements OnInit {
     const state = State.getStateByCodeAndCountry(data.state,data.country)?.name;
     data.state = state;
     data.country = country;
-    console.log(data)
     this.createNewAccount(data);
   }
 

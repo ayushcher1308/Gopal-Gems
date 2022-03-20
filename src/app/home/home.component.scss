@@ -1,5 +1,7 @@
 h2,
 h4,
+h5,
+textarea,
 button,.snackbar {
   font-family: "Montserrat", sans-serif;
   white-space: nowrap;
@@ -749,6 +751,14 @@ td {
   #loader {
     left: 45%;
     top: 45%;
+  }
+
+  .top-card{
+    width: 50px;
+  }
+
+  .h4-card{
+    font-size: 10px;
   }
 }
 

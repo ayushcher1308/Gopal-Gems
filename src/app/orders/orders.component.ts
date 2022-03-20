@@ -34,7 +34,6 @@ export class OrdersComponent implements OnInit {
     this.dataService.fetchOrdersHistory(user).subscribe(res=>{
       this.orderHistory = res;
       this.loader = false;
-      console.log(res)
     })
   }
 

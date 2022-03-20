@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'diamond-detail/:id', component: DiamondDetailsComponent },
       { path: 'orders', component: OrdersComponent },
-      { path: 'enquire', component: EnquiryComponent },
+      { path: 'enquiry', component: EnquiryComponent },
       { path: 'cart', component: CartComponent },
     ],
   },

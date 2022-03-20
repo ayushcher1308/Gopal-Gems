@@ -49,7 +49,6 @@ export class DashboardComponent implements OnInit {
         token: localStorage.getItem('token'),
       };
       this.dataService.logoutAll(tokenObj).subscribe((res) => {
-        console.log(res);
         localStorage.removeItem('token');
         this.router.navigate(['/login']);
       });

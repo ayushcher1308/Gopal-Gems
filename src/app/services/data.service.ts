@@ -69,11 +69,19 @@ export class DataService {
     return this.http.get<any>(environment.url + 'order/users/' + _id);
   }
 
-  placeOrder(data:any){
-    return this.http.post<any>(environment.url + 'order/add/',data);
+  placeOrder(data: any) {
+    return this.http.post<any>(environment.url + 'order/add/', data);
   }
 
-  emptyCart(_id:any){
+  emptyCart(_id: any) {
     return this.http.get<any>(environment.url + 'cart/empty/' + _id);
+  }
+
+  enquireStones(items: any) {
+    return this.http.post<any>(environment.url + 'enquiry/add/', items);
+  }
+
+  fetchEnquiryItems(_id: any) {
+    return this.http.get<any>(environment.url + 'enquiry/items/' + _id);
   }
 }

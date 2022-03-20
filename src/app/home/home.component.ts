@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ValueCache } from 'ag-grid-community';
 import { diamondMockData } from 'src/mock-data/diamond';
@@ -11,6 +11,7 @@ import { UserDataService } from '../user-data.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('myModal') myModal: any;
   constructor(
     private dataService: DataService,
     private router: Router,
@@ -20,8 +21,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   diamondData: any;
+  enquireButton: boolean = true;
   loader: any = false;
   message: any;
+  enquireRemark: any;
   selectedCard: any = 'New Goods';
   options: any = false;
   cards = [
@@ -40,11 +43,11 @@ export class HomeComponent implements OnInit {
       icon: 'fs-4 fa fa-heart-o',
       selected: false,
     },
-    {
-      name: 'Enquiry',
-      icon: 'fs-4 fa fa-question-circle',
-      selected: false,
-    },
+    // {
+    //   name: 'Enquiry',
+    //   icon: 'fs-4 fa fa-question-circle',
+    //   selected: false,
+    // },
   ];
 
   ngOnInit(): void {
@@ -107,20 +110,23 @@ export class HomeComponent implements OnInit {
     this.loader = true;
     var items = [];
     for (var i = 0; i < this.diamondData.length; i++) {
-      if (this.diamondData[i].selected) items.push(this.diamondData[i].FavouriteId);
+      if (this.diamondData[i].selected)
+        items.push(this.diamondData[i].FavouriteId);
     }
     if (items.length == 0) {
       this.message = `Please select any item to remove from Favourite.`;
       this.showSnackbar();
       this.loader = false;
     } else {
-      this.dataService.removeItemsFromFavourite({ $in: items }).subscribe((res) => {
-        this.fetchFavouriteItems();
-      });
+      this.dataService
+        .removeItemsFromFavourite({ $in: items })
+        .subscribe((res) => {
+          this.fetchFavouriteItems();
+        });
     }
   }
 
-  fetchFavouriteItems(){
+  fetchFavouriteItems() {
     let _id = this.userData.getUserInfo()._id;
     this.dataService.fetchFavouriteItems(_id).subscribe((res) => {
       this.diamondData = [];
@@ -165,6 +171,62 @@ export class HomeComponent implements OnInit {
         }
       );
     }
+  }
+
+  openModal() {
+    this.options = false;
+    var items = [];
+    for (var i = 0; i < this.diamondData.length; i++) {
+      if (this.diamondData[i].selected) {
+        items.push(this.diamondData[i]._id);
+      }
+    }
+    if (items.length == 0) {
+      this.message = 'Please select atleast one diamond for Enquiry';
+      this.showSnackbar();
+      this.loader = false;
+      return;
+    }
+    document.getElementById('openModalButton')?.click();
+  }
+
+  closeModal() {
+    document.getElementById('closeModal')?.click();
+  }
+
+  enquiryComment(event: any) {
+    this.enquireButton = true;
+    if (event.length != 0) this.enquireButton = false;
+  }
+
+  enquireNow() {
+    this.closeModal();
+    this.enquireRemark = '';
+    this.loader = true;
+    var items = [];
+    for (var i = 0; i < this.diamondData.length; i++) {
+      if (this.diamondData[i].selected) {
+        this.diamondData[i].selected = false;
+        items.push(this.diamondData[i]._id);
+      }
+    }
+    const enquiry = {
+      user: this.userData.getUserInfo()._id,
+      diamond: items,
+      remark: this.enquireRemark,
+    };
+    this.dataService.enquireStones(enquiry).subscribe(
+      (res) => {
+        this.message = `Enquiry Placed Successfully.`;
+        this.showSnackbar();
+        this.loader = false;
+      },
+      (err) => {
+        this.message = `Please try again later.`;
+        this.showSnackbar();
+        this.loader = false;
+      }
+    );
   }
 
   showSnackbar() {

@@ -1,108 +1,71 @@
-<h1 class="center">Enquire Here</h1>
-<form class="row g-3 m-4">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">First Name*</label>
-    <input type="text" class="form-control" id="inputEmail4" />
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="inputPassword4" />
-  </div>
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">Company*</label>
-    <input
-      type="text"
-      class="form-control"
-      id="inputAddress"
-      placeholder="ABC Ltd"
-    />
-  </div>
+<h2 class="text-center h2" *ngIf="enquiryHistory?.length == 0">
+  No Enquiries Found
+</h2>
 
-  <div class="col-md-2">
-    <label for="countryCode" class="form-label">Country Code*</label>
-    <select
-      id="countryCode"
-      class="form-select"
+<div *ngFor="let enquiry of enquiryHistory" class="mb-2">
+  <div class="text-hr text-hr--center">
+    <span
+      class="text-hr__text"
+      >Enquiry ID: {{ enquiry.enquiryId }} &nbsp; Placed On:
+      {{ enquiry.createdAt | date }}</span
     >
-      <option selected disabled>Choose...</option>
-      <option *ngFor="let info of contactCode" value="info.dial_code">{{info.name}} ({{info.dial_code}})</option>
-    </select>
   </div>
 
-  <div class="col-md-10">
-    <label for="contactNo" class="form-label">Contact*</label>
-    <input
-      type="text"
-      class="form-control"
-      id="contactNo"
-      placeholder="00000 00000"
-    />
-  </div>
-
-  <div class="col-md-3">
-    <label for="inputState" class="form-label">Country*</label>
-    <select
-      id="inputState"
-      class="form-select"
-      (change)="selectStatesByCountry($any($event.target).value)"
-    >
-      <option selected disabled>Choose...</option>
-      <option *ngFor="let country of countries" value="{{ country.isoCode }}">
-        {{ country.name }}
-      </option>
-    </select>
-  </div>
-  <div class="col-md-3">
-    <label for="inputState" class="form-label">State*</label>
-    <select
-      id="inputState"
-      class="form-select"
-      (change)="selectCitiesByState($any($event.target).value)"
-    >
-      <option selected disabled>Choose...</option>
-      <option *ngFor="let state of states" value="{{ state.isoCode }}">
-        {{ state.name }}
-      </option>
-    </select>
-  </div>
-  <div class="col-md-3">
-    <label for="inputState" class="form-label">City</label>
-    <select id="inputState" class="form-select">
-      <option selected disabled>Choose...</option>
-      <option *ngFor="let city of cities" value="city.isoCode">
-        {{ city.name }}
-      </option>
-    </select>
-  </div>
-  <div class="col-md-3">
-    <label for="ppincode" class="form-label">Pin Code*</label>
-    <input
-      type="text"
-      class="form-control"
-      id="pincode"
-      placeholder="Pin Code"
-    />
-  </div>
-
-  <div class="col-12">
-    <label for="inputAddress2" class="form-label">Address*</label>
-    <textarea class="form-control" id="inputAddress2" rows="2" placeholder="Please specify complete address"></textarea>
-  </div>
-
-  <div class="col-12">
-    <label for="inputAddress2" class="form-label">Enquiry*</label>
-    <textarea class="form-control" id="inputAddress2" rows="2" placeholder="Please mention enquiry"></textarea>
-  </div>
-
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck" />
-      <label class="form-check-label" for="gridCheck"> High Priority </label>
+  <div class="container">
+    <div class="row cards">
+      <div
+        class="col-lg-4 col-md-6 col-sm-12"
+        *ngFor="let data of enquiry.diamond; let i = index"
+      >
+        <div class="card card-margin" [ngClass]="data.selected ? 'select' : ''">
+          <div class="card-body pt-0">
+            <div class="widget-49">
+              <div class="widget-49-title-wrapper m-1">
+                <div class="widget-49-date-primary">
+                  <span class="widget-49-date-day">{{ data.Carat }}</span>
+                  <span class="widget-49-date-month fw-bold">carat</span>
+                </div>
+                <div class="widget-49-meeting-info">
+                  <span class="widget-49-pro-title text-start">
+                    <span>{{ data.stockNo }}</span>
+                    <span style="font-weight: 500; margin-left: 0.5rem">
+                      {{ data.Shape }}
+                    </span>
+                    <span style="margin-left: 0.6rem" class="fw-bold">
+                      {{ data.Rap }}
+                    </span>
+                    <span style="margin-left: 0.6rem" class="fw-bold end-item">
+                      {{ data.pr_ct | currency }}/CT
+                    </span>
+                  </span>
+                  <hr />
+                  <span class="widget-49-meeting-time text-start"
+                    ><span class="fw-bold">
+                      {{ data.Color }}
+                      {{ data.Clarity }}&nbsp;
+                      {{ data.Cut }}
+                      {{ data.Polish }}
+                      {{ data.Symmetry }}&nbsp; {{ data.Fluorescent }}&nbsp;
+                    </span>
+                    {{ data.LAB }}&nbsp;
+                    <span class="end-item">{{ data.Measurement }}</span>
+                  </span>
+                  <hr />
+                  <span class="widget-49-meeting-time text-start">
+                    Lustor &nbsp; Tab: {{ data.Tab }}% &nbsp; TD: {{ data.TD }}%
+                    &nbsp;
+                    <span class="end-item">Ratio: {{ data.Ratio }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary centre m-2">Enquire</button>
-    <button type="clear" class="btn btn-outline-primary centre m-2">Clear</button>
-  </div>
-</form>
+<div id="ctn" *ngIf="loader">
+  <div id="loader"></div>
+</div>
