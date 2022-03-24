@@ -1,22 +1,6 @@
 <div class="body">
   <div class="container" id="container">
-    <div class="form-container sign-in-container">
-      <!-- <form [formGroup]="loginForm">
-			<h1>Sign in</h1>
-			<input type="email" placeholder="User Name" formControlName="user"/>
-            <span class="validationText" *ngIf="user.invalid && (user.dirty || user.touched)">
-                Email is required*
-            </span>
-            
-			<input type="password" placeholder="Password" formControlName="password"/>
-            <span class="validationText" *ngIf="password.invalid && (password.dirty || password.touched)">
-                Password is required*
-            </span>
-
-
-			<a href="#">Forgot your password?</a>
-			<button [disabled]="!loginForm.valid" (click)="onSubmit()">Sign In</button>
-		</form> -->
+    <div *ngIf="page" class="form-container sign-in-container">
       <form [formGroup]="loginForm">
         <h1>Sign in</h1>
         <div class="mb-1">
@@ -41,13 +25,35 @@
             [ngClass]="{'invalid-input': (password.invalid && (password.dirty || password.touched))}"
           />
         </div>
-      
         <button class="mb-1 btn" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()">
           <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           Sign In
         </button>
+        <span class="forget-password" (click)="flipPage(false)">Forget Password?</span>
       </form>
     </div>
+
+    <div *ngIf="!page" class="form-container sign-in-container">
+      <form [formGroup]="passwordReset">
+        <h1>Forget Password</h1>
+        <div class="mb-1">
+          <!-- <label for="formGroupExampleInput" class="form-label">User Name</label> -->
+          <input
+            type="text"
+            class="form-control"
+            id="formGroupExampleInput"
+            formControlName="email"
+            placeholder="Email ID*"
+          />
+        </div>
+        <button class="mb-1 btn" type="submit" (click)="checkEmail()">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Reset
+        </button>
+        <span class="forget-password" (click)="flipPage(true)">Back To Sign In</span>
+      </form>
+    </div>
+
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-right">

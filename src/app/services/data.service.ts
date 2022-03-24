@@ -14,6 +14,10 @@ export class DataService {
     return this.http.post<any>(environment.url + 'users/login', data);
   }
 
+  updatePwd(data:any){
+    return this.http.post<any>(environment.url + 'users/update', data);
+  }
+
   register(data: any) {
     return this.http.post<any>(environment.url + 'users/new', data);
   }
@@ -24,6 +28,10 @@ export class DataService {
 
   logout(token: any) {
     return this.http.post<any>(environment.url + 'users/logout', token);
+  }
+
+  resetPassword(data: any) {
+    return this.http.post<any>(environment.url + 'users/reset', data);
   }
 
   logoutAll(token: any) {
