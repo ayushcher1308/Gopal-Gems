@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
   });
   page = true;
   emailID = '';
+  alert = false;
+  type = false;
 
   onSubmit() {
     // TODO: login form hit
@@ -41,10 +43,10 @@ export class LoginComponent implements OnInit {
         if (res.success) {
           if (res.data.status == config.PENDING) {
             this.message = config.ACCOUNT_PENDING;
-            this.showAlert();
+            this.showAlert(true);
           } else if (res.data.status == config.BLOCKED) {
             this.message = config.ACCOUNT_BLOCKED;
-            this.showAlert();
+            this.showAlert(true);
           } else {
             localStorage.setItem('token', res.token);
             this.userInfo.setUserInfo(res.data);
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit {
           }
         } else {
           this.message = config.INVALID_CREDENTIALS;
-          this.showAlert();
+          this.showAlert(false);
         }
         this.loginForm.reset();
         this.loading = false;
@@ -60,17 +62,20 @@ export class LoginComponent implements OnInit {
       (err) => {
         console.log(err);
         this.message = config.ERROR_MSG;
-        this.showAlert();
+        this.showAlert(false);
         this.loading = false;
       }
     );
   }
 
-  showAlert() {
-    var x = document.getElementsByClassName('snackbar')[0];
-    x.classList.add('show');
-    setTimeout(function () {
-      x.classList.remove('show');
+  showAlert(typeOfNotification:boolean) {
+    // var x = document.getElementsByClassName('snackbar')[0];
+    // x.classList.add('show');
+    this.alert = true;
+    this.type = typeOfNotification;
+    setTimeout(() => {
+      // x.classList.remove('show');
+      this.alert = false;
     }, 3000);
   }
 
@@ -86,7 +91,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     if (this.passwordReset.status == 'INVALID') {
       this.message = 'Please Enter Valid Email ID';
-      this.showAlert();
+      this.showAlert(false);
       this.loading = false;
     }
     this.dataService
@@ -94,12 +99,12 @@ export class LoginComponent implements OnInit {
       .subscribe((res) => {
         if (!res.success) {
           this.message = res.message;
-          this.showAlert();
+          this.showAlert(false);
           this.loading = false;
         } else {
           this.passwordReset.reset();
           this.message = 'Please check your email for password reset.';
-          this.showAlert();
+          this.showAlert(true);
           this.loading = false;
         }
       });

@@ -24,13 +24,14 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const token = params['id'];
-      this.verifyToken(token);
+      this.token = params['id'];
+      this.verifyToken(this.token);
     });
   }
 
   message: any;
   loading: any = false;
+  token:any;
   loginForm = this.fb.group(
     {
       password: ['', [Validators.required]],
@@ -68,6 +69,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.loading = true;
     var data = this.loginForm.getRawValue();
     data.id = this.userId;
+    data.token = this.token
     this.dataService.updatePwd(data).subscribe(res=>{
       if(res.status){
         this.router.navigate(['/login']);
@@ -85,6 +87,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   redirectToSignup() {
-    this.router.navigate(['/signup'], { relativeTo: this.route });
+    this.router.navigate(['/login'], { relativeTo: this.route });
   }
 }

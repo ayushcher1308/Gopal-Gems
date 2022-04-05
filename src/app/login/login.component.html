@@ -2,6 +2,7 @@
   <div class="container" id="container">
     <div *ngIf="page" class="form-container sign-in-container">
       <form [formGroup]="loginForm">
+        <app-alert [message]="message" [show]="alert" [type]="false"></app-alert>
         <h1>Sign in</h1>
         <div class="mb-1">
           <!-- <label for="formGroupExampleInput" class="form-label">User Name</label> -->
@@ -30,11 +31,13 @@
           Sign In
         </button>
         <span class="forget-password" (click)="flipPage(false)">Forget Password?</span>
+  
       </form>
     </div>
 
     <div *ngIf="!page" class="form-container sign-in-container">
       <form [formGroup]="passwordReset">
+        <app-alert [message]="message" [show]="alert" [type]="type"></app-alert>
         <h1>Forget Password</h1>
         <div class="mb-1">
           <!-- <label for="formGroupExampleInput" class="form-label">User Name</label> -->

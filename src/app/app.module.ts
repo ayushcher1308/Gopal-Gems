@@ -22,6 +22,8 @@ import { DiamondDetailsComponent } from './diamond-details/diamond-details.compo
 import { CartComponent } from './cart/cart.component';
 import { FooterComponent } from './footer/footer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AlertComponent } from './alert/alert.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     DiamondDetailsComponent,
     CartComponent,
     FooterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AlertComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,

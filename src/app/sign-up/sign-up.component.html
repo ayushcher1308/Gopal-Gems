@@ -376,6 +376,7 @@
         </div>
       </div> -->
 
+      <app-alert [message]="message" [show]="showMessage" [type]="messageType"></app-alert>
       <div class="col-12 text-center">
         <button (click)="onSubmit()" class="btn btn-primary centre m-2">
             <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -386,6 +387,7 @@
         </button>
       </div>
     </form>
+
   </div>
   <div class="col-md-4" style="margin-bottom: -50px">
     <div class="overlay-panel overlay-right col-md-12">
@@ -398,4 +400,4 @@
   </div>
 </div>
 
-<div class="snackbar" id="snackbar">{{ message }}</div>
+<!-- <div class="snackbar" id="snackbar">{{ message }}</div> -->

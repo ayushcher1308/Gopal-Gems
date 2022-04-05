@@ -1,0 +1,7 @@
+<div
+  class="alert"
+  role="alert"
+  *ngIf="show"
+  [ngClass]="type ? 'alert-success' : 'alert-danger'">
+  {{ message }}
+</div>

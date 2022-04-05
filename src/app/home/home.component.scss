@@ -7,6 +7,15 @@ button,.snackbar {
   white-space: nowrap;
 }
 
+app-alert{
+  position: sticky;
+    z-index: 100;
+    bottom: 40px;
+    left: 5%;
+    right: 5%;
+
+}
+
 .card-body {
   text-align: center;
   text-overflow: ellipsis;

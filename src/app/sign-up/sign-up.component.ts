@@ -36,25 +36,27 @@ export class SignUpComponent implements OnInit {
   countrySelected: any;
   message: any;
   contactCode: any = countryCode.info;
-  loading:any = false;
+  loading: any = false;
+  showMessage: any = false;
+  messageType: any = false;
 
   loginForm = this.fb.group(
     {
       firstName: ['', [Validators.required]],
       lastName: [''],
-      email: ['',[Validators.required,Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       dateOfBirth: [''],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
       contactNo: ['', [Validators.required]],
       companyName: ['', [Validators.required]],
-      businessType: ['',[Validators.required]],
-      country: ['',[Validators.required]],
-      state: ['',[Validators.required]],
+      businessType: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      state: ['', [Validators.required]],
       city: [''],
-      countryCode:[''],
-      address: ['',[Validators.required]],
-      pincode: ['',[Validators.required]]
+      countryCode: [''],
+      address: ['', [Validators.required]],
+      pincode: ['', [Validators.required]],
     },
     { validator: MustMatch('password', 'confirmPassword') }
   );
@@ -73,39 +75,45 @@ export class SignUpComponent implements OnInit {
     // TODO: login form hit
     if (this.loginForm.status == 'INVALID') {
       this.message = config.SIGNUP_FORM_REQUIRED;
-      this.showAlert();
+      this.showAlert(false);
       return;
     }
     this.loading = true;
     var data = this.loginForm.value;
-    data.contactNo = data.countryCode+" "+data.contactNo;
-    data.name = data.firstName+" "+data.lastName;
-    delete data.firstName
-    delete data.countryCode
-    delete data.confirmPassword
-    delete data.lastName
+    data.contactNo = data.countryCode + ' ' + data.contactNo;
+    data.name = data.firstName + ' ' + data.lastName;
+    delete data.firstName;
+    delete data.countryCode;
+    delete data.confirmPassword;
+    delete data.lastName;
     const country = Country.getCountryByCode(data.country)?.name;
-    const state = State.getStateByCodeAndCountry(data.state,data.country)?.name;
+    const state = State.getStateByCodeAndCountry(
+      data.state,
+      data.country
+    )?.name;
     data.state = state;
     data.country = country;
     this.createNewAccount(data);
   }
 
-  createNewAccount(data:any){
-    this.dataService.register(data).subscribe(Response=>{
-      this.loading = false;
-      this.loginForm.reset();
-      this.message = config.ACCOUNT_SUCCESS;
-      this.showAlert();
-    },error=>{
-      console.log(error);
-      this.loading = false;
-      this.message = config.ERROR_MSG;
-      this.showAlert();
-    })
+  createNewAccount(data: any) {
+    this.dataService.register(data).subscribe(
+      (Response) => {
+        this.loading = false;
+        this.loginForm.reset();
+        this.message = config.ACCOUNT_SUCCESS;
+        this.showAlert(true);
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false;
+        this.message = config.ERROR_MSG;
+        this.showAlert(false);
+      }
+    );
   }
 
-  get firstName(): any{
+  get firstName(): any {
     return this.loginForm.get('firstName');
   }
 
@@ -147,11 +155,14 @@ export class SignUpComponent implements OnInit {
     this.cities = City.getCitiesOfState(this.countrySelected, event);
   }
 
-  showAlert() {
-    var x = document.getElementsByClassName('snackbar')[0];
-    x.classList.add('show');
-    setTimeout(function () {
-      x.classList.remove('show');
+  showAlert(isSuccess: any) {
+    // var x = document.getElementsByClassName('snackbar')[0];
+    // x.classList.add('show');
+    this.messageType = isSuccess;
+    this.showMessage = true;
+    setTimeout(() => {
+      this.showMessage = false;
+      // x.classList.remove('show');
     }, 3000);
   }
 }

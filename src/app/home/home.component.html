@@ -43,6 +43,8 @@
   <h2 class="m-2 fw-bold text-center">{{ selectedCard }}</h2>
 </div>
 
+<!-- <app-alert [message]="'The login credentials which you have entered are invalid.'" [show]="true" [type]="false"></app-alert> -->
+
 <div class="container" *ngIf="!loader">
   <div class="row cards">
     <div
@@ -119,7 +121,7 @@
       (click)="removeItemFromFavourite()"
       title="Delete"
       *ngIf="cards[2].selected"
-      ><i class="fa fa-trash"></i
+      ><i class="fa fa-trash-o"></i
     ></a>
     <a
       (click)="addToFavourite()"

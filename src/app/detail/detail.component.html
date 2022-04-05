@@ -2,38 +2,6 @@
   <div id="loader"></div>
 </div>
 
-<app-alert [message]="message" [show]="showAlert" [type]="success"></app-alert>
-
-<div class="p-2 m-1" style="width: 100%">
-  <button
-    type="button"
-    (click)="backPage()"
-    class="btn btn-sm btn-outline-secondary m-1"
-  >
-    <i class="fa-solid fa-arrow-left"></i>
-  </button>
-  <button
-    type="button"
-    class="btn btn-sm btn-outline-secondary m-1 float-right"
-    (click)="addToCart()"
-  >
-    Add To Cart
-  </button>
-  <button
-    type="button"
-    class="btn btn-sm btn-outline-secondary m-1 float-right"
-    (click)="placeOrder()"
-  >
-    Place Order
-  </button>
-  <button
-    type="button"
-    class="btn btn-sm btn-outline-secondary m-1 float-right"
-    (click)="openModal()"
-  >
-    Enquiry
-  </button>
-</div>
 <div class="container-fluid" *ngIf="!loader">
   <div class="detail-container rounded row">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -217,71 +185,6 @@
             </table>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<button
-  type="button"
-  [hidden]="true"
-  id="openModalButton"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#staticBackdrop"
->
-  Open Modal
-</button>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="staticBackdrop"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
-  #myModal
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Enquiry</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <textarea
-          class="form-control"
-          (ngModelChange)="enquiryComment($event)"
-          id="exampleFormControlTextarea1"
-          [(ngModel)]="enquireRemark"
-          placeholder="Remarks"
-          rows="3"
-        ></textarea>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          id="closeModal"
-          class="btn btn-sm btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          (click)="enquireNow()"
-          [disabled]="enquireButton"
-          class="btn btn-sm btn-primary"
-        >
-          Enquire Now
-        </button>
       </div>
     </div>
   </div>
