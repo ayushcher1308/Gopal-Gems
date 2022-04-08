@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3" *ngFor="let data of orderDetails">
+    <div class="card m-2 shadow">
+      <div class="card-body">
+        <h5 class="card-title fw-bold">Order ID: {{ data.orderId }}</h5>
+        <p class="card-text ">Customer Name: <span>{{ data.user.name }}</span></p>
+        <p class="card-text">Email: <span>{{data.user.email}}</span></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Total Stones: <span>{{data.diamond.length}}</span></li>
+        <li class="list-group-item">Order Total: <span>{{data.totalAmount | currency}}</span></li>
+        <li class="list-group-item">A third item</li>
+      </ul>
+      <div class="card-footer">
+        <small class="text-muted"
+          >Placed On: {{ data.createdAt | date: "medium" }}</small
+        >
+      </div>
+    </div>
+  </div>
+</div>

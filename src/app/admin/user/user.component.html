@@ -1,0 +1,31 @@
+<div class="d-grid gap-1 d-md-flex justify-content-md-end">
+  <span
+    class="mx-4"
+    style="width: 100%; font-size: 18px; margin-top: 10px; font-weight: bold"
+    >User Details</span
+  >
+  <button *ngIf="eventButtons" class="btn btn-sm btn-success" type="button" (click)="processRequests('Approved')">
+    Approve
+  </button>
+  <button *ngIf="eventButtons" class="btn btn-sm btn-danger" type="button" (click)="processRequests('Rejected')">
+    Reject
+  </button>
+</div>
+
+<app-alert class="mx-3" [message]="message" [show]="alert" [type]="type"></app-alert>
+
+<ag-grid-angular
+  *ngIf="rowData.length != 0"
+  style="width: auto; height: 580px"
+  class="m-4 ag-theme-balham"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColumnDefs"
+  [rowSelection]="'multiple'"
+  [isRowSelectable]="isRowSelectable"
+  [suppressCellSelection]="true"
+  [suppressRowClickSelection]="false"
+  (gridReady)="onGridReady($event)"
+  (selectionChanged)="selectionRows($event)"
+>
+</ag-grid-angular>

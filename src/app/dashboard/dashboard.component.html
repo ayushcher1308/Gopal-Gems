@@ -1,55 +1,93 @@
- <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand">Gopal Gems</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link path home" [routerLink]="['home']">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link path search" [routerLink]="['search']">Search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link path enquiry" [routerLink]="['enquiry']">Enquiry</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link path orders" [routerLink]="['orders']">Orders</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link path enquiry" [routerLink]="['enquire']">Enquiry</a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link path cart" [routerLink]="['cart']">Cart</a>
-          </li>
-          <li class="nav-item dropdown Profile">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-user m-1" aria-hidden="true"></i>{{user?.name}}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" (click)="logoutUser()">Logout</a></li>
-              <li><a class="dropdown-item" (click)="logoutAll()">Logout All</a></li>
-            </ul>
-          </li>
-        </ul>
-        <!-- <span class="navbar-text">
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">Gopal Gems</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link path home" [routerLink]="['panel']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link path search" [routerLink]="['search']">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link path enquiry" [routerLink]="['enquiry']"
+            >Enquiry</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link path orders" [routerLink]="['orders']">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link path cart" [routerLink]="['cart']">Cart</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isUserAdmin()">
+          <a
+            class="nav-link dropdown-toggle path admin"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Admin-Panel
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['admin/users']">User Details</a></li>
+            <li><a class="dropdown-item" [routerLink]="['admin/orders']">Order Details</a></li>
+            <li>
+              <a class="dropdown-item">Enquiries</a>
+            </li>
+          </ul>
+          <!-- <a class="nav-link path admin" [routerLink]="['admin']">Admin-Panel</a> -->
+        </li>
+        <!-- <button style="width: fit-content;" *ngIf="isUserAdmin()" class="btn btn-sm btn-secondary" [routerLink]="['admin']" type="button">Admin Tool</button> -->
+        <li class="nav-item dropdown Profile">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa fa-user m-1" aria-hidden="true"></i>{{ user?.name }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" (click)="logoutUser()">Logout</a></li>
+            <li>
+              <a class="dropdown-item" (click)="logoutAll()">Logout All</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- <span class="navbar-text">
           Navbar text with an inline element
         </span> -->
-      </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
- <div class="below-section">
-    <router-outlet></router-outlet>
- </div>
-
- <app-footer></app-footer>
-
- <div id="ctn" *ngIf="loader">
-    <div id="loader"></div>
+<div class="below-section">
+  <router-outlet></router-outlet>
 </div>
- 
+
+<app-footer></app-footer>
+
+<div id="ctn" *ngIf="loader">
+  <div id="loader"></div>
+</div>

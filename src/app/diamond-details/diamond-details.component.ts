@@ -15,7 +15,7 @@ export class DiamondDetailsComponent implements OnInit {
     private dataService: DataService,
     private _location: Location,
     private userData: UserDataService
-  ) {}
+  ) { }
   id: any;
   diamondDetail: any;
   loader: boolean = true;
@@ -119,20 +119,23 @@ export class DiamondDetailsComponent implements OnInit {
     );
   }
 
-  placeOrder(){
+  placeOrder() {
     this.loader = true;
     const order = {
-      user:this.userData.getUserInfo()._id,
-      diamond:[this.diamondDetail._id]
-    }
-    this.dataService.placeOrder(order).subscribe((res) => {
-      this.message = `Order Placed Successfully.`;
-      this.showMessage(this.message, true);
-      this.loader = false;
-    },(err)=>{
-      this.message = `An error has been occured. Please try again later.`;
-      this.showMessage(this.message, false);
-      this.loader = false;
-    });
+      user: this.userData.getUserInfo()._id,
+      diamond: [this.diamondDetail._id],
+    };
+    this.dataService.placeOrder(order).subscribe(
+      (res) => {
+        this.message = `Order Placed Successfully.`;
+        this.showMessage(this.message, true);
+        this.loader = false;
+      },
+      (err) => {
+        this.message = `An error has been occured. Please try again later.`;
+        this.showMessage(this.message, false);
+        this.loader = false;
+      }
+    );
   }
 }

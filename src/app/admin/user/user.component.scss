@@ -1,0 +1,34 @@
+select{
+    width: auto;
+}
+
+button{
+    width: 90px;
+}
+
+#loader {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 10px solid #dcefff;
+    border-top: 10px solid blue;
+    animation: rotate 2s infinite ease;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    z-index: 1000;
+  }
+  @keyframes rotate {
+    0% {
+      transform: none;
+    }
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+
+@media only screen and (max-width: 768px){
+    button{
+        width: auto;
+    }
+}

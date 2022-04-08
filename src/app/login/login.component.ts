@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     // TODO: login form hit
     this.loading = true;
     var loginData = this.loginForm.value;
+    loginData.user = loginData.user.toLowerCase();
     this.dataService.login(loginData).subscribe(
       (res) => {
         if (res.success) {

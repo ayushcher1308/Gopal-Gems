@@ -216,6 +216,10 @@ export const DiamondConfig = {
       value: 'Y-Z',
       selected: false,
     },
+    {
+      value: 'FANCY',
+      selected: false,
+    },
   ],
   Clarity: [
     {

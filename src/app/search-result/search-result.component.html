@@ -1,11 +1,5 @@
 <div *ngIf="!loader" class="w-3 m-1">
-  <button
-    type="button"
-    [routerLink]="['/dashboard/search']"
-    class="btn btn-sm btn-outline-secondary"
-  >
-    <i class="fa-solid fa-arrow-left"></i>
-  </button>
+  <app-back-button></app-back-button>
   <span class="m-2 result text-center" *ngIf="diamondData?.length != 0"
     >Total Search Result: {{ diamondData?.length }}</span
   >

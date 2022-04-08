@@ -30,6 +30,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  isUserAdmin(){
+    const role = this.userInfo.getUserInfo().role;
+    if(role!=null && role=='admin')return true;
+    else return false;
+  }
+
   logoutUser() {
     if (confirm('Are you sure you want to logout?')){
       var tokenObj = {

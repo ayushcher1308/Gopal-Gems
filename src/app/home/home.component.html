@@ -1,4 +1,4 @@
-<div *ngIf="!loader" class="row row-cols-md-3 g-3 cols-sm-1">
+<!-- <div *ngIf="!loader" class="row row-cols-md-3 g-3 cols-sm-1">
   <div
     class="col top-card"
     *ngFor="let card of cards; let i = index"
@@ -8,11 +8,11 @@
       <div class="card-body">
         <i class="{{ card.icon }}"></i>
         <h4 class="h4-card">{{ card.name }}</h4>
-        <!-- <h2 class="card-title">{{diamondData.length}}</h2> -->
+        <h2 class="card-title">{{diamondData.length}}</h2>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <button type="button" [hidden]="true" id="openModalButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Open Modal
@@ -37,13 +37,13 @@
   </div>
 </div>
 
+<app-back-button></app-back-button>
 
-
-<div *ngIf="!loader" class="w-3 m-1">
-  <h2 class="m-2 fw-bold text-center">{{ selectedCard }}</h2>
+<div *ngIf="!loader && diamondData.length==0" class="w-3 m-1">
+  <h2 class="m-2 fw-bold text-center">No Stones Found</h2>
 </div>
 
-<!-- <app-alert [message]="'The login credentials which you have entered are invalid.'" [show]="true" [type]="false"></app-alert> -->
+<app-alert [message]="message" [show]="alert" [type]="type"></app-alert>
 
 <div class="container" *ngIf="!loader">
   <div class="row cards">
@@ -120,13 +120,12 @@
     <a
       (click)="removeItemFromFavourite()"
       title="Delete"
-      *ngIf="cards[2].selected"
+      *ngIf="i==2"
       ><i class="fa fa-trash-o"></i
     ></a>
     <a
       (click)="addToFavourite()"
-      *ngIf="!cards[2].selected"
-      href="#"
+      *ngIf="i!=2"
       title="Add To Favourite"
       ><i class="fa fa-heart"></i
     ></a>

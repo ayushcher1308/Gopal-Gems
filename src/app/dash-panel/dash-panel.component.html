@@ -1,0 +1,65 @@
+<app-alert [message]="message" [show]="alert" [type]="type"></app-alert>
+
+<div class="card shadow">
+  <div class="card-body avatar">
+    <img src="{{ avatar }}" width="60" height="60" alt="" class="rounded" />
+    <div class="mx-4">
+      <h1 class="card-title fw-bold">Welcome</h1>
+      <h3 class="card-subtitle mb-2 text-muted">{{ name }}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-sm-12">
+    <div class="input-group mt-2">
+      <span class="input-group-text" id="basic-addon1">Search</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Stone ID / Certi No."
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+        [(ngModel)]="searchId"
+      />
+    </div>
+  </div>
+  <div class="col-md-3 mt-2 col-sm-12">
+    <button type="button" class="btn btn-dark search-btn" (click)="search()">
+      <i class="fa fa-search mx-3" aria-hidden="true"></i>Search Diamonds
+    </button>
+  </div>
+</div>
+
+<div class="m-1 tiles">
+  <button
+    type="button"
+    *ngFor="let data of tiles"
+    class="btn btn-dark m-1 shadow"
+    (click)="tileAction(data.route)"
+  >
+    <i [ngClass]="data.icon" aria-hidden="true"></i>{{ data.label }}
+  </button>
+</div>
+
+<div class="card shadow">
+  <div class="card-header fw-bold">
+    Mr. Nitin Agarwal<a
+      style="color: inherit"
+      href="https://wa.me/+919312577369"
+      ><i
+        class="fa fa-whatsapp mx-2"
+        style="float: right"
+        aria-hidden="true"
+      ></i
+    ></a>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <i class="fa fa-envelope mx-2" aria-hidden="true"></i>nitin@gopalindia.com
+    </p>
+    <p class="card-text">
+      <i class="fa fa-phone mx-2" aria-hidden="true"></i>+919312577369
+    </p>
+  </div>
+</div>

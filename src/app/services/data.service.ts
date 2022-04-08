@@ -9,13 +9,25 @@ import { UserDataService } from '../user-data.service';
 export class DataService {
   constructor(private http: HttpClient) {}
   account: any;
+  token = localStorage.getItem('token');
 
   login(data: any) {
     return this.http.post<any>(environment.url + 'users/login', data);
   }
 
-  updatePwd(data:any){
+  updatePwd(data: any) {
     return this.http.post<any>(environment.url + 'users/update', data);
+  }
+
+  fetchAllUsersAdmin() {
+    return this.http.post<any>(environment.url + 'usersList/admin', {
+      token: this.token,
+    });
+  }
+
+  approveRejectUsers(data: any) {
+    data.token = this.token;
+    return this.http.post<any>(environment.url + 'users/admin', data);
   }
 
   register(data: any) {
@@ -79,6 +91,12 @@ export class DataService {
 
   placeOrder(data: any) {
     return this.http.post<any>(environment.url + 'order/add/', data);
+  }
+
+  fetchOrdersAdmin() {
+    return this.http.post<any>(environment.url + 'admin/orders', {
+      token: this.token,
+    });
   }
 
   emptyCart(_id: any) {

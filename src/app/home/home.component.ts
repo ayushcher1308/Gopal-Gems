@@ -27,6 +27,9 @@ export class HomeComponent implements OnInit {
   enquireRemark: any;
   selectedCard: any = 'New Goods';
   options: any = false;
+  i: any;
+  alert = false;
+  type: any;
   cards = [
     {
       name: 'New Goods',
@@ -55,7 +58,12 @@ export class HomeComponent implements OnInit {
     for (var i = 0; i < rm.length; i++) rm[i].classList.remove('active');
     var element = document.getElementsByClassName('home')[0];
     element.classList.add('active');
-    this.fetchDiamondList();
+    this.route.params.subscribe((params) => {
+      const id = params['id'];
+      this.i = id;
+      this.flipcards(id);
+    });
+    // this.fetchDiamondList();
   }
 
   fetchDiamondList() {
@@ -93,7 +101,7 @@ export class HomeComponent implements OnInit {
     }
     if (cartItems.length == 0) {
       this.message = 'Please select atleast one diamond for adding to cart';
-      this.showSnackbar();
+      this.showSnackbar(false);
       this.loader = false;
       this.options = false;
     } else {
@@ -101,7 +109,7 @@ export class HomeComponent implements OnInit {
         this.loader = false;
         this.message = res.msg;
         this.options = false;
-        this.showSnackbar();
+        this.showSnackbar(true);
       });
     }
   }
@@ -115,7 +123,7 @@ export class HomeComponent implements OnInit {
     }
     if (items.length == 0) {
       this.message = `Please select any item to remove from Favourite.`;
-      this.showSnackbar();
+      this.showSnackbar(false);
       this.loader = false;
     } else {
       this.dataService
@@ -154,8 +162,8 @@ export class HomeComponent implements OnInit {
     }
     if (FavouriteItems.length == 0) {
       this.message =
-        'Please select atleast one diamond for adding to Favourite';
-      this.showSnackbar();
+        'Please select atleast one diamond for adding to Wishlist';
+      this.showSnackbar(false);
       this.loader = false;
       this.options = false;
     } else {
@@ -164,10 +172,13 @@ export class HomeComponent implements OnInit {
           this.loader = false;
           this.message = res.msg;
           this.options = false;
-          this.showSnackbar();
+          this.showSnackbar(true);
         },
         (err) => {
+          this.message = err.msg;
           this.loader = false;
+          this.options = false;
+          this.showSnackbar(false);
         }
       );
     }
@@ -183,7 +194,7 @@ export class HomeComponent implements OnInit {
     }
     if (items.length == 0) {
       this.message = 'Please select atleast one diamond for Enquiry';
-      this.showSnackbar();
+      this.showSnackbar(false);
       this.loader = false;
       return;
     }
@@ -218,33 +229,34 @@ export class HomeComponent implements OnInit {
     this.dataService.enquireStones(enquiry).subscribe(
       (res) => {
         this.message = `Enquiry Placed Successfully.`;
-        this.showSnackbar();
+        this.showSnackbar(true);
         this.loader = false;
       },
       (err) => {
         this.message = `Please try again later.`;
-        this.showSnackbar();
+        this.showSnackbar(true);
         this.loader = false;
       }
     );
   }
 
-  showSnackbar() {
-    var x = document.getElementsByClassName('snackbar')[0];
-    x.classList.add('show');
-    setTimeout(function () {
-      x.classList.remove('show');
+  showSnackbar(typeOfNotification: any) {
+    this.alert = true;
+    this.type = typeOfNotification;
+    setTimeout(() => {
+      // x.classList.remove('show');
+      this.alert = false;
     }, 3000);
   }
 
   flipcards(index: any) {
-    for (var i = 0; i < this.cards.length; i++) {
-      if (i != index) this.cards[i].selected = false;
-      else {
-        this.cards[i].selected = true;
-        this.selectedCard = this.cards[i].name;
-      }
-    }
+    // for (var i = 0; i < this.cards.length; i++) {
+    //   if (i != index) this.cards[i].selected = false;
+    //   else {
+    //     this.cards[i].selected = true;
+    //     this.selectedCard = this.cards[i].name;
+    //   }
+    // }
     if (index == 0) {
       this.fetchDiamondList();
     }

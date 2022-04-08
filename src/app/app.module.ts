@@ -24,6 +24,11 @@ import { FooterComponent } from './footer/footer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AlertComponent } from './alert/alert.component';
 import { DetailComponent } from './detail/detail.component';
+import { UserComponent } from './admin/user/user.component';
+import { OrderDetailsAdminComponent } from './admin/order-details-admin/order-details-admin.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { DashPanelComponent } from './dash-panel/dash-panel.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 
 @NgModule({
@@ -42,7 +47,12 @@ import { DetailComponent } from './detail/detail.component';
     FooterComponent,
     ForgotPasswordComponent,
     AlertComponent,
-    DetailComponent
+    DetailComponent,
+    UserComponent,
+    OrderDetailsAdminComponent,
+    AdminDashboardComponent,
+    DashPanelComponent,
+    BackButtonComponent
   ],
   imports: [
     BrowserModule,
