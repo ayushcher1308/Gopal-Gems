@@ -29,7 +29,8 @@ import { OrderDetailsAdminComponent } from './admin/order-details-admin/order-de
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { DashPanelComponent } from './dash-panel/dash-panel.component';
 import { BackButtonComponent } from './back-button/back-button.component';
-
+import { FileUploadModule } from '@iplab/ngx-file-upload';
+import { EnquiriesComponent } from './admin/enquiries/enquiries.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { BackButtonComponent } from './back-button/back-button.component';
     OrderDetailsAdminComponent,
     AdminDashboardComponent,
     DashPanelComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    EnquiriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,10 +64,12 @@ import { BackButtonComponent } from './back-button/back-button.component';
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule ,
-    AgGridModule.withComponents([])
+    FormsModule,
+    FileUploadModule,
+    BrowserAnimationsModule,
+    AgGridModule.withComponents([]),
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  bootstrap: [AppComponent]
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

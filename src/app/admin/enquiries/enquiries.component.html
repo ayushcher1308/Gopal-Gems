@@ -1,23 +1,22 @@
 <select
-  [(ngModel)]="selectOrders"
-  (change)="fetchOrderOnSelection()"
+  [(ngModel)]="selectenquirys"
+  (change)="fetchenquiryOnSelection()"
   class="form-select form-select-sm m-2 w-auto"
   aria-label=".form-select-sm example"
 >
-  <option value="Pending">Pending Orders</option>
-  <option value="Accepted">Accepted Orders</option>
-  <option value="Rejected">Rejected Order</option>
+  <option value="Pending">Pending Enquiries</option>
+  <option value="Resolved">Resolved Enquiries</option>
 </select>
 
-<h2 *ngIf="orderDetails?.length == 0" class="text-center">
-  No {{ selectOrders }} Orders Found
+<h2 *ngIf="enquiryDetails?.length == 0" class="text-center">
+  No {{ selectenquirys }} Enquiries Found
 </h2>
 
 <div class="row">
-  <div class="col-md-3" *ngFor="let data of orderDetails">
+  <div class="col-md-3" *ngFor="let data of enquiryDetails">
     <div class="card m-2 shadow">
       <div class="card-body">
-        <h5 class="card-title fw-bold">Order ID: {{ data.orderId }}</h5>
+        <h5 class="card-title fw-bold">Enquiry ID: {{ data.enquiryId }}</h5>
         <p class="card-text">
           Customer Name: <span>{{ data.user.name }}</span>
         </p>
@@ -33,10 +32,7 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          Total Stones: <span>{{ data.diamond.length }}</span>
-        </li>
-        <li class="list-group-item">
-          Order Total: <span>{{ data.totalAmount | currency }}</span>
+          Customer Remarks: <span>{{ data.remark }}</span>
         </li>
       </ul>
       <div class="card-footer">
@@ -47,17 +43,10 @@
         <div *ngIf="data.status == 'Pending'">
           <button
             type="button"
-            class="btn btn-sm btn-danger mx-1 float-end"
-            (click)="actionOrder('Rejected', data._id)"
+            class="btn btn-sm btn-primary mx-1 float-end"
+            (click)="actionenquiry('Resolved', data._id)"
           >
-            Reject
-          </button>
-          <button
-            type="button"
-            class="btn btn-sm btn-success mx-1 float-end"
-            (click)="actionOrder('Accepted', data._id)"
-          >
-            Accept
+          <i class="fa fa-check mx-1" aria-hidden="true"></i>Resolved
           </button>
         </div>
       </div>

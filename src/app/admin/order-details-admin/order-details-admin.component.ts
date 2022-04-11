@@ -14,10 +14,29 @@ export class OrderDetailsAdminComponent implements OnInit {
   }
 
   orderDetails: any;
+  selectOrders: any = "Pending";
+  loader = false;
 
   fetchOrdersAdmin() {
-    this.dataService.fetchOrdersAdmin().subscribe((res) => {
+    this.loader = true;
+    this.dataService.fetchOrdersAdmin(this.selectOrders).subscribe((res) => {
       this.orderDetails = res;
+      this.loader = false;
     });
+  }
+
+  actionOrder(status:any,orderId:any){
+    this.loader = true;
+    const data = {
+      status:status,
+      orderId:orderId
+    }
+    this.dataService.actionOrdersAdmin(data).subscribe(res=>{
+      this.fetchOrdersAdmin();
+    })
+  }
+
+  fetchOrderOnSelection(){
+    this.fetchOrdersAdmin();
   }
 }

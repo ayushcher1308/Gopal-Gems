@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ValueCache } from 'ag-grid-community';
 import { diamondMockData } from 'src/mock-data/diamond';
 import { DataService } from '../services/data.service';
 import { UserDataService } from '../user-data.service';

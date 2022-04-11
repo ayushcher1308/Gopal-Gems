@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand">Gopal Gems</a>
+    <a class="navbar-brand" [routerLink]="['/']">Gopal Gems</a>
     <button
       class="navbar-toggler"
+      id="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarText"
@@ -14,21 +15,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item" (click)="buttonPressed()">
           <a class="nav-link path home" [routerLink]="['panel']">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="buttonPressed()">
           <a class="nav-link path search" [routerLink]="['search']">Search</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="buttonPressed()">
           <a class="nav-link path enquiry" [routerLink]="['enquiry']"
             >Enquiry</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="buttonPressed()">
           <a class="nav-link path orders" [routerLink]="['orders']">Orders</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="buttonPressed()">
           <a class="nav-link path cart" [routerLink]="['cart']">Cart</a>
         </li>
         <li class="nav-item dropdown" *ngIf="isUserAdmin()">
@@ -42,16 +43,28 @@
           >
             Admin-Panel
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" [routerLink]="['admin/users']">User Details</a></li>
-            <li><a class="dropdown-item" [routerLink]="['admin/orders']">Order Details</a></li>
+          <ul
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+            (click)="buttonPressed()"
+          >
             <li>
-              <a class="dropdown-item">Enquiries</a>
+              <a class="dropdown-item" [routerLink]="['admin/users']"
+                >User Details</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['admin/orders']"
+                >Order Details</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['admin/enquiry']"
+                >Enquiries</a
+              >
             </li>
           </ul>
-          <!-- <a class="nav-link path admin" [routerLink]="['admin']">Admin-Panel</a> -->
         </li>
-        <!-- <button style="width: fit-content;" *ngIf="isUserAdmin()" class="btn btn-sm btn-secondary" [routerLink]="['admin']" type="button">Admin Tool</button> -->
         <li class="nav-item dropdown Profile">
           <a
             class="nav-link dropdown-toggle"

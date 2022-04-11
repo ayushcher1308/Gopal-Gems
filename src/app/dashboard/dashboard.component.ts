@@ -49,6 +49,10 @@ export class DashboardComponent implements OnInit {
     
   }
 
+  buttonPressed(){
+    document.getElementById("navbar-toggler")?.click();
+  }
+
   logoutAll() {
     if (confirm('Are you sure you want to logout from all devices?')) {
       var tokenObj = {

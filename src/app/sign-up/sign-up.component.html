@@ -1,161 +1,4 @@
-<!-- <div class="body">
-  <div class="container" id="container">
-    <div class="form-container sign-in-container sc1">
-      <h1>Registration</h1>
-      <form [formGroup]="loginForm">
-        <h2>Personal Information</h2>
-        <input
-          type="text"
-          placeholder="First Name*"
-          formControlName="firstName"
-        />
-        <span
-          class="validationText"
-          *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
-        >
-          Name is required*
-        </span>
-
-        <input type="text" placeholder="Last Name" formControlName="lastName" />
-
-        <input type="email" placeholder="Email*" formControlName="email" />
-        <span *ngIf=" (email.touched ||
-		email.dirty) && email.invalid">
-			<span *ngIf="email.errors.required" style="color:red;font-size:13px">*Email is required</span>
-			<span *ngIf="email.errors.email" style="color:red;font-size:13px">*Email address is not valid</span>
-        </span>
-
-        <input
-          type="password"
-          placeholder="Password*"
-          formControlName="password"
-        />
-        <span *ngIf=" (password.touched ||
-		password.dirty) && password.invalid">
-			<span *ngIf="password.errors.required" style="color:red;font-size:13px">*Password is required.</span>
-			<span *ngIf="password.errors.passwordStrength" style="color:red;font-size:13px">*Password must be strong.</span>
-        </span>
-
-        <input
-          type="password"
-          placeholder="Confirm Password*"
-          formControlName="confirmPassword"
-        />
-        <span *ngIf=" (confirmPassword.touched ||
-		confirmPassword.dirty) && confirmPassword.invalid">
-			<span *ngIf="confirmPassword.errors?.mustMatch" style="color:red;font-size:13px">*Password must match.</span>
-          Password is required*
-        </span>
-
-        <input
-          type="text"
-          placeholder="Date of Birth*"
-          formControlName="dateOfBirth"
-          onfocus="(this.type='date')"
-          onblur="(this.type='text')"
-        />
-        <span
-          class="validationText"
-          *ngIf="
-            dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)
-          "
-        >
-          Date of Birth is required*
-        </span>
-
-        <input
-          type="text"
-          placeholder="Mobile Number*"
-          formControlName="contactNo"
-          (keypress)="numberOnly($event)"
-          maxlength="10"
-        />
-        <span *ngIf=" (contactNo.touched ||
-		contactNo.dirty) && contactNo.invalid">
-			<span *ngIf="contactNo.errors.required" style="color:red;font-size:13px">*Contact Number is required</span>
-			<span *ngIf="contactNo.errors.pattern" style="color:red;font-size:13px">*Contact Number is not valid</span>
-        </span>
-
-        <div formGroupName="businessInfo">
-          <h2>Business Information</h2>
-          <input
-            type="text"
-            placeholder="Company Name*"
-            formControlName="companyName"
-          />
-
-          <select name="businessType" id="businessType" formControlName="businessType">
-            <option value="" disabled selected>Select Business Type*</option>
-            <option *ngFor="let type of businessType" value="{{type}}">
-              {{ type }}
-            </option>
-          </select>
-
-          <select
-            name="country"
-            id="country"
-            formControlName="country"
-            (change)="selectStatesByCountry($any($event.target).value)"
-          >
-            <option value="" disabled selected>Select Country*</option>
-            <option
-              *ngFor="let country of countries"
-              value="{{ country.isoCode }}"
-            >
-              {{ country.name }}
-            </option>
-          </select>
-
-          <select
-            name="state"
-            id="state"
-            formControlName="state"
-            (change)="selectCitiesByState($any($event.target).value)"
-          >
-            <option value="" disabled selected>Select State*</option>
-            <option *ngFor="let state of states" value="{{ state.isoCode }}">
-              {{ state.name }}
-            </option>
-          </select>
-
-          <select name="city" id="city" formControlName="city">
-            <option value="" disabled selected>Select City</option>
-            <option *ngFor="let city of cities" value="{{city.isoCode}}">
-              {{ city.name }}
-            </option>
-          </select>
-
-          <textarea
-            id="address"
-            placeholder="Address*"
-            formControlName="address"
-            name="address"
-            rows="4"
-            cols="10"
-          ></textarea>
-        </div>
-        <button  (click)="onSubmit()">
-          Register
-        </button>
-        <a (click)="redirectToSignin()">Back to Login</a>
-      </form>
-    </div>
-    <div class="overlay-container">
-      <div class="overlay">
-        <div class="overlay-panel overlay-right">
-          <h1 class="logo">G</h1>
-          <p>Login To Explore wide range of diamonds with us.</p>
-          <button class="ghost" id="signUp" (click)="redirectToSignin()">
-            Sign In
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="snackbar" id="snackbar">{{message}}</div> -->
-
+<app-back-button></app-back-button>
 <div class="row">
   <div class="col-md-8">
     <form class="row g-3 m-4" [formGroup]="loginForm">
@@ -245,7 +88,7 @@
         </div>
       </div>
 
-      <div class="col-md-2">
+      <div class="col-2">
         <label for="countryCode" class="form-label">Code*</label>
         <select
           id="countryCode"
@@ -259,7 +102,7 @@
         </select>
       </div>
 
-      <div class="col-md-10">
+      <div class="col-10">
         <label for="contactNo" class="form-label">Contact*</label>
         <input
           type="text"
@@ -273,7 +116,7 @@
 
       <h4>Business Information</h4>
 
-      <div class="col-6">
+      <div class="col-12">
         <label for="companyName" class="form-label">Company Name*</label>
         <input
           type="text"
@@ -284,7 +127,7 @@
         />
       </div>
 
-      <div class="col-6">
+      <div class="col-12">
         <label for="businessType" class="form-label">Business Type*</label>
         <select
           id="businessType"
@@ -346,7 +189,7 @@
         </select>
       </div>
       <div class="col-md-3">
-        <label for="pincode" class="form-label">Pin Code*</label>
+        <label for="pincode" class="form-label">Pin Code</label>
         <input
           type="text"
           class="form-control"
@@ -366,6 +209,12 @@
           placeholder="Please specify complete address"
         ></textarea>
       </div>
+
+      <label class="form-label">Upload ID Proof*</label>
+      <file-upload formControlName="idProof" [animation]="true" ></file-upload>
+      <div style="color: red;" class="form-text text-center"  *ngIf="idProof.errors?.fileSize">*File size should be less than 2MB</div>
+      <div style="color: red;" class="form-text text-center"  *ngIf="idProof.errors?.fileTypes">*File should be of image format</div>
+
 <!-- 
       <div class="col-12">
         <div class="form-check">

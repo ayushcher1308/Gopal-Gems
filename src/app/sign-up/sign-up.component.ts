@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FileUploadValidators } from '@iplab/ngx-file-upload';
+
 import {
   FormBuilder,
   FormControl,
@@ -56,7 +58,14 @@ export class SignUpComponent implements OnInit {
       city: [''],
       countryCode: [''],
       address: ['', [Validators.required]],
-      pincode: ['', [Validators.required]],
+      pincode: [''],
+      idProof: [
+        null,
+        [
+          FileUploadValidators.fileSize(2000000),
+          FileUploadValidators.accept(['image/*']),
+        ],
+      ],
     },
     { validator: MustMatch('password', 'confirmPassword') }
   );
@@ -73,11 +82,14 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     // TODO: login form hit
-    if (this.loginForm.status == 'INVALID') {
-      this.message = config.SIGNUP_FORM_REQUIRED;
-      this.showAlert(false);
-      return;
-    }
+    const image = this.loginForm.value.idProof[0];
+    this.uploadImage(image);
+    // if (this.loginForm.status == 'INVALID') {
+    //   this.message = config.SIGNUP_FORM_REQUIRED;
+    //   this.showAlert(false);
+    //   return;
+    // }
+    console.log(this.loginForm.get('idProof'))
     this.loading = true;
     var data = this.loginForm.value;
     data.contactNo = data.countryCode + ' ' + data.contactNo;
@@ -93,7 +105,8 @@ export class SignUpComponent implements OnInit {
     )?.name;
     data.state = state;
     data.country = country;
-    this.createNewAccount(data);
+    console.log(data);
+    // this.createNewAccount(data);
   }
 
   createNewAccount(data: any) {
@@ -111,6 +124,12 @@ export class SignUpComponent implements OnInit {
         this.showAlert(false);
       }
     );
+  }
+
+  uploadImage(image:any){
+    this.dataService.uploadImage(image).subscribe(res=>{
+      console.log(res);
+    })
   }
 
   get firstName(): any {
@@ -132,6 +151,11 @@ export class SignUpComponent implements OnInit {
   get confirmPassword(): any {
     return this.loginForm.get('confirmPassword');
   }
+
+  get idProof(): any{
+    return this.loginForm.get('idProof');
+  }
+  
 
   numberOnly(event: any): boolean {
     const charCode = event.which ? event.which : event.keyCode;

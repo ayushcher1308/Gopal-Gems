@@ -25,6 +25,10 @@ export class DataService {
     });
   }
 
+  uploadImage(data: any) {
+    return this.http.post<any>(environment.url + 'users/update', data);
+  }
+
   approveRejectUsers(data: any) {
     data.token = this.token;
     return this.http.post<any>(environment.url + 'users/admin', data);
@@ -93,10 +97,28 @@ export class DataService {
     return this.http.post<any>(environment.url + 'order/add/', data);
   }
 
-  fetchOrdersAdmin() {
+  fetchOrdersAdmin(status: any) {
     return this.http.post<any>(environment.url + 'admin/orders', {
       token: this.token,
+      status: status,
     });
+  }
+
+  actionenquirysAdmin(enquiry: any) {
+    enquiry.token = this.token;
+    return this.http.post<any>(environment.url + 'admin/action/enquiry', enquiry);
+  }
+
+  fetchenquirysAdmin(status: any) {
+    return this.http.post<any>(environment.url + 'admin/enquiry', {
+      token: this.token,
+      status: status,
+    });
+  }
+
+  actionOrdersAdmin(order: any) {
+    order.token = this.token;
+    return this.http.post<any>(environment.url + 'admin/action/orders', order);
   }
 
   emptyCart(_id: any) {
