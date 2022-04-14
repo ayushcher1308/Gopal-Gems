@@ -5,7 +5,7 @@
     <img src="{{ avatar }}" width="60" height="60" alt="" class="rounded-circle" />
     <div class="mx-4">
       <h1 class="card-title fw-bold">Welcome</h1>
-      <h3 class="card-subtitle mb-2 text-muted">{{ name }}</h3>
+      <h3 class="card-subtitle mb-2 text-muted">{{ name }} <span *ngIf="isAdmin">(Admin)</span></h3>
     </div>
   </div>
 </div>

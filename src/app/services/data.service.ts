@@ -97,16 +97,17 @@ export class DataService {
     return this.http.post<any>(environment.url + 'order/add/', data);
   }
 
-  fetchOrdersAdmin(status: any) {
-    return this.http.post<any>(environment.url + 'admin/orders', {
-      token: this.token,
-      status: status,
-    });
+  fetchOrdersAdmin(filters: any) {
+    filters.token = this.token;
+    return this.http.post<any>(environment.url + 'admin/orders', filters);
   }
 
   actionenquirysAdmin(enquiry: any) {
     enquiry.token = this.token;
-    return this.http.post<any>(environment.url + 'admin/action/enquiry', enquiry);
+    return this.http.post<any>(
+      environment.url + 'admin/action/enquiry',
+      enquiry
+    );
   }
 
   fetchenquirysAdmin(status: any) {

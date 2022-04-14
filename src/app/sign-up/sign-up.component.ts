@@ -82,13 +82,13 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     // TODO: login form hit
-    const image = this.loginForm.value.idProof[0];
-    this.uploadImage(image);
-    // if (this.loginForm.status == 'INVALID') {
-    //   this.message = config.SIGNUP_FORM_REQUIRED;
-    //   this.showAlert(false);
-    //   return;
-    // }
+    // const image = this.loginForm.value.idProof[0];
+    // this.uploadImage(image);
+    if (this.loginForm.status == 'INVALID') {
+      this.message = config.SIGNUP_FORM_REQUIRED;
+      this.showAlert(false);
+      return;
+    }
     console.log(this.loginForm.get('idProof'))
     this.loading = true;
     var data = this.loginForm.value;
@@ -106,7 +106,7 @@ export class SignUpComponent implements OnInit {
     data.state = state;
     data.country = country;
     console.log(data);
-    // this.createNewAccount(data);
+    this.createNewAccount(data);
   }
 
   createNewAccount(data: any) {

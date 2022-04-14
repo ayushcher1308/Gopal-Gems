@@ -1,7 +1,9 @@
 .card,
 h5,
 h2,
-select {
+select,
+table,
+label {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -19,7 +21,7 @@ span {
   position: absolute;
   left: 45%;
   top: 45%;
-  z-index: 1000;
+  z-index: 1060;
 }
 @keyframes rotate {
   0% {

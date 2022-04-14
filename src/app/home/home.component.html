@@ -37,7 +37,12 @@
   </div>
 </div>
 
-<app-back-button></app-back-button>
+<div *ngIf="!loader" class="w-3 m-1">
+  <app-back-button></app-back-button>
+  <span class="m-2 result text-center" *ngIf="diamondData?.length != 0"
+    >Total Stones Found: {{ diamondData?.length }}</span
+  >
+</div>
 
 <div *ngIf="!loader && diamondData.length==0" class="w-3 m-1">
   <h2 class="m-2 fw-bold text-center">No Stones Found</h2>

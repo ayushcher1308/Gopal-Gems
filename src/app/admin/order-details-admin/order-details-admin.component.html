@@ -1,3 +1,15 @@
+<!-- Button trigger modal -->
+<button
+  type="button"
+  [hidden]="true"
+  id="openModalButton"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  Launch demo modal
+</button>
+
 <select
   [(ngModel)]="selectOrders"
   (change)="fetchOrderOnSelection()"
@@ -5,17 +17,42 @@
   aria-label=".form-select-sm example"
 >
   <option value="Pending">Pending Orders</option>
-  <option value="Accepted">Accepted Orders</option>
-  <option value="Rejected">Rejected Order</option>
+  <option value="Done">Actioned Orders</option>
 </select>
 
-<h2 *ngIf="orderDetails?.length == 0" class="text-center">
-  No {{ selectOrders }} Orders Found
-</h2>
-
+<!-- <label for="businessType" class="form-label mx-2">Search By (Optional)</label>
 <div class="row">
+  <div class="col-6">
+    <select
+      id="businessType"
+      class="form-select form-select-sm mx-2 w-auto"
+      [(ngModel)]="selectSearchFilter"
+    >
+      <option *ngFor="let type of searchType" value="{{ type.value }}">
+        {{ type.name }}
+      </option>
+    </select>
+  </div>
+  <div class="col-6">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        placeholder=""
+        [(ngModel)]="searchText"
+        aria-label="Example text with button addon"
+        aria-describedby="button-addon1"
+      />
+      <button type="button" class="btn btn-sm btn-dark" (click)="fetchSearchResult()">Search</button>
+    </div>
+  </div>
+</div> -->
+
+<h2 *ngIf="orderDetails?.length == 0" class="text-center">No Orders Found</h2>
+
+<div class="row" *ngIf="orderDetails != null">
   <div class="col-md-3" *ngFor="let data of orderDetails">
-    <div class="card m-2 shadow">
+    <div class="card m-2 shadow" (click)="orderDetailFetch(data)">
       <div class="card-body">
         <h5 class="card-title fw-bold">Order ID: {{ data.orderId }}</h5>
         <p class="card-text">
@@ -43,23 +80,6 @@
         <small class="text-muted"
           >Placed On: {{ data.createdAt | date: "medium" }}</small
         >
-
-        <div *ngIf="data.status == 'Pending'">
-          <button
-            type="button"
-            class="btn btn-sm btn-danger mx-1 float-end"
-            (click)="actionOrder('Rejected', data._id)"
-          >
-            Reject
-          </button>
-          <button
-            type="button"
-            class="btn btn-sm btn-success mx-1 float-end"
-            (click)="actionOrder('Accepted', data._id)"
-          >
-            Accept
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -67,4 +87,90 @@
 
 <div id="ctn" *ngIf="loader">
   <div id="loader"></div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Diamond Details</h2>
+        <button
+          type="button"
+          id="closeModal"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Stock No</th>
+              <th scope="col">Detail</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let data of selectedOrderDetails?.diamond; let i = index"
+            >
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ data.stockNo }}</td>
+              <td
+                (click)="navigateToDetail(data._id)"
+                style="text-decoration: underline"
+              >
+                Click Here
+              </td>
+              <td>
+                <span
+                  *ngIf="selectedOrderDetails.status[data._id] == 'Pending'"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger mx-1 float-end"
+                    (click)="
+                      actionOrder(
+                        'Rejected',
+                        selectedOrderDetails._id,
+                        data._id
+                      )
+                    "
+                  >
+                    <i class="fa fa-ban mx-1" aria-hidden="true"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-success mx-1 float-end"
+                    (click)="
+                      actionOrder(
+                        'Accepted',
+                        selectedOrderDetails._id,
+                        data._id
+                      )
+                    "
+                  >
+                    <i class="fa fa-check mx-1" aria-hidden="true"></i>
+                  </button>
+                </span>
+                <span
+                  *ngIf="selectedOrderDetails.status[data._id] != 'Pending'"
+                  >{{ selectedOrderDetails.status[data._id] }}</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

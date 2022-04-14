@@ -4,8 +4,14 @@
 
 <app-alert [message]="message" [show]="showAlert" [type]="success"></app-alert>
 
-<div class="p-2 m-1" style="width: 100%">
-  <button
+<div class="p-2 m-1" style="width: 100%" *ngIf="!loader">
+  <app-back-button></app-back-button>
+  <span
+    *ngIf="diamondDetail?.Status != 'AVAILABLE'"
+    class="w-100 fw-bold mx-2 text-danger sold-out"
+    >CURRENTLY OUT OF STOCK</span
+  >
+  <!-- <button
     type="button"
     (click)="backPage()"
     class="btn btn-sm btn-outline-secondary m-1"
@@ -32,7 +38,7 @@
     (click)="openModal()"
   >
     Enquiry
-  </button>
+  </button> -->
 </div>
 <div class="container-fluid" *ngIf="!loader">
   <div class="detail-container rounded row">
@@ -284,5 +290,25 @@
         </button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="adminActions" *ngIf="diamondDetail?.Status == 'AVAILABLE'">
+  <input
+    type="checkbox"
+    name="adminToggle"
+    class="adminToggle"
+    [(ngModel)]="options"
+  />
+  <a class="adminButton" href="#!"><i class="fa fa-plus"></i></a>
+  <div class="adminButtons">
+    <a (click)="addToCart()" title="Add To Cart"
+      ><i class="fa fa-shopping-cart"></i
+    ></a>
+    <a (click)="openModal()" title="Enquire"><i class="fa fa-phone"></i></a>
+    <a (click)="placeOrder()" title="Place Order"
+      ><i class="fa fa-first-order"></i
+    ></a>
+    <a href="#" title="Share"><i class="fa fa-share-alt"></i></a>
   </div>
 </div>

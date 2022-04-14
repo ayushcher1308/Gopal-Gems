@@ -2,18 +2,19 @@ h2,
 h4,
 h5,
 textarea,
-button,.snackbar {
+button,
+.snackbar,
+.result {
   font-family: "Montserrat", sans-serif;
   white-space: nowrap;
 }
 
-app-alert{
+app-alert {
   position: fixed;
-    z-index: 100;
-    bottom: 30px;
-    left: 5%;
-    right: 5%;
-
+  z-index: 100;
+  bottom: 30px;
+  left: 5%;
+  right: 5%;
 }
 
 .card-body {
@@ -33,7 +34,7 @@ table {
   color: gray;
 }
 
-.select > .card-body > i{
+.select > .card-body > i {
   color: white !important;
 }
 
@@ -762,11 +763,11 @@ td {
     top: 45%;
   }
 
-  .top-card{
+  .top-card {
     width: 50px;
   }
 
-  .h4-card{
+  .h4-card {
     font-size: 10px;
   }
 }
@@ -897,6 +898,11 @@ td {
       However, delay the fade out process for 2.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.result {
+  font-size: 1rem !important;
+  float: right;
 }
 
 /* Animations to fade the snackbar in and out */

@@ -25,6 +25,7 @@ export class DiamondDetailsComponent implements OnInit {
   message: any;
   showAlert: any;
   success = false;
+  options = false;;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -39,6 +40,7 @@ export class DiamondDetailsComponent implements OnInit {
   }
 
   openModal() {
+    this.options = false;
     document.getElementById('openModalButton')?.click();
   }
 
@@ -98,6 +100,7 @@ export class DiamondDetailsComponent implements OnInit {
   }
 
   addToCart() {
+    this.options = false;
     this.loader = true;
     const cartItems = [
       {
@@ -120,6 +123,7 @@ export class DiamondDetailsComponent implements OnInit {
   }
 
   placeOrder() {
+    this.options = false;
     this.loader = true;
     const order = {
       user: this.userData.getUserInfo()._id,

@@ -16,6 +16,7 @@ export class DashPanelComponent implements OnInit {
   ) {}
 
   name = this.user.getUserInfo().name;
+  isAdmin = this.user.getUserInfo().role == 'admin';
   avatar = `https://avatar.oxro.io/avatar.svg?name=${this.name}&background=212529&length=2`;
   searchId: any;
   type: any;
@@ -35,7 +36,7 @@ export class DashPanelComponent implements OnInit {
     },
     {
       label: 'Orders',
-      icon: 'fa fa-first-order',
+      icon: 'fa fa-wallet',
       route: '/dashboard/orders',
     },
     {
