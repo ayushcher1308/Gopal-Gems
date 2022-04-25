@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { SearchService } from '../services/search.service';
 
@@ -12,7 +12,8 @@ export class SearchResultComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private saveFiltersService: SearchService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   diamondData: any;
@@ -38,7 +39,11 @@ export class SearchResultComponent implements OnInit {
     });
   }
 
-  selectCard(index: any) {
-    this.diamondData[index].selected = !this.diamondData[index].selected;
+  selectCard(index: any,_id:any) {
+    this.router.navigate(['/dashboard/diamond-detail/', _id], {
+      relativeTo: this.route,
+    });
+    // this.diamondData[index].selected = !this.diamondData[index].selected;
   }
+  
 }

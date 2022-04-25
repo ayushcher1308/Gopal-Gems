@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { diamondMockData } from 'src/mock-data/diamond';
 import { DataService } from '../services/data.service';
+import { SearchService } from '../services/search.service';
 import { UserDataService } from '../user-data.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private user: UserDataService,
-    private userData: UserDataService
+    private userData: UserDataService,
+    private saveFiltersService:SearchService
   ) {}
 
   diamondData: any;
@@ -29,6 +31,7 @@ export class HomeComponent implements OnInit {
   i: any;
   alert = false;
   type: any;
+  filters:any;
   cards = [
     {
       name: 'New Goods',
@@ -248,6 +251,21 @@ export class HomeComponent implements OnInit {
     }, 3000);
   }
 
+  searchDiamond(){
+    this.loader = true;
+    this.filters = this.saveFiltersService.getData();
+    if(this.filters==null){
+      this.router.navigate(['/dashboard/search'])
+    }
+    this.dataService.searchDiamond(this.filters).subscribe((res) => {
+      this.diamondData = res;
+      for (var i = 0; i < this.diamondData.length; i++) {
+        this.diamondData[i].selected = false;
+      }
+      this.loader = false;
+    });
+  }
+
   flipcards(index: any) {
     // for (var i = 0; i < this.cards.length; i++) {
     //   if (i != index) this.cards[i].selected = false;
@@ -277,6 +295,10 @@ export class HomeComponent implements OnInit {
     if (index == 2) {
       this.loader = true;
       this.fetchFavouriteItems();
+    }
+
+    if(index == 4){
+      this.searchDiamond();
     }
   }
 }

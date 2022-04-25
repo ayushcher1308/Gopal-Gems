@@ -64,32 +64,20 @@ export class SignUpComponent implements OnInit {
         [
           FileUploadValidators.fileSize(2000000),
           FileUploadValidators.accept(['image/*']),
+          FileUploadValidators.filesLimit(1),
         ],
       ],
     },
     { validator: MustMatch('password', 'confirmPassword') }
   );
 
-  // passwordValidator(form:FormGroup){
-  //   const password = form.get('password');
-  //   const confirmPassword = form.get('confirmPassword');
-
-  //   if(password!=confirmPassword){
-  //     form.controls['confirmPassword'].setErrors({'mustMatch':true})
-  //   }
-
-  // }
-
   onSubmit() {
     // TODO: login form hit
-    // const image = this.loginForm.value.idProof[0];
-    // this.uploadImage(image);
     if (this.loginForm.status == 'INVALID') {
       this.message = config.SIGNUP_FORM_REQUIRED;
       this.showAlert(false);
       return;
     }
-    console.log(this.loginForm.get('idProof'))
     this.loading = true;
     var data = this.loginForm.value;
     data.contactNo = data.countryCode + ' ' + data.contactNo;
@@ -105,20 +93,16 @@ export class SignUpComponent implements OnInit {
     )?.name;
     data.state = state;
     data.country = country;
-    console.log(data);
     this.createNewAccount(data);
   }
 
   createNewAccount(data: any) {
     this.dataService.register(data).subscribe(
       (Response) => {
-        this.loading = false;
-        this.loginForm.reset();
-        this.message = config.ACCOUNT_SUCCESS;
-        this.showAlert(true);
+        // this.loading = false;
+        this.uploadImage(this.loginForm.value.idProof[0], Response._id);
       },
       (error) => {
-        console.log(error);
         this.loading = false;
         this.message = config.ERROR_MSG;
         this.showAlert(false);
@@ -126,10 +110,27 @@ export class SignUpComponent implements OnInit {
     );
   }
 
-  uploadImage(image:any){
-    this.dataService.uploadImage(image).subscribe(res=>{
-      console.log(res);
-    })
+  uploadImage(image: any, userId: any) {
+    const formData = new FormData();
+    console.log(image, userId);
+    var fileExt = image.name.split('.').pop();
+    let info = { id: 2, name: 'raja' };
+    formData.append('file', image, `${userId}.${fileExt}`);
+    formData.append('extension', 'PNG');
+    formData.append('id', '2');
+    formData.append('tz', new Date().toISOString());
+    formData.append('update', '2');
+    formData.append('info', JSON.stringify(info));
+    this.dataService.uploadImage(formData).subscribe((res) => {
+      if (res.status) {
+        this.loading = false;
+        this.message = config.ACCOUNT_SUCCESS;
+        this.showAlert(true);
+        this.loginForm.reset();
+      } else {
+        this.loading = false;
+      }
+    });
   }
 
   get firstName(): any {
@@ -152,10 +153,9 @@ export class SignUpComponent implements OnInit {
     return this.loginForm.get('confirmPassword');
   }
 
-  get idProof(): any{
+  get idProof(): any {
     return this.loginForm.get('idProof');
   }
-  
 
   numberOnly(event: any): boolean {
     const charCode = event.which ? event.which : event.keyCode;
@@ -180,13 +180,10 @@ export class SignUpComponent implements OnInit {
   }
 
   showAlert(isSuccess: any) {
-    // var x = document.getElementsByClassName('snackbar')[0];
-    // x.classList.add('show');
     this.messageType = isSuccess;
     this.showMessage = true;
     setTimeout(() => {
       this.showMessage = false;
-      // x.classList.remove('show');
     }, 3000);
   }
 }

@@ -47,7 +47,7 @@ export class SearchComponent implements OnInit {
 
   search() {
     this.searchByFilters();
-    this.router.navigate(['/dashboard/search-result']);
+    this.router.navigate(['/dashboard/home/4']);
   }
 
   searchByFilters() {
@@ -209,6 +209,7 @@ export class SearchComponent implements OnInit {
       filters.Symmetry = { $in: symmetrys };
     }
 
+    filters.Status = "AVAILABLE";
     this.saveFiltersService.setData(filters);
   }
 

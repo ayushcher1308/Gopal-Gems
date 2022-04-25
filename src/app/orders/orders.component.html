@@ -9,7 +9,7 @@
   <div class="text-hr text-hr--center">
     <span
       class="text-hr__text"
-      >Order ID: {{ order.orderId }} &nbsp; Placed On:
+      >Order ID: {{ order._id }} &nbsp; Placed On:
       {{ order.createdAt | date }}</span
     >
   </div>
@@ -84,7 +84,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 style="font-size: 14px;" class="modal-title" id="exampleModalLabel">Order Details &nbsp; #{{orderDetails?.orderId}}</h3>
+        <h3 style="font-size: 14px;" class="modal-title" id="exampleModalLabel">Order Details &nbsp; #{{orderDetails?._id}}</h3>
         <button
           type="button"
           class="btn-close"

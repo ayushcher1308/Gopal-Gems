@@ -48,7 +48,7 @@ export class UserComponent implements OnInit {
 
   processRequests(status: any) {
     this.loader = true;
-    this.eventButtons = true;
+    this.eventButtons = false;
     const selectedRows = this.gridApi.getSelectedRows();
     let user = [];
     for (let i = 0; i < selectedRows.length; i++)

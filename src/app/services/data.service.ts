@@ -26,7 +26,7 @@ export class DataService {
   }
 
   uploadImage(data: any) {
-    return this.http.post<any>(environment.url + 'users/update', data);
+    return this.http.post<any>('https://gopalgems.com/test-images/get.php', data);
   }
 
   approveRejectUsers(data: any) {

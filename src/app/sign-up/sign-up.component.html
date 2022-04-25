@@ -1,7 +1,11 @@
 <app-back-button></app-back-button>
 <div class="row">
   <div class="col-md-8">
-    <form class="row g-3 m-4" [formGroup]="loginForm">
+    <form
+      class="row g-3 m-4"
+      [formGroup]="loginForm"
+      enctype="multipart/form-data"
+    >
       <h4>Personal Information</h4>
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">First Name*</label>
@@ -13,10 +17,7 @@
         />
         <div
           id="firstName"
-          *ngIf="
-            (firstName.touched || firstName.dirty) &&
-            firstName.invalid
-          "
+          *ngIf="(firstName.touched || firstName.dirty) && firstName.invalid"
           class="form-text"
         >
           <span *ngIf="firstName.errors.required">Required*</span>
@@ -96,7 +97,7 @@
           formControlName="countryCode"
         >
           <option selected disabled>Choose...</option>
-          <option *ngFor="let info of contactCode" value="{{info.dial_code}}">
+          <option *ngFor="let info of contactCode" value="{{ info.dial_code }}">
             {{ info.name }} ({{ info.dial_code }})
           </option>
         </select>
@@ -135,10 +136,7 @@
           formControlName="businessType"
         >
           <option selected disabled>Choose...</option>
-          <option
-            *ngFor="let type of businessType"
-            value="{{ type }}"
-          >
+          <option *ngFor="let type of businessType" value="{{ type }}">
             {{ type }}
           </option>
         </select>
@@ -177,13 +175,9 @@
       </div>
       <div class="col-md-3">
         <label for="city" class="form-label">City</label>
-        <select
-          id="city"
-          class="form-select"
-          formControlName="city"
-        >
+        <select id="city" class="form-select" formControlName="city">
           <option selected disabled>Choose...</option>
-          <option *ngFor="let city of cities" value="{{city.name}}">
+          <option *ngFor="let city of cities" value="{{ city.name }}">
             {{ city.name }}
           </option>
         </select>
@@ -211,11 +205,23 @@
       </div>
 
       <label class="form-label">Upload ID Proof*</label>
-      <file-upload formControlName="idProof" [animation]="true" ></file-upload>
-      <div style="color: red;" class="form-text text-center"  *ngIf="idProof.errors?.fileSize">*File size should be less than 2MB</div>
-      <div style="color: red;" class="form-text text-center"  *ngIf="idProof.errors?.fileTypes">*File should be of image format</div>
+      <file-upload formControlName="idProof" [animation]="true"></file-upload>
+      <div
+        style="color: red"
+        class="form-text text-center"
+        *ngIf="idProof.errors?.fileSize"
+      >
+        *File size should be less than 2MB
+      </div>
+      <div
+        style="color: red"
+        class="form-text text-center"
+        *ngIf="idProof.errors?.fileTypes"
+      >
+        *File should be of image format
+      </div>
 
-<!-- 
+      <!-- 
       <div class="col-12">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="gridCheck" />
@@ -225,10 +231,19 @@
         </div>
       </div> -->
 
-      <app-alert [message]="message" [show]="showMessage" [type]="messageType"></app-alert>
+      <app-alert
+        [message]="message"
+        [show]="showMessage"
+        [type]="messageType"
+      ></app-alert>
       <div class="col-12 text-center">
         <button (click)="onSubmit()" class="btn btn-primary centre m-2">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
           Register
         </button>
         <button type="clear" class="btn btn-outline-primary centre m-2">
@@ -236,7 +251,6 @@
         </button>
       </div>
     </form>
-
   </div>
   <div class="col-md-4" style="margin-bottom: -50px">
     <div class="overlay-panel overlay-right col-md-12">
