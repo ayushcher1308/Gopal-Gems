@@ -22,6 +22,7 @@ export class UserComponent implements OnInit {
   message = 'Testing';
   alert = false;
   type = true;
+  url = 'https://gopalgems.com/test-images/upload/';
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -87,9 +88,19 @@ export class UserComponent implements OnInit {
         filter: false,
         resizable: false,
         checkboxSelection: true,
-        width: 40,
+        width: 50,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
+      },
+      {
+        headerName: '',
+        field: '_id',
+        width: 60,
+        filter: false,
+        resizable: false,
+        cellRenderer: function (params: any) {
+          return `<a href="https://gopalgems.com/test-images/upload/${params.value}.${params.data.fileFormat}" target="_blank"><i class="fa fa-file-image-o mx-1" aria-hidden="true"></i></a>`;
+        },
       },
     ];
     this.dataService.fetchAllUsersAdmin().subscribe((res) => {

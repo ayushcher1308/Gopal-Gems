@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private user: UserDataService,
     private userData: UserDataService,
-    private saveFiltersService:SearchService
+    private saveFiltersService: SearchService
   ) {}
 
   diamondData: any;
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   i: any;
   alert = false;
   type: any;
-  filters:any;
+  filters: any;
   cards = [
     {
       name: 'New Goods',
@@ -71,6 +71,17 @@ export class HomeComponent implements OnInit {
   fetchDiamondList() {
     this.loader = true;
     this.dataService.fetchDiamond().subscribe((res) => {
+      this.diamondData = res;
+      for (var i = 0; i < this.diamondData.length; i++) {
+        this.diamondData[i].selected = false;
+      }
+      this.loader = false;
+    });
+  }
+
+  fetchNewArrivals() {
+    this.loader = true;
+    this.dataService.fetchNewArrivals().subscribe((res) => {
       this.diamondData = res;
       for (var i = 0; i < this.diamondData.length; i++) {
         this.diamondData[i].selected = false;
@@ -163,8 +174,7 @@ export class HomeComponent implements OnInit {
       }
     }
     if (FavouriteItems.length == 0) {
-      this.message =
-        'Please select atleast one diamond for adding to Wishlist';
+      this.message = 'Please select atleast one diamond for adding to Wishlist';
       this.showSnackbar(false);
       this.loader = false;
       this.options = false;
@@ -251,13 +261,17 @@ export class HomeComponent implements OnInit {
     }, 3000);
   }
 
-  searchDiamond(){
+  searchDiamond() {
     this.loader = true;
     this.filters = this.saveFiltersService.getData();
-    if(this.filters==null){
-      this.router.navigate(['/dashboard/search'])
+    if (this.filters == null) {
+      this.router.navigate(['/dashboard/search']);
     }
-    this.dataService.searchDiamond(this.filters).subscribe((res) => {
+    const filter = {
+      filters: this.filters,
+      user: this.userData.getUserInfo()._id,
+    };
+    this.dataService.searchDiamond(filter).subscribe((res) => {
       this.diamondData = res;
       for (var i = 0; i < this.diamondData.length; i++) {
         this.diamondData[i].selected = false;
@@ -275,7 +289,7 @@ export class HomeComponent implements OnInit {
     //   }
     // }
     if (index == 0) {
-      this.fetchDiamondList();
+      this.fetchNewArrivals();
     }
 
     if (index == 1) {
@@ -297,7 +311,7 @@ export class HomeComponent implements OnInit {
       this.fetchFavouriteItems();
     }
 
-    if(index == 4){
+    if (index == 4) {
       this.searchDiamond();
     }
   }

@@ -20,6 +20,7 @@ import { AdminPanelGuard } from './services/admin-panel.guard';
 import { AuthGuard } from './services/auth.guard';
 import { LoginGuard } from './services/login.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { VerifyEmailComponent } from './sign-up/verify-email/verify-email.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'prefix', redirectTo: 'login' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'password/:id', component: ForgotPasswordComponent },
   { path: 'diamond/:id', component: DetailComponent },
+  { path: 'verify/:id', component: VerifyEmailComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,

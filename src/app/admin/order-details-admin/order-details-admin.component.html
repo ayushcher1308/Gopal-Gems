@@ -20,7 +20,7 @@
   <option value="Done">Actioned Orders</option>
 </select>
 
-<!-- <label for="businessType" class="form-label mx-2">Search By (Optional)</label>
+<label for="businessType" class="form-label mx-2">Search By (Optional)</label>
 <div class="row">
   <div class="col-6">
     <select
@@ -46,11 +46,11 @@
       <button type="button" class="btn btn-sm btn-dark" (click)="fetchSearchResult()">Search</button>
     </div>
   </div>
-</div> -->
+</div>
 
 <h2 *ngIf="orderDetails?.length == 0" class="text-center">No Orders Found</h2>
 
-<div class="row" *ngIf="orderDetails != null">
+<div class="row" *ngIf="orderDetails?.length != 0">
   <div class="col-md-3" *ngFor="let data of orderDetails">
     <div class="card m-2 shadow" (click)="orderDetailFetch(data)">
       <div class="card-body">

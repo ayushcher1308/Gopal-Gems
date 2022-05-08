@@ -1,5 +1,8 @@
-
-h3,.text-hr__text,.modal,th,td {
+h3,
+.text-hr__text,
+.modal,
+th,
+td {
   font-family: "Montserrat", sans-serif;
   white-space: nowrap;
 }
@@ -15,7 +18,7 @@ h4 {
   height: 1px;
 }
 
-table{
+table {
   text-align: center;
 }
 
@@ -900,10 +903,14 @@ td {
   }
 
   .text-hr__text {
-    font-size: 11px;
+    font-size: 10px;
   }
 
-  .row>*{
+  .row > * {
     padding: 0;
+  }
+
+  h3 {
+    font-size: 12px !important;
   }
 }

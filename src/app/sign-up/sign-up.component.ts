@@ -93,6 +93,7 @@ export class SignUpComponent implements OnInit {
     )?.name;
     data.state = state;
     data.country = country;
+    data.fileFormat = this.loginForm.value.idProof[0].name.split('.').pop();
     this.createNewAccount(data);
   }
 

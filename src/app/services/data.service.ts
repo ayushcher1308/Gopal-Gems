@@ -26,7 +26,10 @@ export class DataService {
   }
 
   uploadImage(data: any) {
-    return this.http.post<any>('https://gopalgems.com/test-images/get.php', data);
+    return this.http.post<any>(
+      'https://gopalgems.com/test-images/get.php',
+      data
+    );
   }
 
   approveRejectUsers(data: any) {
@@ -56,6 +59,10 @@ export class DataService {
 
   fetchDiamond() {
     return this.http.get<any>(environment.url + 'diamond/list');
+  }
+
+  fetchNewArrivals() {
+    return this.http.get<any>(environment.url + 'diamond/newArrivals');
   }
 
   searchDiamond(filters: any) {

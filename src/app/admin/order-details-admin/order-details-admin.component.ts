@@ -15,6 +15,7 @@ export class OrderDetailsAdminComponent implements OnInit {
   }
 
   orderDetails: any = null;
+  globalOrders: any;
   selectOrders: any = 'Pending';
   loader = false;
   selectedOrderDetails: any;
@@ -23,7 +24,7 @@ export class OrderDetailsAdminComponent implements OnInit {
   searchType = [
     {
       name: 'Company Name',
-      value: 'user.companyName',
+      value: 'companyName',
     },
     {
       name: 'Order ID',
@@ -43,6 +44,7 @@ export class OrderDetailsAdminComponent implements OnInit {
     }
     this.dataService.fetchOrdersAdmin(filter).subscribe((res) => {
       this.orderDetails = res;
+      this.globalOrders = res;
       this.loader = false;
     });
   }
@@ -65,10 +67,21 @@ export class OrderDetailsAdminComponent implements OnInit {
   fetchSearchResult() {
     const key = this.selectSearchFilter;
     const val = this.searchText;
-    var search: any = {};
-    search[key] = val;
-    console.log(search);
-    this.fetchOrdersAdmin(search);
+    if (key == 'companyName') {
+      this.orderDetails = this.globalOrders.filter((data: any) => {
+        return data.user.companyName.includes(val);
+      });
+    }
+
+    if (key == 'orderId') {
+      if(val==''){
+        this.orderDetails = this.globalOrders;
+        return;
+      }
+      this.orderDetails = this.globalOrders.filter((data: any) => {
+        return data.orderId == val;
+      });
+    }
   }
 
   openModal() {

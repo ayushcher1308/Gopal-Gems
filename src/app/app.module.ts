@@ -31,6 +31,7 @@ import { DashPanelComponent } from './dash-panel/dash-panel.component';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { EnquiriesComponent } from './admin/enquiries/enquiries.component';
+import { VerifyEmailComponent } from './sign-up/verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { EnquiriesComponent } from './admin/enquiries/enquiries.component';
     DashPanelComponent,
     BackButtonComponent,
     EnquiriesComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
